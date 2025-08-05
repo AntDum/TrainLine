@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://caqgw4yjgx47v"]
+
+[ext_resource type="Script" uid="uid://bpcktnl0ri0nv" path="res://scripts/objects/particle_destroy.gd" id="1_v2mmu"]
+
+[sub_resource type="Curve" id="Curve_1eyt4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.43825, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_v2mmu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.202381, 0.765873)
+colors = PackedColorArray(0.12549, 0.0980392, 0.113725, 1, 0.286275, 0.235294, 0.168627, 1, 0.615686, 0.615686, 0.615686, 1)
+
+[node name="DestroyParticle" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.66
+lifetime_randomness = 0.15
+emission_shape = 3
+emission_rect_extents = Vector2(8, 8)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 26.67
+initial_velocity_max = 66.67
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.8
+scale_amount_max = 1.8
+scale_amount_curve = SubResource("Curve_1eyt4")
+color_initial_ramp = SubResource("Gradient_v2mmu")
+script = ExtResource("1_v2mmu")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck6beu6fp771q"]
+
+[ext_resource type="Script" uid="uid://c57bw0e6jgd7e" path="res://scripts/actors/train.gd" id="1_8trkk"]
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="1_wnjtu"]
+
+[node name="Train" type="Node2D"]
+script = ExtResource("1_8trkk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wnjtu")
+hframes = 2
+vframes = 3
+region_enabled = true
+region_rect = Rect2(128, 160, 32, 48)

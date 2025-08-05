@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="TrainLine"
+config/tags=PackedStringArray("trijam")
+run/main_scene="uid://bdd0740mt5jqa"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+EventBus="*res://singletons/event_bus.gd"
+StatManager="*res://singletons/stat_manager.gd"
+AudioManager="*res://singletons/audio_manager.tscn"
+SceneManager="*res://singletons/scene_manager.tscn"
+LevelManager="*res://singletons/level_manager.gd"
+
+[display]
+
+window/size/viewport_width=512
+window/size/viewport_height=384
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://resources/": "orange",
+"res://scenes/": "green",
+"res://scripts/": "blue",
+"res://singletons/": "purple"
+}
+
+[gui]
+
+theme/custom="uid://cem056wfflwji"
+theme/custom_font="uid://b45w8fedfprgi"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

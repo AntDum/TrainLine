@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cem056wfflwji"]
+
+[ext_resource type="StyleBox" uid="uid://djulc0d6epe4u" path="res://resources/themes/flat_box.tres" id="1_1ymaj"]
+[ext_resource type="StyleBox" uid="uid://nyta3lcwg5pu" path="res://resources/themes/grabber.tres" id="2_0k5xl"]
+
+[resource]
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 5
+Button/styles/disabled = ExtResource("1_1ymaj")
+Button/styles/focus = ExtResource("1_1ymaj")
+Button/styles/hover = ExtResource("1_1ymaj")
+Button/styles/normal = ExtResource("1_1ymaj")
+Button/styles/pressed = ExtResource("1_1ymaj")
+HSlider/styles/grabber_area = ExtResource("2_0k5xl")
+HSlider/styles/grabber_area_highlight = ExtResource("2_0k5xl")
+Label/constants/outline_size = 5
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10

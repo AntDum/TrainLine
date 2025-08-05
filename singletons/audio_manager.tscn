@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbpco0ei2tt8v"]
+
+[ext_resource type="Script" uid="uid://bil1bfcsc1yea" path="res://singletons/audio_manager.gd" id="1_dkrcq"]
+[ext_resource type="AudioStream" uid="uid://ened7y23md8c" path="res://assets/sounds/ui/click.wav" id="2_skl7r"]
+[ext_resource type="AudioStream" uid="uid://i41k3a8ct5n6" path="res://assets/sounds/ui/hover.wav" id="3_ca8rr"]
+[ext_resource type="AudioStream" uid="uid://prmpespin7r5" path="res://assets/musics/main_music.mp3" id="4_vu5qj"]
+[ext_resource type="AudioStream" uid="uid://brfmnwod7cl0d" path="res://assets/sounds/train/station_cleared.wav" id="4_ygcpw"]
+[ext_resource type="AudioStream" uid="uid://ciq4u0w3oc4tr" path="res://assets/sounds/train/all_cleared.wav" id="5_vu5qj"]
+[ext_resource type="AudioStream" uid="uid://3eo1gyg3p5dp" path="res://assets/sounds/train/crashed.wav" id="6_aegvw"]
+[ext_resource type="AudioStream" uid="uid://d380hwj8vc8jg" path="res://assets/sounds/train/roll.mp3" id="7_64kr0"]
+[ext_resource type="AudioStream" uid="uid://cakgmg0kdpyf4" path="res://assets/sounds/train/place.wav" id="8_05bqm"]
+[ext_resource type="AudioStream" uid="uid://45ryo6d3wp5t" path="res://assets/sounds/train/remove.wav" id="9_47y8w"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_dkrcq")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_skl7r")
+volume_db = -16.049
+bus = &"UI"
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ca8rr")
+bus = &"UI"
+
+[node name="main_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vu5qj")
+volume_db = -24.395
+bus = &"Music"
+
+[node name="station_cleared" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ygcpw")
+volume_db = -18.131
+bus = &"SFX"
+
+[node name="all_cleared" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vu5qj")
+volume_db = -13.481
+bus = &"SFX"
+
+[node name="crashed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_aegvw")
+volume_db = -11.555
+bus = &"SFX"
+
+[node name="roll" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_64kr0")
+volume_db = -21.827
+bus = &"SFX"
+
+[node name="title_music" type="AudioStreamPlayer" parent="."]
+
+[node name="place" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_05bqm")
+volume_db = -19.081
+pitch_scale = 1.44
+bus = &"SFX"
+
+[node name="remove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_47y8w")
+volume_db = -17.854
+bus = &"SFX"
