@@ -3,6 +3,8 @@ class_name Rail
 
 var coord : Vector2i
 
+var station_object : StationObject = null
+
 var has_rail : bool = false
 var dir_availables : PackedVector2Array = []
 var is_editable : bool = true
@@ -10,16 +12,16 @@ var is_interactable : bool = false
 var is_pickup : bool = false
 var content : int = 0
 
-
-func _init(coord: Vector2i, data: TileData = null) -> void:
+func _init(coord: Vector2i, data: TileData = null, so : StationObject = null) -> void:
 	self.coord = coord
 	if not data: return
 	has_rail = true
 	dir_availables = data.get_custom_data(&"from_to")
 	is_editable = data.get_custom_data(&"editable")
-	content = data.get_custom_data(&"content")
-	is_interactable = content > 0
-	is_pickup = data.get_custom_data(&"is_pickup")
+	station_object = so
+
+func is_station() -> bool:
+	return station_object != null
 	
 func has_connection(dir: int) -> bool:
 	for d in dir_availables:
@@ -27,11 +29,36 @@ func has_connection(dir: int) -> bool:
 			return true
 	return false
 
-func get_rail_connection() -> int:
+func get_rail_shape() -> int:
 	var dir = 0
+	var most = {}
 	for d in dir_availables:
-		dir |= d.x
-		dir |= d.y
+		dir |= int(2**d.x)
+		dir |= int(2**d.y)
+		most[d.y] = most.get_or_add(d.y, 0) + 1
+	
+	var twos = -1
+	for key in most:
+		if most[key] == 2:
+			twos = key
+
+	if twos != -1:
+		match dir:
+			RailHelper.LDR: # Base
+				if twos == 1:
+					dir |= RailHelper.OPPOSITE
+			RailHelper.LUR: # Base
+				if twos == 1:
+					dir |= RailHelper.OPPOSITE
+				
+			RailHelper.URD: # Base
+				if twos == 2:
+					dir |= RailHelper.OPPOSITE
+					
+			RailHelper.ULD: # Base
+				if twos == 2:
+					dir |= RailHelper.OPPOSITE
+	
 	return dir
 
 func will_go_to(from_dir: int) -> int:

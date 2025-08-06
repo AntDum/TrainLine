@@ -9,6 +9,11 @@ func _enter_tree() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	pressed.connect(_on_pressed)
 
+func _exit_tree() -> void:
+	mouse_entered.disconnect(_on_mouse_entered)
+	mouse_exited.disconnect(_on_mouse_exited)
+	pressed.disconnect(_on_pressed)
+
 func _reset() -> void:
 	pivot_offset = size / 2
 	if tween:

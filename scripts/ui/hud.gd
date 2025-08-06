@@ -46,10 +46,10 @@ func _failed() -> void:
 func _restart() -> void:
 	started = false
 	start_button.text = "START"
-	
+	_update_time(0)
 
 func _enter_tree() -> void:
-	EventBus.time_changed.connect(_update_time)
+	EventBus.step.connect(_update_time)
 	EventBus.station_happy.connect(_update_station)
 	EventBus.out_of_time.connect(_failed)
 	EventBus.train_crashed.connect(_failed)
@@ -57,7 +57,7 @@ func _enter_tree() -> void:
 	EventBus.restart.connect(_restart)
 	
 func _exit_tree() -> void:
-	EventBus.time_changed.disconnect(_update_time)
+	EventBus.step.disconnect(_update_time)
 	EventBus.station_happy.disconnect(_update_station)
 	EventBus.out_of_time.disconnect(_failed)
 	EventBus.train_crashed.disconnect(_failed)

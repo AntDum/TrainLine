@@ -31,5 +31,3 @@ scale_amount_max = 1.8
 scale_amount_curve = SubResource("Curve_1eyt4")
 color_initial_ramp = SubResource("Gradient_v2mmu")
 script = ExtResource("1_v2mmu")
-
-[connection signal="finished" from="." to="." method="_on_finished"]

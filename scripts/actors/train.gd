@@ -14,7 +14,14 @@ var tile_size : int = 16
 @export_range(0, 3, 1, "hide_slider") var dir : int = 1
 @export var content : ContentType = ContentType.EMPTY
 @export var contentValue : int = 0
-var step_to_pause : int = 0
+
+enum Status {
+	PROCESSING,
+	FINISH_PROCESSING,
+	RUNNING,
+	WAITING,
+}
+var status : Status = Status.RUNNING
 
 var delay : float = 0.05 # Will be sync
 
@@ -33,43 +40,45 @@ func _retry() -> void:
 	dir = start_dir
 	global_position = start_pos
 	pos_target = start_pos
-	step_to_pause = 0
+	status = Status.RUNNING
 	contentValue = 0
 	content = ContentType.EMPTY
 	if not EventBus.step.is_connected(_step):
 		EventBus.step.connect(_step)
 	_set_sprite()
 
-func _step() -> void:
+func _step(_time: int) -> void:
 	AudioManager.play_sound("roll")
-	step_to_pause = max(step_to_pause-1, -1)
-	if step_to_pause > 0:
-		return
+	match status:
+		Status.PROCESSING:
+			status = Status.FINISH_PROCESSING
+		Status.FINISH_PROCESSING:
+			status = Status.RUNNING
 		
 	var train_pos = rails.to_local(pos_target)
 	var rail = rails.get_rail(train_pos)
 	
-	if rail is Station and step_to_pause == -1:
-		var station : Station = rail
-		if station.station_data.satisfied:
-			_crashed()
-			return
-		elif station.is_pickup and content == ContentType.EMPTY:
-			contentValue = station.content
-			content = ContentType.BOX
-			step_to_pause = 2
-			station.job_done()
-		elif not station.is_pickup and content == ContentType.BOX and station.content == contentValue:
-			content = ContentType.EMPTY
-			contentValue = 0
-			step_to_pause = 2
-			station.job_done()
-		else:
-			_crashed()
-			return
+	if rail.is_station():
+		var station_object : StationObject = rail.station_object
+		if status == Status.RUNNING:
+			if station_object.satisfied:
+				_crashed()
+				return
+			elif station_object.can_take and content == ContentType.EMPTY:
+				contentValue = station_object.contentType
+				content = ContentType.BOX
+				status = Status.PROCESSING
+				station_object.job_done()
+			elif station_object.can_put and content == ContentType.BOX and station_object.contentType == contentValue:
+				content = ContentType.EMPTY
+				contentValue = 0
+				status = Status.PROCESSING
+				station_object.job_done()
+			else:
+				_crashed()
+				return
 	
-	if step_to_pause > 0:
-		return
+	if status == Status.PROCESSING: return
 	
 	_move(rail)
 

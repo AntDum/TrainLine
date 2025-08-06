@@ -14,7 +14,7 @@ func _out_of_time() -> void:
 func _failed_level() -> void:
 	pass
 
-func _retry() -> void:
+func _restart() -> void:
 	rewrite_label.change_text("")
 	
 func _all_station_happy() -> void:
@@ -33,10 +33,10 @@ func _enter_tree() -> void:
 	EventBus.train_crashed.connect(_train_crashed)
 	EventBus.all_station_satisfied.connect(_all_station_happy)
 	EventBus.out_of_time.connect(_out_of_time)
-	EventBus.restart.connect(_retry)
+	EventBus.restart.connect(_restart)
 
 func _exit_tree() -> void:
 	EventBus.train_crashed.disconnect(_train_crashed)
 	EventBus.all_station_satisfied.disconnect(_all_station_happy)
 	EventBus.out_of_time.disconnect(_out_of_time)
-	EventBus.restart.disconnect(_retry)
+	EventBus.restart.disconnect(_restart)

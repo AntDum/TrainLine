@@ -14,11 +14,10 @@ func _ready() -> void:
 	if auto_start:
 		_start()
 
-func _retry() -> void:
+func _restart() -> void:
 	is_running = false
 	timer.stop()
 	time = 0
-	EventBus.time_changed.emit(time)
 
 func _start() -> void:
 	if is_running: return
@@ -27,11 +26,10 @@ func _start() -> void:
 
 func _timeout() -> void:
 	time += 1
-	EventBus.time_changed.emit(time)
 	if max_time > 0 and time > max_time:
 		EventBus.out_of_time.emit()
 		timer.stop()
-	EventBus.step.emit()
+	EventBus.step.emit(time)
 
 func _create_timer() -> void:
 	timer = Timer.new()
@@ -53,13 +51,13 @@ func _stop() -> void:
 func _enter_tree() -> void:
 	EventBus.delay_changed.connect(_update_delay)
 	EventBus.start.connect(_start)
-	EventBus.restart.connect(_retry)
+	EventBus.restart.connect(_restart)
 	EventBus.all_station_satisfied.connect(_stop)
 	EventBus.train_crashed.connect(_stop)
 
 func _exit_tree() -> void:
 	EventBus.delay_changed.disconnect(_update_delay)
 	EventBus.start.disconnect(_start)
-	EventBus.restart.disconnect(_retry)
+	EventBus.restart.disconnect(_restart)
 	EventBus.all_station_satisfied.disconnect(_stop)
 	EventBus.train_crashed.disconnect(_stop)

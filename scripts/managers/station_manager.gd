@@ -14,10 +14,8 @@ func _ready() -> void:
 	_get_station()
 	EventBus.station_happy.emit(satisfied_station, number_of_station)
 	
-func _retry() -> void:
+func _restart() -> void:
 	satisfied_station = 0
-	for val in registered.values():
-		val.satisfied = false
 	EventBus.station_happy.emit(satisfied_station, number_of_station)
 
 func _update_satis(new_value: int) -> void:
@@ -40,4 +38,7 @@ func _get_station() -> void:
 	
 	
 func _enter_tree() -> void:
-	EventBus.restart.connect(_retry)
+	EventBus.restart.connect(_restart)
+
+func _exit_tree() -> void:
+	EventBus.restart.disconnect(_restart)

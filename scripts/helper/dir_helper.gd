@@ -40,11 +40,3 @@ static func from_vector2(vec: Vector2i) -> int:
 		
 static func invert_dir(dir: int) -> int:
 	return (dir + 2) % 4
-
-static func out_dir_to_dir(dir: int) -> int:
-	match dir:
-		0: return 0
-		1: return 3
-		2: return 2
-		3: return 1
-		_: return -1
