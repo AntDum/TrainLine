@@ -66,6 +66,7 @@ func _set_rail_at(coord: Vector2i, rail: Rail, is_pressed: bool) -> void:
 	# Check that the rail can be edited
 	if not can_be_edited: return
 	if rail.has_rail && not rail.is_editable: return
+	if station_manager.registered.has(coord): return
 	
 	var connect_to = { 0 : false, 1 : false, 2 : false, 3 : false }
 	var to_update = []

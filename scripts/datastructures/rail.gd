@@ -14,11 +14,11 @@ var content : int = 0
 
 func _init(coord: Vector2i, data: TileData = null, so : BaseStation = null) -> void:
 	self.coord = coord
+	station = so
 	if not data: return
 	has_rail = true
 	dir_availables = data.get_custom_data(&"from_to")
 	is_editable = data.get_custom_data(&"editable")
-	station = so
 
 func is_station() -> bool:
 	return station != null
