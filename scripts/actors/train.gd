@@ -6,29 +6,32 @@ enum ContentType {BOX, ROCK, EMPTY = -1}
 @export var rails : Rails
 @export var station_manager : StationManager
 
-@export var speed : float = 1.5
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var crash_particle: CPUParticles2D = $CrashParticle
+
 var tile_size : int = 16
 
 @export_range(0, 3, 1, "hide_slider") var dir : int = 1
 @export var content : ContentType = ContentType.EMPTY
-@export var contentValue : int = 0
+@export var contentValue : int = -1
+
+var tween_pos : Tween
 
 enum Status {
-	PROCESSING,
-	FINISH_PROCESSING,
-	RUNNING,
+	CAN_INTERACT,
+	FINISH_WAITING,
 	WAITING,
 }
-var status : Status = Status.RUNNING
+var status : Status = Status.CAN_INTERACT
+var waiting_time = -1
 
-var delay : float = 0.05 # Will be sync
+@export var delay : float = 0.05 # Will be sync
 
 var start_dir : int
 var start_pos : Vector2
 
-var pos_target : Vector2
+var pos_target : Vector2 # The actual position use for calculation
+						# the global_pos is behind as it is currently in a animation
 
 func _ready() -> void:
 	tile_size = rails.get_tile_size()
@@ -36,12 +39,13 @@ func _ready() -> void:
 	start_pos = global_position
 	pos_target = global_position
 	
-func _retry() -> void:
+func _restart() -> void:
+	crash_particle.emitting = false
 	dir = start_dir
 	global_position = start_pos
 	pos_target = start_pos
-	status = Status.RUNNING
-	contentValue = 0
+	status = Status.CAN_INTERACT
+	contentValue = -1
 	content = ContentType.EMPTY
 	if not EventBus.step.is_connected(_step):
 		EventBus.step.connect(_step)
@@ -50,35 +54,41 @@ func _retry() -> void:
 func _step(_time: int) -> void:
 	AudioManager.play_sound("roll")
 	match status:
-		Status.PROCESSING:
-			status = Status.FINISH_PROCESSING
-		Status.FINISH_PROCESSING:
-			status = Status.RUNNING
+		Status.FINISH_WAITING:
+			status = Status.CAN_INTERACT
+		Status.WAITING:
+			if waiting_time <= 0:
+				status = Status.FINISH_WAITING
+			else:
+				waiting_time -= 1
+				return
 		
 	var train_pos = rails.to_local(pos_target)
 	var rail = rails.get_rail(train_pos)
 	
-	if rail.is_station():
-		var station_object : StationObject = rail.station_object
-		if status == Status.RUNNING:
-			if station_object.satisfied:
-				_crashed()
-				return
-			elif station_object.can_take and content == ContentType.EMPTY:
-				contentValue = station_object.contentType
-				content = ContentType.BOX
-				status = Status.PROCESSING
-				station_object.job_done()
-			elif station_object.can_put and content == ContentType.BOX and station_object.contentType == contentValue:
-				content = ContentType.EMPTY
-				contentValue = 0
-				status = Status.PROCESSING
-				station_object.job_done()
-			else:
-				_crashed()
-				return
+	if status == Status.CAN_INTERACT:
+		if rail.is_station():
+			var station : BaseStation = rail.station
+			if station.is_on:
+				if not station.accept_interaction():
+					_crashed()
+					return
+					
+				if station is Station:
+					if station.can_put() and not _is_empty() and station.accept_content(contentValue):
+						_clear()
+					elif station.can_take() and _is_empty():
+						_take_box(station.get_content())
+					else:
+						_crashed()
+						return
+					
+				station.interact()
+				status = Status.WAITING
+				waiting_time = station.time_to_wait()
+				
 	
-	if status == Status.PROCESSING: return
+	if status == Status.WAITING: return
 	
 	_move(rail)
 
@@ -94,16 +104,31 @@ func _move(rail: Rail) -> void:
 	
 	dir = out_dir
 	pos_target = pos_target + Vector2(DirHelper.to_vector2(dir)) * tile_size
+	if tween_pos:
+		tween_pos.kill()
 	
-func _process(delta: float) -> void:
-	global_position = lerp(global_position, pos_target, (1/delay) * delta * speed)
+	tween_pos = create_tween()
+	tween_pos.tween_property(self, "global_position", pos_target, delay)
+	
 	
 func _crashed() -> void:
+	crash_particle.emitting = true
 	AudioManager.play_sound("crashed")
 	print("OH NO !!")
 	EventBus.step.disconnect(_step)
 	EventBus.train_crashed.emit()
-	
+
+func _clear() -> void:
+	content = ContentType.EMPTY
+	contentValue = -1
+
+func _take_box(cont: int) -> void:
+	contentValue = cont
+	content = ContentType.BOX
+
+func _is_empty() -> bool:
+	return content == ContentType.EMPTY
+
 func _set_sprite() -> void:
 	var dir_y : bool = dir == 0 or dir == 2
 	match content:
@@ -128,11 +153,11 @@ func _update_delay(del: float) -> void:
 
 func _enter_tree() -> void:
 	EventBus.step.connect(_step)
-	EventBus.restart.connect(_retry)
+	EventBus.restart.connect(_restart)
 	EventBus.delay_changed.connect(_update_delay)
 
 func _exit_tree() -> void:
 	EventBus.step.disconnect(_step)
-	EventBus.restart.disconnect(_retry)
+	EventBus.restart.disconnect(_restart)
 	EventBus.delay_changed.disconnect(_update_delay)
 	AudioManager.stop_sound("roll")

@@ -2,7 +2,7 @@ extends TileMapLayer
 class_name Rails
 
 @export var can_be_edited = true
-const PARTICLE_DESTROY = preload("res://scenes/objects/particle_destroy.tscn")
+const PARTICLE_DESTROY = preload("res://scenes/objects/particles/particle_destroy.tscn")
 
 @export var station_manager : StationManager
 	

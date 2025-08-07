@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://3qqbeaocmtsk"]
+
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="1_2vq68"]
+
+[node name="Box" type="Sprite2D"]
+texture = ExtResource("1_2vq68")
+region_enabled = true
+region_rect = Rect2(64, 64, 16, 16)

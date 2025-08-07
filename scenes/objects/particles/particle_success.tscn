@@ -8,7 +8,7 @@ point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_rifx3"]
 offsets = PackedFloat32Array(0.146825, 0.853175)
-colors = PackedColorArray(0, 1, 0, 1, 1, 1, 0, 1)
+colors = PackedColorArray(0, 2, 0, 1, 2, 2, 0, 1)
 
 [node name="ParticleSuccess" type="CPUParticles2D"]
 emitting = false

@@ -1,14 +1,17 @@
-[gd_scene load_steps=12 format=4 uid="uid://c4p2tnttlvgdq"]
+[gd_scene load_steps=15 format=4 uid="uid://c4p2tnttlvgdq"]
 
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="1_n0irh"]
 [ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="2_7h0au"]
 [ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="3_jyjib"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="4_ed1dg"]
 [ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="4_jyjib"]
-[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station_object.gd" id="5_7h0au"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="5_ljo3v"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="6_bh66m"]
+[ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="6_ed1dg"]
+[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="6_ljo3v"]
+[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="7_ljo3v"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="7_yfgdo"]
+[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="10_bh66m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
 texture = ExtResource("3_jyjib")
@@ -380,74 +383,98 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAQAAQAAAABAAIAAQAQAAUAAAABAAIAAgAQAAgAAAABAAIAAgAQAAkAAAABAAIAAwAQAAMAAAAEAAQAAAAKAAwAAAABAAIAAQAKAA0AAAABAAIAAgAKAAsAAAADAAQAAAAQAAoAAAAEAAQAAAAGAAQAAAAEAAIAAAAHAAQAAAAEAAIAAAAIAAQAAAAEAAIAAAAFAAQAAAAAAAIAAAAQAAcAAAAEAAQAAAAQAAYAAAAEAAQAAAAKAA4AAAADAAQAAAAKAA8AAAADAAQAAAAKABAAAAABAAIAAgAKABEAAAABAAIAAwAKABIAAAADAAQAAAAJAAsAAAABAAkAAAAJAA8AAAADAAkAAAAPAAYAAAADAAkAAAAPAAoAAAACAAkAAAAJAA4AAAADAAkAAAAJABIAAAACAAkAAAAPAAcAAAADAAkAAAAPAAMAAAABAAkAAAAPAAkAAAAEAAIAAAAPAAgAAAAEAAIAAAAPAAUAAAAEAAIAAAAPAAQAAAAEAAIAAAAJAAwAAAAEAAIAAAAJAA0AAAAEAAIAAAAJABAAAAAEAAIAAAAJABEAAAAEAAIAAAA=")
+tile_map_data = PackedByteArray("AAAQAAQAAAABAAIAAQAQAAUAAAABAAIAAgAQAAgAAAABAAIAAgAQAAkAAAABAAIAAwAKAAwAAAABAAIAAQAKAA0AAAABAAIAAgAGAAQAAAAEAAIAAAAHAAQAAAAEAAIAAAAIAAQAAAAEAAIAAAAFAAQAAAAAAAIAAAAKABAAAAABAAIAAgAKABEAAAABAAIAAwAJAAsAAAABAAkAAAAJAA8AAAADAAkAAAAPAAYAAAADAAkAAAAPAAoAAAACAAkAAAAJAA4AAAADAAkAAAAJABIAAAACAAkAAAAPAAcAAAADAAkAAAAPAAMAAAABAAkAAAAPAAkAAAAEAAIAAAAPAAgAAAAEAAIAAAAPAAUAAAAEAAIAAAAPAAQAAAAEAAIAAAAJAAwAAAAEAAIAAAAJAA0AAAAEAAIAAAAJABAAAAAEAAIAAAAJABEAAAAEAAIAAAA=")
 tile_set = ExtResource("4_jyjib")
 script = ExtResource("4_ed1dg")
 station_manager = NodePath("../StationManager")
 
-[node name="StationObject" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="StationObject" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(264, 72)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 1
+take = true
 rails = NodePath("..")
-contentType = 1
-can_take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject2" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Box" parent="Rails/StationObject" instance=ExtResource("6_ed1dg")]
+position = Vector2(0, -16)
+
+[node name="StationObject2" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(264, 88)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 2
+take = true
 rails = NodePath("..")
-contentType = 2
-can_take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject3" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Box" parent="Rails/StationObject2" instance=ExtResource("6_ed1dg")]
+position = Vector2(0, 16)
+
+[node name="StationObject3" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(264, 136)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 2
+take = true
 rails = NodePath("..")
-contentType = 2
-can_take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject4" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Box" parent="Rails/StationObject3" instance=ExtResource("6_ed1dg")]
+position = Vector2(0, -16)
+
+[node name="StationObject4" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(264, 152)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 3
+take = true
 rails = NodePath("..")
-contentType = 3
-can_take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject5" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Box" parent="Rails/StationObject4" instance=ExtResource("6_ed1dg")]
+position = Vector2(0, 16)
+
+[node name="StationObject5" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(168, 200)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 1
+put = true
 rails = NodePath("..")
-contentType = 1
-can_put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject6" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Sign" parent="Rails/StationObject5" instance=ExtResource("7_ljo3v")]
+position = Vector2(0, -16)
+
+[node name="StationObject6" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(168, 216)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 2
+put = true
 rails = NodePath("..")
-contentType = 2
-can_put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject7" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Sign" parent="Rails/StationObject6" instance=ExtResource("7_ljo3v")]
+position = Vector2(0, 16)
+
+[node name="StationObject7" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(168, 264)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 2
+put = true
 rails = NodePath("..")
-contentType = 2
-can_put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="StationObject8" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+[node name="Sign" parent="Rails/StationObject7" instance=ExtResource("7_ljo3v")]
+position = Vector2(0, -16)
+
+[node name="StationObject8" type="Marker2D" parent="Rails" node_paths=PackedStringArray("rails")]
 position = Vector2(168, 280)
-script = ExtResource("5_7h0au")
+script = ExtResource("6_ljo3v")
+contentValue = 3
+put = true
 rails = NodePath("..")
-contentType = 3
-can_put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
+
+[node name="Sign" parent="Rails/StationObject8" instance=ExtResource("7_ljo3v")]
+position = Vector2(0, 16)
 
 [node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("5_ljo3v")]
 position = Vector2(120, 72)
@@ -455,6 +482,8 @@ rails = NodePath("../Rails")
 station_manager = NodePath("../StationManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Env" parent="CanvasLayer" instance=ExtResource("10_bh66m")]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("6_bh66m")]
 

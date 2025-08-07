@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djj22l516dux2"]
+
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="1_010yf"]
+
+[node name="Sign" type="Sprite2D"]
+texture = ExtResource("1_010yf")
+region_enabled = true
+region_rect = Rect2(48, 64, 16, 16)

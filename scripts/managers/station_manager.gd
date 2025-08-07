@@ -11,8 +11,13 @@ var satisfied_station = 0 : set = _update_satis
 
 func _ready() -> void:
 	instance = self
-	_get_station()
-	EventBus.station_happy.emit(satisfied_station, number_of_station)
+
+func register(coord : Vector2i, station : BaseStation) -> void:
+	if not registered.has(coord):
+		registered[coord] = station
+		if station.need_satisfaction:
+			number_of_station = len(registered)
+			EventBus.station_happy.emit(satisfied_station, number_of_station)
 	
 func _restart() -> void:
 	satisfied_station = 0
@@ -26,15 +31,6 @@ func _update_satis(new_value: int) -> void:
 		AudioManager.play_sound("all_cleared")
 	else:
 		AudioManager.play_sound("station_cleared")
-
-func _get_station() -> void:
-	var stations = []
-	for base in [Vector2i(1, 2), Vector2i(5, 0), Vector2i(2, 2), Vector2i(5, 1)]:
-		for alt in [1, 2, 3]:
-			stations.append_array(rails.get_used_cells_by_id(0, base, alt))
-	for station in stations:
-		rails.get_rail(station)
-	number_of_station = len(stations)
 	
 	
 func _enter_tree() -> void:

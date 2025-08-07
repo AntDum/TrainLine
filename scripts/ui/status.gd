@@ -16,6 +16,7 @@ func _failed_level() -> void:
 
 func _restart() -> void:
 	rewrite_label.change_text("")
+	next_level_button.visible = false
 	
 func _all_station_happy() -> void:
 	if LevelManager.is_last_level():

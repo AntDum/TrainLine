@@ -3,7 +3,7 @@ class_name Rail
 
 var coord : Vector2i
 
-var station_object : StationObject = null
+var station : BaseStation = null
 
 var has_rail : bool = false
 var dir_availables : PackedVector2Array = []
@@ -12,16 +12,16 @@ var is_interactable : bool = false
 var is_pickup : bool = false
 var content : int = 0
 
-func _init(coord: Vector2i, data: TileData = null, so : StationObject = null) -> void:
+func _init(coord: Vector2i, data: TileData = null, so : BaseStation = null) -> void:
 	self.coord = coord
 	if not data: return
 	has_rail = true
 	dir_availables = data.get_custom_data(&"from_to")
 	is_editable = data.get_custom_data(&"editable")
-	station_object = so
+	station = so
 
 func is_station() -> bool:
-	return station_object != null
+	return station != null
 	
 func has_connection(dir: int) -> bool:
 	for d in dir_availables:
