@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ouj2nof0m8y"]
+
+[ext_resource type="Script" uid="uid://bjoem673nqpg4" path="res://scripts/components/ui/animated_control.gd" id="1_536xp"]
+[ext_resource type="Script" uid="uid://8krug0mq1f1f" path="res://scripts/components/ui/hover_button.gd" id="2_xtkoc"]
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_536xp")
+metadata/_custom_type_script = "uid://bjoem673nqpg4"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_right = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer2"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2/MarginContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer2/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Some Sound Effect by freesound_community from Pixabay
+
+Background Music by NoCopyrightSound633 from Pixabay
+
+PixelArt by heyitswidmo"
+
+[node name="HoverButton" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -45.0
+offset_right = 60.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+script = ExtResource("2_xtkoc")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[connection signal="pressed" from="HoverButton" to="." method="animate_hide"]

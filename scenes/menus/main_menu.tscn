@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bdd0740mt5jqa"]
+[gd_scene load_steps=13 format=4 uid="uid://bdd0740mt5jqa"]
 
 [ext_resource type="Script" uid="uid://dtmgftwypifeq" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
 [ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="2_1hnlc"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="5_8r73w"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="7_1hnlc"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="8_50h1w"]
+[ext_resource type="PackedScene" uid="uid://b3ouj2nof0m8y" path="res://scenes/menus/credits_menu.tscn" id="10_euy4r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bivr"]
 texture = ExtResource("2_2o76q")
@@ -434,12 +435,16 @@ dir = 3
 content = 0
 delay = 0.15
 
-[node name="Env" parent="." instance=ExtResource("8_50h1w")]
-layout_mode = 0
-anchors_preset = 0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PlayButton" type="Button" parent="."]
-layout_mode = 1
+[node name="Env" parent="CanvasLayer" instance=ExtResource("8_50h1w")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_left = 0.105
 anchor_top = 0.38
@@ -453,8 +458,21 @@ text = "Play"
 script = ExtResource("2_fe2o3")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
+[node name="CreditsButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.105
+anchor_top = 0.38
+anchor_right = 0.361
+anchor_bottom = 0.508
+offset_left = 0.239998
+offset_top = 67.08
+offset_right = 0.167984
+offset_bottom = 66.928
+text = "Credits"
+script = ExtResource("2_fe2o3")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 23.0
 offset_top = 67.0
 offset_right = 245.0
@@ -462,4 +480,9 @@ offset_bottom = 91.0
 theme_override_font_sizes/font_size = 24
 text = "Train Line"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[node name="CreditsMenu" parent="CanvasLayer" instance=ExtResource("10_euy4r")]
+visible = false
+hide_direction = 0
+
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CreditsButton" to="CanvasLayer/CreditsMenu" method="animate_show"]

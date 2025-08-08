@@ -42,11 +42,14 @@ func _ready() -> void:
 func _restart() -> void:
 	crash_particle.emitting = false
 	dir = start_dir
+	if tween_pos:
+		tween_pos.kill()
 	global_position = start_pos
 	pos_target = start_pos
 	status = Status.CAN_INTERACT
 	contentValue = -1
 	content = ContentType.EMPTY
+	
 	if not EventBus.step.is_connected(_step):
 		EventBus.step.connect(_step)
 	_set_sprite()
