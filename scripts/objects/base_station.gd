@@ -1,6 +1,7 @@
 extends Marker2D
 class_name BaseStation
 
+signal interacted
 
 var rails : Rails 
 var station_manager : StationManager
@@ -21,6 +22,7 @@ func accept_interaction() -> bool:
 	return true
 
 func interact() -> void:
+	interacted.emit()
 	return
 
 func time_to_wait() -> int:

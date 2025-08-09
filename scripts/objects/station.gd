@@ -33,6 +33,7 @@ func can_take() -> bool:
 
 func interact() -> void:
 	if satisfied: return
+	super()
 	satisfied = true
 	station_manager.satisfied_station += 1
 	
