@@ -28,9 +28,12 @@ func next_step():
 		print("Last step reached. Terminating tutorial.")
 		hide()
 		$NextButton.queue_free()
+		EventBus.finished_tuto.emit()
+		
 
 
 func launch_tuto() -> void:
+	EventBus.started_tuto.emit()
 	current_step = -1
 	next_step()
 	$NextButton.show()
