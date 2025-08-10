@@ -61,12 +61,10 @@ func _update_delay(new_value : float) -> void:
 
 func _fast_forward_on() -> void:
 	delay = fast_delay
-	print("ON")
 	EventBus.delay_changed.emit(delay)
 
 func _fast_forward_off() -> void:
 	delay = base_delay
-	print("OFF")
 	EventBus.delay_changed.emit(delay)
 
 func _stop() -> void:
