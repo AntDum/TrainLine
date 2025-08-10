@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://uqqik5fjy3sh"]
+[gd_scene load_steps=5 format=3 uid="uid://uqqik5fjy3sh"]
 
 [ext_resource type="Script" uid="uid://dvwupwgr4tqks" path="res://scripts/ui/status.gd" id="1_swgr5"]
 [ext_resource type="Script" uid="uid://ddn0srdnl5pp8" path="res://scripts/components/ui/rewrite_label.gd" id="2_8i1vh"]
 [ext_resource type="Script" uid="uid://8krug0mq1f1f" path="res://scripts/components/ui/hover_button.gd" id="3_8i1vh"]
+[ext_resource type="Script" uid="uid://bjoem673nqpg4" path="res://scripts/components/ui/animated_control.gd" id="4_6kd2n"]
 
 [node name="Status" type="Control"]
 layout_mode = 3
@@ -14,7 +15,31 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_swgr5")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="AnimatedControl" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(350, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_right = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_6kd2n")
+metadata/_custom_type_script = "uid://bjoem673nqpg4"
+
+[node name="Panel" type="Panel" parent="AnimatedControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="AnimatedControl"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -29,7 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RewriteLabel" type="Label" parent="CenterContainer"]
+[node name="RewriteLabel" type="Label" parent="AnimatedControl/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 1
@@ -37,23 +62,31 @@ script = ExtResource("2_8i1vh")
 rewrite_duration = 2.0
 metadata/_custom_type_script = "uid://ddn0srdnl5pp8"
 
-[node name="NextLevelButton" type="Button" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="AnimatedControl"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NextLevelButton" type="Button" parent="AnimatedControl/MarginContainer"]
+unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 40)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.305
-anchor_top = 0.594
-anchor_right = 0.695
-anchor_bottom = 0.698
-offset_left = -0.160004
-offset_top = -0.0960083
-offset_right = 0.159973
-offset_bottom = -0.0320129
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Next Level"
 script = ExtResource("3_8i1vh")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
-[connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[node name="RetryButton" type="Button" parent="AnimatedControl/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Retry"
+script = ExtResource("3_8i1vh")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[connection signal="pressed" from="AnimatedControl/MarginContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="AnimatedControl/MarginContainer/RetryButton" to="." method="_on_retry_button_pressed"]

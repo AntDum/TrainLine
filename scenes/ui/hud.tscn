@@ -31,6 +31,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="BottomRight/VBoxContainer"]
@@ -87,6 +88,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Lever Button" type="Button" parent="TopRight/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 icon = SubResource("AtlasTexture_8qguk")
