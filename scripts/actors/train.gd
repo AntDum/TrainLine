@@ -56,14 +56,13 @@ func _restart() -> void:
 		EventBus.step.connect(_step)
 	_set_sprite()
 
-func _step(_time: int) -> void:
+func _step(time: int) -> void:
 	AudioManager.play_sound("roll")
 	
-	match gem_type:
-		Gem.Type.BLUE:
-			if status == Status.CAN_INTERACT:
-				status = Status.FREEZING
-				return
+	if gem_type == Gem.Type.BLUE:
+		if status == Status.CAN_INTERACT:
+			status = Status.FREEZING
+			return
 	
 	
 	match status:
@@ -116,7 +115,12 @@ func _step(_time: int) -> void:
 	
 	if status == Status.WAITING: return
 	
+	var prev_pos = pos_target
+	
 	_move(rail)
+	
+	if gem_type == Gem.Type.RED:
+		rails.burn_rail_from_global(prev_pos, time)	
 
 	_set_sprite()
 
