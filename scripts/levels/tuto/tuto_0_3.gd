@@ -6,9 +6,9 @@ extends Tuto
 const n_on_fuel_texts = [""]
 
 const n_on_top_texts = [
-	"This is the final tutorial,\nthe next level will be the real game!",
-	"The gem you transport are magical,\neach color correspond to a power.",
-	"Try to deliver the blue gem,\nI'm sure you'll understand what it does."]
+	"This is the final tutorial,\nthe next level will\nbe the real game!",
+	"The gem you transport are magical,\neach color correspond\nto a power.",
+	"Try to deliver the blue gem,\nI'm sure you'll understand\nwhat it does."]
 
 var tweener : Tween
 var current_step: int = 0

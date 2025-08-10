@@ -472,10 +472,18 @@ metadata/_custom_type_script = "uid://8krug0mq1f1f"
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 23.0
 offset_top = 67.0
-offset_right = 245.0
-offset_bottom = 91.0
-theme_override_font_sizes/font_size = 24
-text = "Train Line"
+offset_right = 659.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 25
+text = "Balthazar Glimmerail"
+
+[node name="Label" type="Label" parent="CanvasLayer/Label"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 33.0
+offset_right = 438.0
+offset_bottom = 49.0
+text = "magic jewels delivery system"
 
 [node name="CreditsMenu" parent="CanvasLayer" instance=ExtResource("10_euy4r")]
 visible = false

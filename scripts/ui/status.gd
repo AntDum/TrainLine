@@ -30,7 +30,7 @@ func _restart() -> void:
 func _all_station_happy() -> void:
 	animated_control.animate_show()
 	if LevelManager.is_last_level():
-		rewrite_label.change_text("You completed the game !!\nThank you for playing")
+		rewrite_label.change_text("You completed\nthe game !!\nThank you for playing")
 	else:
 		rewrite_label.change_text("Level Completed !")
 		retry_button.visible = false

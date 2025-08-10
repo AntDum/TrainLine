@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b775n26jbkumx"]
+[gd_scene load_steps=18 format=4 uid="uid://brdchx62ms015"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_m0tht"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_q22cm"]
