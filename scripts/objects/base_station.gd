@@ -26,6 +26,7 @@ func interact() -> void:
 	return
 
 func burn() -> void:
+	print("WTF")
 	return
 
 func time_to_wait() -> int:

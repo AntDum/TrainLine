@@ -14,6 +14,9 @@ signal step(time: int)
 signal time_changed(time: int, max: int)
 signal delay_changed(delay: float)
 
+signal started_tuto
+signal finished_tuto
+
 signal clear
 
 signal fast_forward_on

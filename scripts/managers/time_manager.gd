@@ -61,12 +61,10 @@ func _update_delay(new_value : float) -> void:
 
 func _fast_forward_on() -> void:
 	delay = fast_delay
-	print("ON")
 	EventBus.delay_changed.emit(delay)
 
 func _fast_forward_off() -> void:
 	delay = base_delay
-	print("OFF")
 	EventBus.delay_changed.emit(delay)
 
 func _stop() -> void:
@@ -82,8 +80,8 @@ func _enter_tree() -> void:
 	EventBus.train_crashed.connect(_stop)
 
 func _exit_tree() -> void:
-	EventBus.fast_forward_on.connect(_fast_forward_on)
-	EventBus.fast_forward_off.connect(_fast_forward_off)
+	EventBus.fast_forward_on.disconnect(_fast_forward_on)
+	EventBus.fast_forward_off.disconnect(_fast_forward_off)
 	EventBus.start.disconnect(_start)
 	EventBus.restart.disconnect(_restart)
 	EventBus.all_station_satisfied.disconnect(_stop)
