@@ -83,6 +83,7 @@ metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
 [node name="RetryButton" type="Button" parent="AnimatedControl/MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Retry"
 script = ExtResource("3_8i1vh")

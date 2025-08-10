@@ -16,6 +16,7 @@ func _out_of_time() -> void:
 	rewrite_label.change_text("Oh no !\nIt was too long")
 
 func _failed_level() -> void:
+	next_level_button.visible = false
 	retry_button.visible = true
 	animated_control.animate_show()
 	
@@ -32,6 +33,7 @@ func _all_station_happy() -> void:
 		rewrite_label.change_text("You completed the game !!\nThank you for playing")
 	else:
 		rewrite_label.change_text("Level Completed !")
+		retry_button.visible = false
 		next_level_button.visible = true
 	
 
