@@ -391,7 +391,7 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAQAAwAAAAEAAIAAAAHAAwAAAAEAAIAAAAZAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAFAAwAAAAEAAIAAAAaAAwAAAAEAAIAAAAbAAwAAAAEAAIAAAAcAAwAAAAFAAIAAAAEAAwAAAAAAAIAAAA=")
+tile_map_data = PackedByteArray("AAAQAAwAAAAEAAIAAAAHAAwAAAAEAAIAAAAZAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAFAAwAAAAEAAIAAAAaAAwAAAAEAAIAAAAbAAwAAAAEAAIAAAAcAAwAAAAFAAIAAQAEAAwAAAAAAAIAAQA=")
 tile_set = ExtResource("5_fjnx6")
 script = ExtResource("6_0unjy")
 station_manager = NodePath("../StationManager")
