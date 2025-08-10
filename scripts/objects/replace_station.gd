@@ -9,6 +9,9 @@ func _ready() -> void:
 	super()
 	restore()
 
+func burn() -> void:
+	replace()
+
 func replace() -> void:
 	print("REPLACE", is_destroyed)
 	if is_destroyed: return

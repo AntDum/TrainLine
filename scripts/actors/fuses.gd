@@ -19,8 +19,7 @@ func _burned(coord: Vector2i) -> void:
 	if station_manager and station_manager.registered.has(coord):
 		var station = station_manager.registered[coord]
 		print(station)
-		if station is BurnStation:
-			print("STATION BURNED")
+		if station is BurnStation or station is ReplaceStation:
 			station.burn()
 	erase_cell(coord)
 	_add_particle_at(PARTICLE_DESTROY_FIRE, coord)
