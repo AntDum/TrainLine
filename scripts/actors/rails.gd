@@ -164,8 +164,8 @@ func burn_rail_from_global(pos: Vector2, time: int) -> void:
 	
 func _add_particle_at(particle_type: PackedScene, coord: Vector2i) -> void:
 	var particule = particle_type.instantiate()
-	add_child(particule)
 	particule.position = map_to_local(coord)
+	add_child(particule)
 
 func _update_rail_at(coord: Vector2i) -> void:
 	var rail = _get_rail_at(coord)
