@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cyuab0mg3sgit"]
+[gd_scene load_steps=20 format=4 uid="uid://c5gc2fyem731g"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_1k51l"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_1p57g"]
@@ -371,6 +371,10 @@ custom_data_layer_1/name = "editable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i4ljo")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k51l"]
+atlas = ExtResource("4_a3tcb")
+region = Rect2(176, 48, 16, 16)
+
 [node name="LevelT1" type="Node2D"]
 script = ExtResource("1_1k51l")
 
@@ -393,25 +397,31 @@ tile_set = ExtResource("5_8q0ta")
 script = ExtResource("6_5tyix")
 station_manager = NodePath("../StationManager")
 
-[node name="StationObject" type="Marker2D" parent="Rails"]
+[node name="StationObject3" type="Marker2D" parent="Rails"]
 position = Vector2(264, 152)
 script = ExtResource("7_3kdfr")
-contentValue = 1
+contentValue = 5
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/StationObject" instance=ExtResource("8_h6fe3")]
+[node name="Gem" parent="Rails/StationObject3" instance=ExtResource("8_h6fe3")]
 position = Vector2(0, -16)
+region_rect = Rect2(176, 16, 16, 16)
 
-[node name="StationObject2" type="Marker2D" parent="Rails"]
+[node name="StationObject4" type="Marker2D" parent="Rails"]
 position = Vector2(424, 200)
 script = ExtResource("7_3kdfr")
-contentValue = 1
+contentValue = 5
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Sign" parent="Rails/StationObject2" instance=ExtResource("9_tml46")]
+[node name="Box" parent="Rails/StationObject4" instance=ExtResource("9_tml46")]
 position = Vector2(0, -16)
+region_rect = Rect2(64, 64, 16, 16)
+
+[node name="GemPopup" type="Sprite2D" parent="Rails/StationObject4"]
+position = Vector2(0, -32)
+texture = SubResource("AtlasTexture_1k51l")
 
 [node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_6ecrj")]
 position = Vector2(104, 200)
