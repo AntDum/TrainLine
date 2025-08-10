@@ -3,7 +3,9 @@ extends Node
 const LEVELS = [
 	^"res://scenes/levels/tutorial/level_0_1.tscn",
 	^"res://scenes/levels/tutorial/level_0_2.tscn",
-	^"res://scenes/levels/tutorial/level_0_3.tscn"
+	^"res://scenes/levels/tutorial/level_0_3.tscn",
+	^"res://scenes/levels/mirrors/level_2_1.tscn",
+	^"res://scenes/levels/mirrors/level_2_2.tscn"
 	#^"res://scenes/levels/legacy/level_t_1.tscn",
 	#^"res://scenes/levels/legacy/level_t_2.tscn",
 	#^"res://scenes/levels/legacylevel_t_3.tscn",
