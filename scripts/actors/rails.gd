@@ -99,14 +99,17 @@ func _remove_rail_at(coord: Vector2i, rail: Rail) -> void:
 				_update_rail_at(cell)
 
 func set_rail_at(coord: Vector2i) -> void:
+	var prev = can_be_edited
 	set_cell(coord, 0, Vector2i(0, 0))
-	_update_rail_at(coord)
+	_set_rail_at(coord, _get_rail_at(coord), false, true)
+	can_be_edited = prev
 	
-func _set_rail_at(coord: Vector2i, rail: Rail, is_pressed: bool) -> void:
+func _set_rail_at(coord: Vector2i, rail: Rail, is_pressed: bool, forced: bool = false) -> void:
 	# Check that the rail can be edited
-	if not can_be_edited: return
-	if rail.has_rail && not rail.is_editable: return
-	if station_manager.registered.has(coord): return
+	if not forced:
+		if not can_be_edited: return
+		if rail.has_rail && not rail.is_editable: return
+		if station_manager.registered.has(coord): return
 	
 	var connect_to = { 0 : false, 1 : false, 2 : false, 3 : false }
 	var to_update = []
