@@ -1,26 +1,19 @@
 extends BaseStation
 class_name ReplaceStation
 
-var atlas_coord : Vector2i
-var alternative_idx : int
-
 var rock_atlas_coord : Vector2i = Vector2i(6, 4)
 
 var is_destroyed = true
 
 func _ready() -> void:
 	super()
-	atlas_coord = rails.get_cell_atlas_coords(coord)
-	alternative_idx = rails.get_cell_alternative_tile(coord)
 	restore()
-
 
 func replace() -> void:
 	print("REPLACE", is_destroyed)
 	if is_destroyed: return
-	rails.set_cell(coord, 0, atlas_coord, alternative_idx)
+	rails.set_rail_at(coord)
 	is_destroyed = true
-
 
 func restore() -> void:
 	print("REPLACE", is_destroyed)

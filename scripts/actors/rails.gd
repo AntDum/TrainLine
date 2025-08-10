@@ -97,6 +97,10 @@ func _remove_rail_at(coord: Vector2i, rail: Rail) -> void:
 			var neigh_rail = _get_rail_at(cell)
 			if rail.has_rail and rail.is_editable:
 				_update_rail_at(cell)
+
+func set_rail_at(coord: Vector2i) -> void:
+	set_cell(coord, 0, Vector2i(0, 0))
+	_update_rail_at(coord)
 	
 func _set_rail_at(coord: Vector2i, rail: Rail, is_pressed: bool) -> void:
 	# Check that the rail can be edited

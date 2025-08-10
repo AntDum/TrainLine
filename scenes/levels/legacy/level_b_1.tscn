@@ -489,5 +489,5 @@ offset_bottom = 72.0
 script = ExtResource("14_m4qt0")
 metadata/_custom_type_script = "uid://bgu1v264n71y5"
 
-[connection signal="burned" from="Fuses/BurnStation" to="Fuses/DestroyStation" method="destroy"]
 [connection signal="burned" from="Fuses/BurnStation" to="Rails/ReplaceStation" method="replace"]
+[connection signal="burned" from="Fuses/BurnStation" to="Fuses/DestroyStation" method="destroy"]
