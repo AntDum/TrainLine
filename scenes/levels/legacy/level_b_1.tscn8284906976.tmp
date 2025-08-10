@@ -376,6 +376,7 @@ script = ExtResource("1_et4pd")
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("2_bnbna")
+delay = 0.05
 metadata/_custom_type_script = "uid://8jmouha1nh8w"
 
 [node name="StationManager" type="Node" parent="." node_paths=PackedStringArray("rails")]
@@ -395,7 +396,7 @@ station_manager = NodePath("../StationManager")
 [node name="Station" type="Marker2D" parent="Rails"]
 position = Vector2(216, 72)
 script = ExtResource("7_0q8v6")
-contentValue = 3
+contentValue = 4
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
@@ -405,7 +406,7 @@ position = Vector2(0, -16)
 [node name="Station2" type="Marker2D" parent="Rails"]
 position = Vector2(200, 120)
 script = ExtResource("7_0q8v6")
-contentValue = 3
+contentValue = 4
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 

@@ -56,14 +56,13 @@ func _restart() -> void:
 		EventBus.step.connect(_step)
 	_set_sprite()
 
-func _step(_time: int) -> void:
+func _step(time: int) -> void:
 	AudioManager.play_sound("roll")
 	
-	match gem_type:
-		Gem.Type.BLUE:
-			if status == Status.CAN_INTERACT:
-				status = Status.FREEZING
-				return
+	if gem_type == Gem.Type.BLUE:
+		if status == Status.CAN_INTERACT:
+			status = Status.FREEZING
+			return
 	
 	
 	match status:
@@ -97,6 +96,17 @@ func _step(_time: int) -> void:
 					else:
 						_crashed()
 						return
+				
+				if station is TeleportStation:
+					if gem_type == Gem.Type.PURPLE:
+						var global_dest_pos = station.get_global_destionation()
+						if tween_pos:
+							tween_pos.kill()
+						global_position = global_dest_pos
+						pos_target = global_dest_pos
+					else:
+						_crashed()
+						return
 					
 				station.interact()
 				status = Status.WAITING
@@ -105,7 +115,12 @@ func _step(_time: int) -> void:
 	
 	if status == Status.WAITING: return
 	
+	var prev_pos = pos_target
+	
 	_move(rail)
+	
+	if gem_type == Gem.Type.RED:
+		rails.burn_rail_from_global(prev_pos, time)	
 
 	_set_sprite()
 

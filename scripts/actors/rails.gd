@@ -3,14 +3,25 @@ class_name Rails
 
 @export var can_be_edited = true
 const PARTICLE_DESTROY = preload("res://scenes/objects/particles/particle_destroy.tscn")
+const PARTICLE_DESTROY_FIRE = preload("res://scenes/objects/particles/particle_destroy_fire.tscn")
+
+@export var burning_delay : int = 1
 
 @export var station_manager : StationManager
+
+var rails_to_burn = []
+
+var map_snapshot : PackedByteArray
 	
 func _started() -> void:
 	can_be_edited = false
+	map_snapshot = tile_map_data
+	rails_to_burn.clear()
 
 func _restart() -> void:
 	can_be_edited = true
+	tile_map_data = map_snapshot
+	rails_to_burn.clear()
 
 func get_tile_size() -> int:
 	return tile_set.tile_size.x
@@ -26,6 +37,26 @@ func _get_rail_at(coord: Vector2i) -> Rail:
 		return Rail.new(coord, data, station)
 	else:
 		return Rail.new(coord, data)
+
+func _step(time: int) -> void:
+	while not rails_to_burn.is_empty():
+		var group = rails_to_burn[0]
+		var rail_time = group[1]
+		var rail_coord = group[0]
+		
+		if rail_time <= time:
+			_add_particle_at(PARTICLE_DESTROY_FIRE, rail_coord)
+			erase_cell(rail_coord)
+			rails_to_burn.pop_front()
+		else:
+			break
+
+func _clear() -> void:
+	pass
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("clear"):
+		_clear()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not can_be_edited: return
@@ -50,10 +81,7 @@ func _remove_rail_at(coord: Vector2i, rail: Rail) -> void:
 		EventBus.rail_removed.emit(coord)
 		AudioManager.play_sound("remove")
 		
-		
-		var particule = PARTICLE_DESTROY.instantiate()
-		add_child(particule)
-		particule.position = map_to_local(coord)
+		_add_particle_at(PARTICLE_DESTROY, coord)
 		
 		var neighboor_cells = get_surrounding_cells(coord)
 		
@@ -114,7 +142,15 @@ func _set_rail_at(coord: Vector2i, rail: Rail, is_pressed: bool) -> void:
 	if need_update:
 		for cell_to_update in to_update:
 			_update_rail_at(cell_to_update)
+
+func burn_rail_from_global(pos: Vector2, time: int) -> void:
+	var coord = local_to_map(to_local(pos))
+	rails_to_burn.push_back([coord, time + burning_delay])	
 	
+func _add_particle_at(particle_type: PackedScene, coord: Vector2i) -> void:
+	var particule = particle_type.instantiate()
+	add_child(particule)
+	particule.position = map_to_local(coord)
 
 func _update_rail_at(coord: Vector2i) -> void:
 	var rail = _get_rail_at(coord)
@@ -137,9 +173,14 @@ func _update_rail_at(coord: Vector2i) -> void:
 	
 
 func _enter_tree() -> void:
+	EventBus.clear.connect(_clear)
 	EventBus.start.connect(_started)
 	EventBus.restart.connect(_restart)
+	EventBus.step.connect(_step)
 
 func _exit_tree() -> void:
+	EventBus.clear.disconnect(_clear)
 	EventBus.start.disconnect(_started)
 	EventBus.restart.disconnect(_restart)
+	EventBus.step.disconnect(_step)
+	

@@ -5,8 +5,6 @@ class_name HUD
 @onready var station: Label = %station
 @onready var start_button: HoverButton = %StartButton
 
-@export_range(0.01, 1.0, 0.01) var base_delay: float = 0.05
-@export_range(0.01, 1.0, 0.01) var slow_delay: float = 0.3
 
 var current_station = 0
 var current_max = 0
@@ -15,7 +13,6 @@ var started : bool = false
 
 func _ready() -> void:
 	_update_station(current_station, current_max)
-	EventBus.delay_changed.emit(base_delay)
 
 func _on_start_button_pressed() -> void:
 	if started:
@@ -23,8 +20,9 @@ func _on_start_button_pressed() -> void:
 	else:
 		EventBus.start.emit()
 
-func _update_time(time : float) -> void:
-	counter.text = "%d step" % time
+func _update_time(time : int, max_time : int) -> void:
+	if counter:
+		counter.text = "%d fuel" % (max_time - time)
 
 func _update_station(cur: int, max: int) -> void:
 	current_station = cur
@@ -32,12 +30,14 @@ func _update_station(cur: int, max: int) -> void:
 	if station:
 		station.text = "%d / %d" % [current_station, current_max]
 
+func _on_fast_press() -> void:
+	EventBus.fast_forward_on.emit()
 
-func _on_check_button_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		EventBus.delay_changed.emit(slow_delay)
-	else:
-		EventBus.delay_changed.emit(base_delay)
+func _on_fast_released() -> void:
+	EventBus.fast_forward_off.emit()
+	
+func _on_clear_clicked() -> void:
+	EventBus.clear.emit()
 
 func _failed() -> void:
 	started = true
@@ -46,10 +46,9 @@ func _failed() -> void:
 func _restart() -> void:
 	started = false
 	start_button.text = "START"
-	_update_time(0)
 
 func _enter_tree() -> void:
-	EventBus.step.connect(_update_time)
+	EventBus.time_changed.connect(_update_time)
 	EventBus.station_happy.connect(_update_station)
 	EventBus.out_of_time.connect(_failed)
 	EventBus.train_crashed.connect(_failed)
@@ -57,7 +56,7 @@ func _enter_tree() -> void:
 	EventBus.restart.connect(_restart)
 	
 func _exit_tree() -> void:
-	EventBus.step.disconnect(_update_time)
+	EventBus.time_changed.disconnect(_update_time)
 	EventBus.station_happy.disconnect(_update_station)
 	EventBus.out_of_time.disconnect(_failed)
 	EventBus.train_crashed.disconnect(_failed)

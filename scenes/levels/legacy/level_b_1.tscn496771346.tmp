@@ -435,6 +435,8 @@ station_manager = NodePath("../StationManager")
 [node name="Env" parent="CanvasLayer" instance=ExtResource("11_bnbna")]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("11_m3ccr")]
+base_delay = null
+slow_delay = null
 
 [node name="Status" parent="CanvasLayer" instance=ExtResource("12_3tfmm")]
 
