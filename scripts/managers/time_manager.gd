@@ -11,6 +11,7 @@ var time : int = 0
 
 func _ready() -> void:
 	_create_timer()
+	EventBus.time_changed.emit(time, max_time)
 	if auto_start:
 		_start()
 
@@ -18,6 +19,7 @@ func _restart() -> void:
 	is_running = false
 	timer.stop()
 	time = 0
+	EventBus.time_changed.emit(time, max_time)
 
 func _start() -> void:
 	if is_running: return
@@ -30,6 +32,7 @@ func _timeout() -> void:
 		EventBus.out_of_time.emit()
 		timer.stop()
 	EventBus.step.emit(time)
+	EventBus.time_changed.emit(time, max_time)
 
 func _create_timer() -> void:
 	timer = Timer.new()

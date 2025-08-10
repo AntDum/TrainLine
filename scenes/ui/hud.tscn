@@ -70,7 +70,7 @@ alignment = 2
 [node name="counter" type="Label" parent="TopRight/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0 step"
+text = "200 fuel"
 
 [node name="station" type="Label" parent="TopRight/VBoxContainer"]
 unique_name_in_owner = true

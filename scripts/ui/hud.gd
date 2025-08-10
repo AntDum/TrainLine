@@ -23,8 +23,8 @@ func _on_start_button_pressed() -> void:
 	else:
 		EventBus.start.emit()
 
-func _update_time(time : float) -> void:
-	counter.text = "%d step" % time
+func _update_time(time : int, max_time : int) -> void:
+	counter.text = "%d fuel" % (max_time - time)
 
 func _update_station(cur: int, max: int) -> void:
 	current_station = cur
@@ -46,10 +46,9 @@ func _failed() -> void:
 func _restart() -> void:
 	started = false
 	start_button.text = "START"
-	_update_time(0)
 
 func _enter_tree() -> void:
-	EventBus.step.connect(_update_time)
+	EventBus.time_changed.connect(_update_time)
 	EventBus.station_happy.connect(_update_station)
 	EventBus.out_of_time.connect(_failed)
 	EventBus.train_crashed.connect(_failed)
@@ -57,7 +56,7 @@ func _enter_tree() -> void:
 	EventBus.restart.connect(_restart)
 	
 func _exit_tree() -> void:
-	EventBus.step.disconnect(_update_time)
+	EventBus.time_changed.disconnect(_update_time)
 	EventBus.station_happy.disconnect(_update_station)
 	EventBus.out_of_time.disconnect(_failed)
 	EventBus.train_crashed.disconnect(_failed)

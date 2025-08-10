@@ -9,9 +9,9 @@ signal restart
 signal station_happy(current:int, max: int)
 signal all_station_satisfied
 
-signal step
+signal step(time: int)
 
-signal time_changed(time: float)
+signal time_changed(time: int, max: int)
 signal delay_changed(delay: float)
 
 signal train_crashed

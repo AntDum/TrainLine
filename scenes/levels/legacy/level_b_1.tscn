@@ -396,7 +396,7 @@ station_manager = NodePath("../StationManager")
 [node name="Station" type="Marker2D" parent="Rails"]
 position = Vector2(216, 72)
 script = ExtResource("7_0q8v6")
-contentValue = 4
+contentValue = 3
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
@@ -406,7 +406,7 @@ position = Vector2(0, -16)
 [node name="Station2" type="Marker2D" parent="Rails"]
 position = Vector2(200, 120)
 script = ExtResource("7_0q8v6")
-contentValue = 4
+contentValue = 3
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
