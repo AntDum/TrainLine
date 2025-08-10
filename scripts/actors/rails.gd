@@ -26,8 +26,8 @@ func _restart() -> void:
 func get_tile_size() -> int:
 	return tile_set.tile_size.x
 
-func get_rail(global_coord : Vector2i) -> Rail:
-	var map_coord = local_to_map(global_coord)
+func get_rail(global_pos : Vector2) -> Rail:
+	var map_coord = local_to_map(global_pos)
 	return _get_rail_at(map_coord)
 
 func _get_rail_at(coord: Vector2i) -> Rail:
@@ -52,7 +52,12 @@ func _step(time: int) -> void:
 			break
 
 func _clear() -> void:
-	pass
+	if not can_be_edited: return
+	for coord in get_used_cells():
+		var rail = _get_rail_at(coord)
+		if rail.is_editable:
+			erase_cell(coord)
+			_add_particle_at(PARTICLE_DESTROY, coord)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("clear"):
