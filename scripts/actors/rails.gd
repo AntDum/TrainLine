@@ -50,7 +50,13 @@ func _step(time: int) -> void:
 			rails_to_burn.pop_front()
 		else:
 			break
-	
+
+func _clear() -> void:
+	pass
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("clear"):
+		_clear()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not can_be_edited: return
@@ -167,11 +173,13 @@ func _update_rail_at(coord: Vector2i) -> void:
 	
 
 func _enter_tree() -> void:
+	EventBus.clear.connect(_clear)
 	EventBus.start.connect(_started)
 	EventBus.restart.connect(_restart)
 	EventBus.step.connect(_step)
 
 func _exit_tree() -> void:
+	EventBus.clear.disconnect(_clear)
 	EventBus.start.disconnect(_started)
 	EventBus.restart.disconnect(_restart)
 	EventBus.step.disconnect(_step)
