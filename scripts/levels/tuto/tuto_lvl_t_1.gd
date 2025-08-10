@@ -9,7 +9,7 @@ const n_on_cart_texts = ["","","Your minecart\nv",""]
 
 const n_on_stock_texts = ["","","The gem\nv",""]
 
-const n_on_depot_texts = ["","","^\nThe delivery\nstation",""]
+const n_on_depot_texts = ["","","The delivery ^\nstation",""]
 
 const n_on_top_texts = [
 	"Hello, I'm here to explain you\nhow to play.",
@@ -42,9 +42,11 @@ func next_step():
 		print("Last step reached. Terminating tutorial.")
 		hide()
 		$NextButton.queue_free()
+		EventBus.finished_tuto.emit()
 
 
 func launch_tuto() -> void:
+	EventBus.started_tuto.emit()
 	current_step = -1
 	next_step()
 	$NextButton.show()
