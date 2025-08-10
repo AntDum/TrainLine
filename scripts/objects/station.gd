@@ -1,7 +1,7 @@
 extends BaseStation
 class_name Station
 
-@export var contentValue : int = -1
+@export var contentValue : Gem.Type = Gem.Type.NO_GEM
 ## Need to put an item in it (For sign)
 @export var put : bool = false
 ## Need to take an item from it (For box)
@@ -19,10 +19,10 @@ func _init() -> void:
 func accept_interaction() -> bool:
 	return not satisfied
 
-func accept_content(content: int) -> bool:
+func accept_content(content: Gem.Type) -> bool:
 	return content == contentValue
 
-func get_content() -> int:
+func get_content() -> Gem.Type:
 	return contentValue
 
 func can_put() -> bool:

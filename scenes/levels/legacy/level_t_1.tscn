@@ -1,26 +1,23 @@
-[gd_scene load_steps=21 format=4 uid="uid://ca5l5l82w86th"]
+[gd_scene load_steps=18 format=4 uid="uid://d1ubqofojadum"]
 
-[ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_et4pd"]
-[ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_bnbna"]
-[ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_3jqp8"]
-[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_6cynx"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="5_s65hi"]
-[ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_blyob"]
-[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_0q8v6"]
-[ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_ohwwf"]
-[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_ojeol"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_2kkyn"]
-[ext_resource type="PackedScene" uid="uid://0mua1tat3dj1" path="res://scenes/objects/lever.tscn" id="10_3jqp8"]
-[ext_resource type="Script" uid="uid://dbhhafpo2j3v3" path="res://scripts/objects/switch_lane.gd" id="11_6cynx"]
-[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_bnbna"]
-[ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="11_m3ccr"]
-[ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="12_3tfmm"]
-[ext_resource type="Script" uid="uid://dv6jguk75k3ac" path="res://scripts/objects/destroy_station.gd" id="12_s65hi"]
-[ext_resource type="Script" uid="uid://cbtyokw5jw4ld" path="res://scripts/levels/tuto/tuto_lvl_b_1.gd" id="13_et4pd"]
-[ext_resource type="Script" uid="uid://bgu1v264n71y5" path="res://scripts/components/ui/notification.gd" id="14_m4qt0"]
+[ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_07idw"]
+[ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_7hgy8"]
+[ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_30uwr"]
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_k70ie"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="5_fbjqx"]
+[ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_qsd5y"]
+[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_k1cea"]
+[ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_k30a5"]
+[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_8l00p"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_qsa03"]
+[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_bs77s"]
+[ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_wgf2d"]
+[ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_hv3lp"]
+[ext_resource type="Script" uid="uid://cxxlt7vehh56y" path="res://scripts/levels/tuto/tuto_lvl_t_1.gd" id="14_n177e"]
+[ext_resource type="Script" uid="uid://bgu1v264n71y5" path="res://scripts/components/ui/notification.gd" id="15_0uhqh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
-texture = ExtResource("4_6cynx")
+texture = ExtResource("4_k70ie")
 1:7/0 = 0
 1:7/0/terrain_set = 0
 1:7/0/terrain = 2
@@ -373,16 +370,16 @@ custom_data_layer_1/name = "editable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i4ljo")
 
-[node name="LevelB1" type="Node2D"]
-script = ExtResource("1_et4pd")
+[node name="LevelT1" type="Node2D"]
+script = ExtResource("1_07idw")
 
 [node name="TimeManager" type="Node" parent="."]
-script = ExtResource("2_bnbna")
+script = ExtResource("2_7hgy8")
 delay = 0.05
 metadata/_custom_type_script = "uid://8jmouha1nh8w"
 
 [node name="StationManager" type="Node" parent="." node_paths=PackedStringArray("rails")]
-script = ExtResource("3_3jqp8")
+script = ExtResource("3_30uwr")
 rails = NodePath("../Rails")
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -390,120 +387,77 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAHAAQAAAAEAAIAAAAIAAQAAAAEAAIAAAAGAAQAAAAAAAIAAAAJAAQAAAAEAAIAAAAKAAQAAAAEAAIAAAALAAQAAAAEAAIAAAAMAAQAAAAEAAIAAAANAAQAAAABAAIAAQAOAAcAAAAEAAIAAAANAAcAAAAEAAIAAAAMAAcAAAABAAIAAQALAAcAAAAEAAIAAAANAAgAAAABAAkAAAALAAUAAAAHAAQAAAAMAAUAAAAHAAQAAAAPAAYAAAAHAAQAAAASAAMAAAAHAAQAAAAPAAMAAAAHAAQAAAASAAYAAAAHAAQAAAATAAYAAAAHAAQAAAARAAoAAAAIAAQAAAASAAoAAAAIAAQAAAAUAAkAAAAIAAQAAAAUAAMAAAAIAAQAAAAPAAEAAAAIAAQAAAAOAAkAAAAHAAQAAAASAAgAAAAHAAQAAAASAAQAAAAHAAQAAAAOAAUAAAAHAAQAAAARAAMAAAAHAAQAAAAQAAgAAAAJAAQAAAAQAAUAAAAJAAQAAAARAAcAAAAIAAQAAAARAAYAAAAGAAQAAAAOAAMAAAABAAkAAAAWAAUAAAABAAcAAAAMAAgAAAABAAcAAAANAAMAAAABAAcAAAAUAAYAAAAGAAIAAQAUAAUAAAAGAAAAAQAUAAcAAAAGAAMAAQAUAAgAAAAHAAEAAQAOAA0AAAAGAAMAAQARAA0AAAAHAAQAAAAPAA8AAAACAAIAAAARAA8AAAAGAAQAAAA=")
-tile_set = ExtResource("5_s65hi")
-script = ExtResource("6_blyob")
+tile_map_data = PackedByteArray("AAAFAAQAAAAAAAIAAAAHAAQAAAAEAAIAAAAIAAQAAAAEAAIAAAAGAAQAAAACAAMAAAALAAgAAAAFAAAAAQARAAwAAAABAAIAAQANAAgAAAABAAkAAAASAAsAAAABAAkAAAA=")
+tile_set = ExtResource("5_fbjqx")
+script = ExtResource("6_qsd5y")
 station_manager = NodePath("../StationManager")
 
-[node name="Station" type="Marker2D" parent="Rails"]
-position = Vector2(216, 72)
-script = ExtResource("7_0q8v6")
+[node name="StationObject" type="Marker2D" parent="Rails"]
+position = Vector2(184, 136)
+script = ExtResource("7_k1cea")
 contentValue = 1
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/Station" instance=ExtResource("8_ohwwf")]
-position = Vector2(0, -16)
+[node name="Box" parent="Rails/StationObject" instance=ExtResource("8_k30a5")]
+position = Vector2(16, 0)
 
-[node name="Station2" type="Marker2D" parent="Rails"]
-position = Vector2(200, 120)
-script = ExtResource("7_0q8v6")
+[node name="StationObject2" type="Marker2D" parent="Rails"]
+position = Vector2(280, 200)
+script = ExtResource("7_k1cea")
 contentValue = 1
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Sign" parent="Rails/Station2" instance=ExtResource("9_ojeol")]
-position = Vector2(0, 16)
+[node name="Sign" parent="Rails/StationObject2" instance=ExtResource("9_8l00p")]
+position = Vector2(0, -16)
 
-[node name="Lever" parent="Rails" instance=ExtResource("10_3jqp8")]
-position = Vector2(360, 88)
-
-[node name="SwitchLane" type="Marker2D" parent="Rails"]
-position = Vector2(328, 88)
-script = ExtResource("11_6cynx")
-metadata/_custom_type_script = "uid://dbhhafpo2j3v3"
-
-[node name="SwitchLane2" type="Marker2D" parent="Rails"]
-position = Vector2(328, 104)
-script = ExtResource("11_6cynx")
-metadata/_custom_type_script = "uid://dbhhafpo2j3v3"
-
-[node name="SwitchLane3" type="Marker2D" parent="Rails"]
-position = Vector2(328, 120)
-script = ExtResource("11_6cynx")
-metadata/_custom_type_script = "uid://dbhhafpo2j3v3"
-
-[node name="SwitchLane4" type="Marker2D" parent="Rails"]
-position = Vector2(328, 136)
-script = ExtResource("11_6cynx")
-metadata/_custom_type_script = "uid://dbhhafpo2j3v3"
-
-[node name="DestroyStation" type="Marker2D" parent="Rails"]
-position = Vector2(232, 216)
-script = ExtResource("12_s65hi")
-metadata/_custom_type_script = "uid://dv6jguk75k3ac"
-
-[node name="DestroyStation2" type="Marker2D" parent="Rails"]
-position = Vector2(280, 216)
-script = ExtResource("12_s65hi")
-metadata/_custom_type_script = "uid://dv6jguk75k3ac"
-
-[node name="DestroyStation3" type="Marker2D" parent="Rails"]
-position = Vector2(248, 248)
-script = ExtResource("12_s65hi")
-is_destroyed = true
-metadata/_custom_type_script = "uid://dv6jguk75k3ac"
-
-[node name="DestroyStation4" type="Marker2D" parent="Rails"]
-position = Vector2(280, 248)
-script = ExtResource("12_s65hi")
-is_destroyed = true
-metadata/_custom_type_script = "uid://dv6jguk75k3ac"
-
-[node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_2kkyn")]
-modulate = Color(1.5, 1.2, 1.2, 1)
+[node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_qsa03")]
 position = Vector2(120, 72)
 rails = NodePath("../Rails")
 station_manager = NodePath("../StationManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Env" parent="CanvasLayer" instance=ExtResource("11_bnbna")]
+[node name="Env" parent="CanvasLayer" instance=ExtResource("11_bs77s")]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("11_m3ccr")]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("12_wgf2d")]
 
-[node name="Status" parent="CanvasLayer" instance=ExtResource("12_3tfmm")]
+[node name="Status" parent="CanvasLayer" instance=ExtResource("13_hv3lp")]
 
 [node name="Tuto" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("13_et4pd")
+script = ExtResource("14_n177e")
 
-[node name="Notification" type="Label" parent="CanvasLayer/Tuto"]
+[node name="NOnCart" type="Label" parent="CanvasLayer/Tuto"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 40.0
-offset_right = 346.0
-offset_bottom = 56.0
-script = ExtResource("14_m4qt0")
+offset_left = 22.0
+offset_top = 43.0
+offset_right = 206.0
+offset_bottom = 66.0
+script = ExtResource("15_0uhqh")
+display_duration = 4.0
 metadata/_custom_type_script = "uid://bgu1v264n71y5"
 
-[node name="Notification2" type="Label" parent="CanvasLayer/Tuto"]
+[node name="NOnStock" type="Label" parent="CanvasLayer/Tuto"]
 layout_mode = 0
-offset_left = 312.0
-offset_top = 56.0
-offset_right = 352.0
-offset_bottom = 72.0
-script = ExtResource("14_m4qt0")
+offset_left = 142.0
+offset_top = 127.0
+offset_right = 174.0
+offset_bottom = 143.0
+script = ExtResource("15_0uhqh")
+display_duration = 4.0
 metadata/_custom_type_script = "uid://bgu1v264n71y5"
 
-[connection signal="interacted" from="Rails/Station" to="Rails/DestroyStation2" method="destroy"]
-[connection signal="interacted" from="Rails/Station" to="Rails/DestroyStation3" method="restore"]
-[connection signal="activate" from="Rails/Lever" to="Rails/SwitchLane" method="activate"]
-[connection signal="activate" from="Rails/Lever" to="Rails/SwitchLane2" method="activate"]
-[connection signal="activate" from="Rails/Lever" to="Rails/SwitchLane3" method="activate"]
-[connection signal="activate" from="Rails/Lever" to="Rails/SwitchLane4" method="activate"]
-[connection signal="activate" from="Rails/Lever" to="Rails/DestroyStation" method="set_state"]
-[connection signal="activate" from="Rails/Lever" to="Rails/DestroyStation4" method="set_state" binds= [true]]
+[node name="NOnDepot" type="Label" parent="CanvasLayer/Tuto"]
+layout_mode = 0
+offset_left = 291.0
+offset_top = 192.0
+offset_right = 323.0
+offset_bottom = 208.0
+script = ExtResource("15_0uhqh")
+display_duration = 4.0
+metadata/_custom_type_script = "uid://bgu1v264n71y5"

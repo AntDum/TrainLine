@@ -1,12 +1,12 @@
 extends Node
 
 const LEVELS = [
-	^"res://scenes/levels/level_t_1.tscn",
-	^"res://scenes/levels/level_t_2.tscn",
-	^"res://scenes/levels/level_t_3.tscn",
-	^"res://scenes/levels/level_b_1.tscn",
-	^"res://scenes/levels/level_editor.tscn",
-	^"res://scenes/levels/level_h_1.tscn",
+	^"res://scenes/levels/legacy/level_t_1.tscn",
+	^"res://scenes/levels/legacy/level_t_2.tscn",
+	^"res://scenes/levels/legacylevel_t_3.tscn",
+	^"res://scenes/levels/legacy/level_b_1.tscn",
+	^"res://scenes/levels/legacy/level_editor.tscn",
+	^"res://scenes/levels/legacy/level_h_1.tscn",
 ]
 
 var current_level_id = -1

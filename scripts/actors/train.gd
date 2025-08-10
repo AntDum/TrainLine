@@ -12,8 +12,8 @@ enum ContentType {BOX, ROCK, EMPTY = -1}
 var tile_size : int = 16
 
 @export_range(0, 3, 1, "hide_slider") var dir : int = 1
-@export var content : ContentType = ContentType.EMPTY
-@export var contentValue : int = -1
+@export var content_type : ContentType = ContentType.EMPTY
+@export var gem_type : Gem.Type = Gem.Type.NO_GEM
 
 var tween_pos : Tween
 
@@ -21,7 +21,9 @@ enum Status {
 	CAN_INTERACT,
 	FINISH_WAITING,
 	WAITING,
+	FREEZING
 }
+
 var status : Status = Status.CAN_INTERACT
 var waiting_time = -1
 
@@ -47,15 +49,22 @@ func _restart() -> void:
 	global_position = start_pos
 	pos_target = start_pos
 	status = Status.CAN_INTERACT
-	contentValue = -1
-	content = ContentType.EMPTY
+	gem_type = Gem.Type.NO_GEM
+	content_type = ContentType.EMPTY
 	
 	if not EventBus.step.is_connected(_step):
 		EventBus.step.connect(_step)
 	_set_sprite()
 
-func _step(_time: int) -> void:
+func _step(time: int) -> void:
 	AudioManager.play_sound("roll")
+	
+	if gem_type == Gem.Type.BLUE:
+		if status == Status.CAN_INTERACT:
+			status = Status.FREEZING
+			return
+	
+	
 	match status:
 		Status.FINISH_WAITING:
 			status = Status.CAN_INTERACT
@@ -65,6 +74,8 @@ func _step(_time: int) -> void:
 			else:
 				waiting_time -= 1
 				return
+		Status.FREEZING:
+			status = Status.CAN_INTERACT
 		
 	var train_pos = rails.to_local(pos_target)
 	var rail = rails.get_rail(train_pos)
@@ -78,10 +89,21 @@ func _step(_time: int) -> void:
 					return
 					
 				if station is Station:
-					if station.can_put() and not _is_empty() and station.accept_content(contentValue):
+					if station.can_put() and not _is_empty() and station.accept_content(gem_type):
 						_clear()
 					elif station.can_take() and _is_empty():
 						_take_box(station.get_content())
+					else:
+						_crashed()
+						return
+				
+				if station is TeleportStation:
+					if gem_type == Gem.Type.PURPLE:
+						var global_dest_pos = station.get_global_destionation()
+						if tween_pos:
+							tween_pos.kill()
+						global_position = global_dest_pos
+						pos_target = global_dest_pos
 					else:
 						_crashed()
 						return
@@ -93,7 +115,12 @@ func _step(_time: int) -> void:
 	
 	if status == Status.WAITING: return
 	
+	var prev_pos = pos_target
+	
 	_move(rail)
+	
+	if gem_type == Gem.Type.RED:
+		rails.burn_rail_from_global(prev_pos, time)	
 
 	_set_sprite()
 
@@ -111,7 +138,11 @@ func _move(rail: Rail) -> void:
 		tween_pos.kill()
 	
 	tween_pos = create_tween()
-	tween_pos.tween_property(self, "global_position", pos_target, delay)
+
+	var temp_delay = delay
+	if gem_type == Gem.Type.BLUE:
+		temp_delay *= 2 
+	tween_pos.tween_property(self, "global_position", pos_target, temp_delay)
 	
 	
 func _crashed() -> void:
@@ -122,19 +153,23 @@ func _crashed() -> void:
 	EventBus.train_crashed.emit()
 
 func _clear() -> void:
-	content = ContentType.EMPTY
-	contentValue = -1
+	content_type = ContentType.EMPTY
+	gem_type = -1
 
-func _take_box(cont: int) -> void:
-	contentValue = cont
-	content = ContentType.BOX
+func _take_box(gem: Gem.Type) -> void:
+	gem_type = gem
+	content_type = ContentType.BOX
+	
+	if gem == Gem.Type.WHITE:
+		dir = DirHelper.invert_dir(dir)
+		
 
 func _is_empty() -> bool:
-	return content == ContentType.EMPTY
+	return content_type == ContentType.EMPTY
 
 func _set_sprite() -> void:
 	var dir_y : bool = dir == 0 or dir == 2
-	match content:
+	match content_type:
 		ContentType.ROCK:
 			if dir_y:
 				sprite_2d.frame = 3
