@@ -1,21 +1,21 @@
-[gd_scene load_steps=17 format=4 uid="uid://bdryl22p6ysjv"]
+[gd_scene load_steps=17 format=4 uid="uid://k7or1231oyyo"]
 
-[ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_x5lbb"]
-[ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_etej3"]
-[ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_ihy38"]
-[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_0je4i"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="5_04jgb"]
-[ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_nqptb"]
-[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_1365v"]
-[ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_alma7"]
-[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_77org"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_esy7r"]
-[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_0t5ee"]
-[ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_1e7so"]
-[ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_732eg"]
+[ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_0l2s0"]
+[ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_gtvua"]
+[ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_okw7i"]
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_etsc5"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="5_1s5ef"]
+[ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_io03e"]
+[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_3m6pc"]
+[ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_dktjf"]
+[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_ecucx"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_i1bds"]
+[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_u1660"]
+[ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_mhgmi"]
+[ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_mmhmi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
-texture = ExtResource("4_0je4i")
+texture = ExtResource("4_etsc5")
 1:7/0 = 0
 1:7/0/terrain_set = 0
 1:7/0/terrain = 2
@@ -368,20 +368,20 @@ custom_data_layer_1/name = "editable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i4ljo")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_22v35"]
-atlas = ExtResource("4_0je4i")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdslq"]
+atlas = ExtResource("4_etsc5")
 region = Rect2(160, 48, 16, 16)
 
 [node name="LevelT1" type="Node2D"]
-script = ExtResource("1_x5lbb")
+script = ExtResource("1_0l2s0")
 
 [node name="TimeManager" type="Node" parent="."]
-script = ExtResource("2_etej3")
-max_time = 150
+script = ExtResource("2_gtvua")
+max_time = 100
 metadata/_custom_type_script = "uid://8jmouha1nh8w"
 
 [node name="StationManager" type="Node" parent="." node_paths=PackedStringArray("rails")]
-script = ExtResource("3_ihy38")
+script = ExtResource("3_okw7i")
 rails = NodePath("../Rails")
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -389,46 +389,72 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAMAA4AAAAHAAQAAAAMAA8AAAAHAAQAAAANABAAAAAHAAQAAAASABAAAAAHAAQAAAAHABIAAAAHAAQAAAAIABIAAAAIAAQAAAAIAA8AAAAHAAQAAAAIAA4AAAAGAAQAAAAGAAcAAAAHAAQAAAAMAAQAAAAJAAQAAAANAAQAAAAGAAQAAAATABYAAAAJAAQAAAASABYAAAAJAAQAAAASABUAAAAJAAQAAAALABAAAAAIAAQAAAALAA8AAAAJAAQAAAAJAA8AAAAHAAQAAAAFABAAAAAGAAQAAAAPAA8AAAAGAAQAAAAQABEAAAAGAAQAAAALABIAAAAEAAIAAAAFAAkAAAAEAAIAAAAEAAcAAAAGAAQAAAAHAAwAAAAGAAQAAAAIAAsAAAAJAAQAAAADAAQAAAAEAAIAAAAEAAQAAAAEAAIAAAAGAAkAAAAEAAIAAAADAAsAAAACAAEAAAADAAwAAAACAAEAAAAIABAAAAAEAAIAAAAJABAAAAAEAAIAAAAOAAwAAAACAAEAAAAOAA0AAAACAAEAAAARAA8AAAAEAAIAAAASAA8AAAAEAAIAAAAUAAwAAAACAAEAAAAPAAcAAAACAAEAAAAPAAUAAAACAAEAAAASAAMAAAAEAAIAAAATAAMAAAAEAAIAAAAKAAQAAAACAAEAAAAKAAMAAAACAAEAAAAMAAEAAAAEAAIAAAANAAEAAAAEAAIAAAAPAAoAAAAEAAIAAAAQAAoAAAAEAAIAAAAKABEAAAACAAEAAAAMABIAAAAEAAIAAAAJAAYAAAAEAAIAAAAIAAYAAAAEAAIAAAADABEAAAACAAEAAAAWAAsAAAAEAAIAAAAGABAAAAAHAAQAAAAGABEAAAAHAAQAAAAFABEAAAAHAAQAAAAEABEAAAAHAAQAAAAFABIAAAAHAAQAAAAGABIAAAAGAAQAAAAHABEAAAAHAAQAAAAIABEAAAAIAAQAAAAJABEAAAAHAAQAAAAJABIAAAAIAAQAAAAJABMAAAAIAAQAAAAKABMAAAAGAAQAAAALABMAAAAHAAQAAAALABEAAAAHAAQAAAAMABAAAAAIAAQAAAAMABEAAAAHAAQAAAANABEAAAAHAAQAAAAOABEAAAAHAAQAAAAJAA4AAAAGAAQAAAAJAA0AAAAGAAQAAAAJAAwAAAAHAAQAAAAIAAwAAAAJAAQAAAAIAA0AAAAGAAQAAAAHAA0AAAAHAAQAAAAHAA4AAAAHAAQAAAAGAA0AAAAHAAQAAAAFAAwAAAAHAAQAAAAEAAwAAAAHAAQAAAAEAAsAAAAHAAQAAAAFAAsAAAAHAAQAAAAGAAsAAAAHAAQAAAAGAAwAAAAGAAQAAAAGAAoAAAAIAAQAAAAFAAoAAAAIAAQAAAAHAAoAAAAIAAQAAAAHAAsAAAAGAAQAAAAIAAoAAAAHAAQAAAAIAAkAAAAIAAQAAAAIAAgAAAAHAAQAAAAIAAcAAAAHAAQAAAAJAAcAAAAHAAQAAAAKAAcAAAAHAAQAAAALAAcAAAAGAAQAAAALAAYAAAAHAAQAAAAMAAcAAAAGAAQAAAANAAcAAAAJAAQAAAAOAAgAAAAHAAQAAAANAAgAAAAJAAQAAAAOAAcAAAAHAAQAAAAOAAkAAAAHAAQAAAAPAAkAAAAHAAQAAAAQAAkAAAAHAAQAAAAKAAkAAAAHAAQAAAALAAkAAAAHAAQAAAALAAoAAAAHAAQAAAAKAAoAAAAHAAQAAAAMAAoAAAAJAAQAAAAMAAsAAAAHAAQAAAALAAsAAAAGAAQAAAAMAAwAAAAGAAQAAAALAAwAAAAHAAQAAAAMAA0AAAAJAAQAAAANAA4AAAAHAAQAAAANAA0AAAAGAAQAAAANAAwAAAAHAAQAAAANAAsAAAAIAAQAAAAPAAsAAAAHAAQAAAAPAAwAAAAHAAQAAAAQAAwAAAAHAAQAAAAQAAsAAAAHAAQAAAARAAsAAAAHAAQAAAASAAsAAAAHAAQAAAATAAsAAAAHAAQAAAASAAoAAAAHAAQAAAASAAwAAAAHAAQAAAATAAwAAAAHAAQAAAARAAwAAAAHAAQAAAARAA0AAAAIAAQAAAASAA0AAAAHAAQAAAASAA4AAAAHAAQAAAARAA4AAAAHAAQAAAAQAA4AAAAIAAQAAAAQAA0AAAAHAAQAAAAPAA0AAAAHAAQAAAAPAA4AAAAHAAQAAAASAAgAAAAHAAQAAAASAAcAAAAJAAQAAAARAAcAAAAGAAQAAAAQAAcAAAAHAAQAAAAQAAYAAAAHAAQAAAAQAAUAAAAHAAQAAAARAAUAAAAIAAQAAAASAAUAAAAGAAQAAAASAAQAAAAHAAQAAAATAAQAAAAHAAQAAAARAAQAAAAHAAQAAAAUAAQAAAAHAAQAAAAUAAUAAAAHAAQAAAATAAUAAAAHAAQAAAASAAYAAAAHAAQAAAARAAYAAAAIAAQAAAATAAYAAAAIAAQAAAAUAAYAAAAHAAQAAAAVAAUAAAAHAAQAAAAVAAYAAAAIAAQAAAAWAAYAAAAHAAQAAAAWAAcAAAAIAAQAAAAWAAgAAAAHAAQAAAAWAAkAAAAIAAQAAAAWAAoAAAAHAAQAAAAVAAoAAAAHAAQAAAAVAAkAAAAHAAQAAAAUAAkAAAAHAAQAAAAUAAgAAAAGAAQAAAAVAAgAAAAIAAQAAAAVAAcAAAAHAAQAAAAUAAcAAAAHAAQAAAATAAcAAAAIAAQAAAATAAgAAAAHAAQAAAALAAQAAAAHAAQAAAANAAUAAAAHAAQAAAAOAAUAAAAHAAQAAAAOAAQAAAAHAAQAAAAOAAMAAAAHAAQAAAAPAAMAAAAHAAQAAAANAAMAAAAGAAQAAAAMAAMAAAAHAAQAAAALAAMAAAAHAAQAAAALAAIAAAAGAAQAAAAMAAIAAAAHAAQAAAANAAIAAAAHAAQAAAAOAAIAAAAHAAQAAAAJAAMAAAAHAAQAAAAIAAMAAAAHAAQAAAAHAAMAAAAGAAQAAAAGAAMAAAAHAAQAAAAIAAQAAAAJAAQAAAAHAAQAAAAHAAQAAAAHAAUAAAAHAAQAAAAIAAUAAAAHAAQAAAAJAAQAAAAGAAQAAAAJAAUAAAAHAAQAAAACAAQAAAAAAAIAAAAGAAgAAAAHAAQAAAAFAAgAAAAJAAQAAAAFAAcAAAAHAAQAAAAFAAYAAAAHAAQAAAAFAAUAAAAHAAQAAAAEAAUAAAAHAAQAAAAEAAYAAAAHAAQAAAADAAYAAAAHAAQAAAADAAUAAAAGAAQAAAADAAcAAAAJAAQAAAADAAgAAAAHAAQAAAADAAkAAAAHAAQAAAAEAAgAAAAHAAQAAAACAAcAAAAGAAQAAAACAAYAAAAGAAQAAAACAAUAAAAHAAQAAAABAAUAAAAHAAQAAAABAAQAAAAHAAQAAAABAAMAAAAHAAQAAAACAAMAAAAHAAQAAAADAAMAAAAHAAQAAAAEAAMAAAAHAAQAAAAEAAIAAAAHAAQAAAADAAIAAAAHAAQAAAACAAIAAAAHAAQAAAABAAIAAAAHAAQAAAAEAAEAAAAHAAQAAAAFAAEAAAAHAAQAAAAFAAAAAAAHAAQAAAAGAAAAAAAHAAQAAAAGAAEAAAAHAAQAAAAHAAEAAAAGAAQAAAAIAAEAAAAHAAQAAAAIAAAAAAAHAAQAAAAJAAAAAAAGAAQAAAAKAAAAAAAHAAQAAAALAAAAAAAHAAQAAAAMAAAAAAAHAAQAAAANAAAAAAAHAAQAAAAOAAAAAAAHAAQAAAAPAAAAAAAHAAQAAAAQAAAAAAAHAAQAAAARAAAAAAAHAAQAAAASAAAAAAAHAAQAAAARAAEAAAAHAAQAAAASAAEAAAAHAAQAAAASAAIAAAAHAAQAAAATAAIAAAAHAAQAAAAUAAIAAAAHAAQAAAAVAAIAAAAHAAQAAAAWAAIAAAAHAAQAAAAWAAMAAAAHAAQAAAAXAAMAAAAHAAQAAAAYAAQAAAAHAAQAAAAYAAUAAAAHAAQAAAAYAAYAAAAHAAQAAAAZAAYAAAAHAAQAAAAZAAcAAAAHAAQAAAAZAAkAAAAHAAQAAAAYAAkAAAAHAAQAAAAYAAoAAAAHAAQAAAAYAAsAAAAHAAQAAAAYAAwAAAAHAAQAAAAYAA0AAAAHAAQAAAAXAA0AAAAHAAQAAAAWAAwAAAAHAAQAAAAVAAwAAAAHAAQAAAAVAA0AAAAHAAQAAAAVAA4AAAAHAAQAAAAUAA8AAAAHAAQAAAAUAA4AAAAHAAQAAAAXAAwAAAAHAAQAAAARABAAAAAHAAQAAAAQABIAAAAIAAQAAAAQABMAAAAIAAQAAAAPABMAAAAHAAQAAAAOABMAAAAHAAQAAAAOABQAAAAIAAQAAAANABQAAAAHAAQAAAANABUAAAAIAAQAAAAMABUAAAAHAAQAAAALABUAAAAHAAQAAAAKABUAAAAHAAQAAAAJABUAAAAHAAQAAAAIABUAAAAGAAQAAAAHABUAAAAHAAQAAAAGABUAAAAHAAQAAAAFABUAAAAHAAQAAAAEABUAAAAHAAQAAAAEABQAAAAHAAQAAAADABQAAAAGAAQAAAADABMAAAAGAAQAAAACABMAAAAHAAQAAAACABIAAAAHAAQAAAACABEAAAAHAAQAAAACABAAAAAHAAQAAAACAA8AAAAGAAQAAAADAA4AAAAGAAQAAAAEAA4AAAAHAAQAAAACAA4AAAAHAAQAAAACAA0AAAAGAAQAAAACAAwAAAAHAAQAAAABAAwAAAAGAAQAAAABAAsAAAAGAAQAAAABAAoAAAAHAAQAAAABAAkAAAAHAAQAAAACAAoAAAAHAAQAAAACAAsAAAAHAAQAAAACAAkAAAAHAAQAAAACAAgAAAAHAAQAAAATABAAAAAHAAQAAAAUABAAAAAHAAQAAAASABEAAAAHAAQAAAARABEAAAAHAAQAAAARABIAAAAHAAQAAAAJAAEAAAAGAAQAAAAPABQAAAAIAAQAAAARABQAAAAIAAQAAAAQABQAAAAIAAQAAAALAAgAAAAEAAIAAAAKAAgAAAAEAAIAAAAFAAQAAAAEAAIAAAAaAAgAAAAEAAIAAAAbAAgAAAAFAAIAAAAIAAIAAAAGAAQAAAAQAAIAAAAGAAQAAAAPAAYAAAACAAAAAAAOAA4AAAACAAAAAAAOAA8AAAACAAAAAAADAAoAAAAIAAAAAAA=")
-tile_set = ExtResource("5_04jgb")
-script = ExtResource("6_nqptb")
+tile_map_data = PackedByteArray("AAAFAAwAAAAAAAIAAAAGAAwAAAACAAMAAAAHAAwAAAACAAMAAAAIAAwAAAAEAAIAAAAUABQAAAAEAAIAAAAPAAUAAAAEAAIAAAAZAAkAAAAEAAIAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAAMAAwAAAACAAMAAAANAAwAAAACAAMAAAAOAAwAAAAFAAIAAAATAAwAAAAAAAIAAAAUAAwAAAACAAMAAAAVAAwAAAACAAMAAAAWAAwAAAACAAMAAAAXAAwAAAACAAMAAAAYAAwAAAACAAMAAAAZAAwAAAACAAMAAAAaAAwAAAACAAMAAAAbAAsAAAACAAAAAAAbAAwAAAAJAAEAAAAbAAoAAAACAAAAAAAbAAkAAAAJAAAAAAAaAAkAAAACAAMAAAAYAAkAAAAAAAIAAAALAAwAAAACAAMAAAAQAAUAAAACAAMAAAARAAUAAAAJAAAAAAARAAYAAAACAAAAAAARAAcAAAAAAAEAAAAOAAUAAAACAAMAAAANAAUAAAAIAAAAAAANAAYAAAACAAAAAAANAAcAAAACAAAAAAANAAgAAAAAAAEAAAAVABQAAAAFAAIAAAA=")
+tile_set = ExtResource("5_1s5ef")
+script = ExtResource("6_io03e")
 station_manager = NodePath("../StationManager")
 
-[node name="StationObject" type="Marker2D" parent="Rails"]
-position = Vector2(88, 73)
-script = ExtResource("7_1365v")
+[node name="StationObject1" type="Marker2D" parent="Rails"]
+position = Vector2(248, 88)
+script = ExtResource("7_3m6pc")
 contentValue = 1
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Gem" parent="Rails/StationObject" instance=ExtResource("8_alma7")]
+[node name="Gem" parent="Rails/StationObject1" instance=ExtResource("8_dktjf")]
 position = Vector2(0, -16)
 region_rect = Rect2(16, 144, 16, 16)
 
 [node name="StationObject2" type="Marker2D" parent="Rails"]
-position = Vector2(426, 136)
-script = ExtResource("7_1365v")
+position = Vector2(408, 152)
+script = ExtResource("7_3m6pc")
 contentValue = 1
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/StationObject2" instance=ExtResource("9_77org")]
+[node name="Box" parent="Rails/StationObject2" instance=ExtResource("9_ecucx")]
 position = Vector2(0, -16)
 region_rect = Rect2(64, 64, 16, 16)
 
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject2"]
 position = Vector2(0, -32)
-texture = SubResource("AtlasTexture_22v35")
+texture = SubResource("AtlasTexture_pdslq")
 
-[node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_esy7r")]
-position = Vector2(56, 72)
+[node name="StationObject3" type="Marker2D" parent="Rails"]
+position = Vector2(136, 200)
+script = ExtResource("7_3m6pc")
+contentValue = 1
+take = true
+metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
+
+[node name="Gem" parent="Rails/StationObject3" instance=ExtResource("8_dktjf")]
+position = Vector2(0, -16)
+region_rect = Rect2(16, 144, 16, 16)
+
+[node name="StationObject4" type="Marker2D" parent="Rails"]
+position = Vector2(328, 328)
+script = ExtResource("7_3m6pc")
+contentValue = 1
+put = true
+metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
+
+[node name="Box" parent="Rails/StationObject4" instance=ExtResource("9_ecucx")]
+position = Vector2(0, -16)
+region_rect = Rect2(64, 64, 16, 16)
+
+[node name="GemPopup" type="Sprite2D" parent="Rails/StationObject4"]
+position = Vector2(0, -32)
+texture = SubResource("AtlasTexture_pdslq")
+
+[node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_i1bds")]
+position = Vector2(104, 200)
 rails = NodePath("../Rails")
 station_manager = NodePath("../StationManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Env" parent="CanvasLayer" instance=ExtResource("11_0t5ee")]
+[node name="Env" parent="CanvasLayer" instance=ExtResource("11_u1660")]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("12_1e7so")]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("12_mhgmi")]
 
-[node name="Status" parent="CanvasLayer" instance=ExtResource("13_732eg")]
+[node name="Status" parent="CanvasLayer" instance=ExtResource("13_mmhmi")]
