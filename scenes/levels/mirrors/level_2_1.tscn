@@ -384,7 +384,7 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAQAAwAAAAEAAIAAAAHAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAFAAwAAAAEAAIAAAAEAAwAAAAAAAIAAAAPAAwAAAAEAAIAAAAPAAkAAAAEAAIAAAAQAAkAAAAEAAIAAAARAAkAAAAEAAIAAAARAAwAAAAEAAIAAAA=")
+tile_map_data = PackedByteArray("AAAQAAwAAAAEAAIAAAAHAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAFAAwAAAAEAAIAAAAEAAwAAAAAAAIAAQAPAAwAAAAEAAIAAAAPAAkAAAAEAAIAAAAQAAkAAAAEAAIAAAARAAkAAAAEAAIAAAARAAwAAAAEAAIAAAA=")
 tile_set = ExtResource("5_euwll")
 script = ExtResource("6_yxmo5")
 station_manager = NodePath("../StationManager")
@@ -396,8 +396,8 @@ contentValue = 2
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="gem" parent="Rails" instance=ExtResource("8_rq2bk")]
-position = Vector2(264, 184)
+[node name="gem" parent="Rails/StationObject" instance=ExtResource("8_rq2bk")]
+position = Vector2(0, -16)
 region_rect = Rect2(176, 0, 16, 16)
 
 [node name="StationObject2" type="Marker2D" parent="Rails"]
