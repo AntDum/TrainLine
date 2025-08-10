@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b8evqmc1g42kf"]
+[gd_scene load_steps=19 format=4 uid="uid://b8evqmc1g42kf"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_ddx7a"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_gtbvu"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_5yuor"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_kfmln"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_dyrox"]
+[ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="15_fla31"]
 [ext_resource type="Script" uid="uid://o40rkpkwwmr0" path="res://scripts/objects/burn_station.gd" id="15_ovcjl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
@@ -386,7 +387,7 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager", "fuses")]
-tile_map_data = PackedByteArray("AAAQAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAEAAwAAAAAAAIAAAAPAAwAAAAEAAIAAAARAAwAAAAEAAIAAAAFAAwAAAAEAAIAAAAHAAwAAAAEAAIAAAAOAAMAAAAEAAIAAAANAAMAAAAEAAIAAAAMAAMAAAAEAAIAAAAOAAwAAAAEAAIAAAANAAwAAAAEAAIAAAAMAAwAAAAEAAIAAAALAAwAAAAEAAIAAAAKAAwAAAAEAAIAAAAJAAwAAAAEAAIAAAAIAAwAAAAEAAIAAAAPAAMAAAAEAAIAAAAQAAMAAAAEAAIAAAARAAMAAAAEAAIAAAASAAMAAAAEAAIAAAATAAQAAAACAAAAAAATAAMAAAAGAAQAAAALAAMAAAAGAAQAAAA=")
+tile_map_data = PackedByteArray("AAAQAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAEAAwAAAAAAAIAAAAPAAwAAAAEAAIAAAARAAwAAAAEAAIAAAAFAAwAAAAEAAIAAAAHAAwAAAAEAAIAAAAOAAMAAAAEAAIAAAANAAMAAAAEAAIAAAAMAAMAAAAEAAIAAAAOAAwAAAAEAAIAAAANAAwAAAAEAAIAAAAMAAwAAAAEAAIAAAALAAwAAAAEAAIAAAAKAAwAAAAEAAIAAAAJAAwAAAAEAAIAAAAIAAwAAAAEAAIAAAAPAAMAAAAEAAIAAAAQAAMAAAAEAAIAAAARAAMAAAAEAAIAAAASAAMAAAAEAAIAAAATAAQAAAACAAAAAAATAAMAAAAJAAAAAAALAAMAAAAGAAQAAAA=")
 tile_set = ExtResource("5_yljgu")
 script = ExtResource("6_x4hti")
 station_manager = NodePath("../StationManager")
@@ -419,6 +420,20 @@ texture = ExtResource("4_n7dd5")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)
 
+[node name="BurnStation" type="Marker2D" parent="."]
+position = Vector2(328, 56)
+script = ExtResource("15_ovcjl")
+metadata/_custom_type_script = "uid://o40rkpkwwmr0"
+
+[node name="Sprite2D" type="Sprite2D" parent="BurnStation"]
+texture = ExtResource("4_n7dd5")
+region_enabled = true
+region_rect = Rect2(160, 144, 16, 16)
+
+[node name="ReplaceStation" type="Marker2D" parent="."]
+position = Vector2(312, 56)
+script = ExtResource("15_fla31")
+
 [node name="Fuses" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
 tile_map_data = PackedByteArray("AAAWAAoAAAAMAAgAAAAWAAkAAAANAAcAAAAWAAgAAAANAAcAAAAWAAcAAAANAAcAAAAWAAYAAAANAAcAAAAWAAUAAAANAAcAAAAVAAoAAAALAAUAAAAWAAQAAAANAAcAAAAWAAMAAAAMAAYAAAAVAAMAAAALAAUAAAAUAAMAAAALAAUAAAATAAMAAAAKAAUAAAAUAAoAAAALAAUAAAATAAoAAAAKAAUAAAA=")
 tile_set = ExtResource("5_yljgu")
@@ -443,12 +458,4 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = -8.0
 
-[node name="BurnStation" type="Marker2D" parent="."]
-position = Vector2(312, 56)
-script = ExtResource("15_ovcjl")
-metadata/_custom_type_script = "uid://o40rkpkwwmr0"
-
-[node name="Sprite2D" type="Sprite2D" parent="BurnStation"]
-texture = ExtResource("4_n7dd5")
-region_enabled = true
-region_rect = Rect2(160, 144, 16, 16)
+[connection signal="burned" from="BurnStation" to="ReplaceStation" method="replace"]

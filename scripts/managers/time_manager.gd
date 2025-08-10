@@ -40,7 +40,7 @@ func _input(event: InputEvent) -> void:
 
 func _timeout() -> void:
 	time += 1
-	if max_time > 0 and time > max_time:
+	if max_time > 0 and time >= max_time:
 		EventBus.out_of_time.emit()
 		timer.stop()
 	EventBus.step.emit(time)
