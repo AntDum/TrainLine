@@ -376,7 +376,7 @@ script = ExtResource("1_1k51l")
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("2_1p57g")
-delay = 0.05
+max_time = 50
 metadata/_custom_type_script = "uid://8jmouha1nh8w"
 
 [node name="StationManager" type="Node" parent="." node_paths=PackedStringArray("rails")]
