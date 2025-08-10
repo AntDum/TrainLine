@@ -418,7 +418,7 @@ position = Vector2(0, -16)
 position = Vector2(0, -16)
 texture = ExtResource("4_n7dd5")
 region_enabled = true
-region_rect = Rect2(176, 32, 16, 16)
+region_rect = Rect2(160, 64, 16, 16)
 
 [node name="BurnStation" type="Marker2D" parent="."]
 position = Vector2(328, 56)
