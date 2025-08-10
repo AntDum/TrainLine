@@ -57,13 +57,13 @@ func _restart() -> void:
 	_set_sprite()
 
 func _step(time: int) -> void:
-	AudioManager.play_sound("roll")
 	
 	if gem_type == Gem.Type.BLUE:
 		if status == Status.CAN_INTERACT:
 			status = Status.FREEZING
 			return
 	
+	AudioManager.play_sound("roll")
 	
 	match status:
 		Status.FINISH_WAITING:

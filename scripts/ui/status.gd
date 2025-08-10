@@ -1,24 +1,33 @@
 extends Control
 
+@onready var animated_control: AnimatedControl = $AnimatedControl
+
 @onready var rewrite_label: RewriteLabel = %RewriteLabel
-@onready var next_level_button: HoverButton = $NextLevelButton
+@onready var next_level_button: HoverButton = %NextLevelButton
+@onready var retry_button: HoverButton = %RetryButton
+
 
 func _train_crashed() -> void:
-	rewrite_label.change_text("Oh no ! You cannot do that")
 	_failed_level()
+	rewrite_label.change_text("Oh no !\nYou cannot do that")
 
 func _out_of_time() -> void:
-	rewrite_label.change_text("Oh no ! It was too long")
 	_failed_level()
+	rewrite_label.change_text("Oh no !\nIt was too long")
 
 func _failed_level() -> void:
-	pass
+	retry_button.visible = true
+	animated_control.animate_show()
+	
 
 func _restart() -> void:
+	animated_control.animate_hide()
 	rewrite_label.change_text("")
 	next_level_button.visible = false
+	retry_button.visible = false
 	
 func _all_station_happy() -> void:
+	animated_control.animate_show()
 	if LevelManager.is_last_level():
 		rewrite_label.change_text("You completed the game !!\nThank you for playing")
 	else:
@@ -27,7 +36,11 @@ func _all_station_happy() -> void:
 	
 
 func _on_next_level_button_pressed() -> void:
+	animated_control.animate_hide()
 	LevelManager.get_to_next_level()
+
+func _on_retry_button_pressed() -> void:
+	EventBus.restart.emit()
 
 
 func _enter_tree() -> void:
