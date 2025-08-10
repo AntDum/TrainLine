@@ -153,6 +153,9 @@ func _crashed() -> void:
 	EventBus.train_crashed.emit()
 
 func _clear() -> void:
+	if gem_type == Gem.Type.WHITE:
+		dir = DirHelper.invert_dir(dir)
+	
 	content_type = ContentType.EMPTY
 	gem_type = -1
 
