@@ -8,6 +8,7 @@ const PARTICLE_DESTROY_FIRE = preload("res://scenes/objects/particles/particle_d
 @export var burning_delay : int = 1
 
 @export var station_manager : StationManager
+@export var fuses : Fuses
 
 var rails_to_burn = []
 
@@ -48,6 +49,8 @@ func _step(time: int) -> void:
 			_add_particle_at(PARTICLE_DESTROY_FIRE, rail_coord)
 			erase_cell(rail_coord)
 			rails_to_burn.pop_front()
+			if fuses:
+				fuses.burn(rail_coord)
 		else:
 			break
 
