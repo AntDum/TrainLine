@@ -97,6 +97,17 @@ func _step(_time: int) -> void:
 					else:
 						_crashed()
 						return
+				
+				if station is TeleportStation:
+					if gem_type == Gem.Type.PURPLE:
+						var global_dest_pos = station.get_global_destionation()
+						if tween_pos:
+							tween_pos.kill()
+						global_position = global_dest_pos
+						pos_target = global_dest_pos
+					else:
+						_crashed()
+						return
 					
 				station.interact()
 				status = Status.WAITING

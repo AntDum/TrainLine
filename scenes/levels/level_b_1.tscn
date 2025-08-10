@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ca5l5l82w86th"]
+[gd_scene load_steps=22 format=4 uid="uid://ca5l5l82w86th"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_et4pd"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_bnbna"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="11_m3ccr"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="12_3tfmm"]
 [ext_resource type="Script" uid="uid://dv6jguk75k3ac" path="res://scripts/objects/destroy_station.gd" id="12_s65hi"]
+[ext_resource type="Script" uid="uid://712dyedgdx3q" path="res://scripts/objects/teleport_station.gd" id="13_blyob"]
 [ext_resource type="Script" uid="uid://cbtyokw5jw4ld" path="res://scripts/levels/tuto/tuto_lvl_b_1.gd" id="13_et4pd"]
 [ext_resource type="Script" uid="uid://bgu1v264n71y5" path="res://scripts/components/ui/notification.gd" id="14_m4qt0"]
 
@@ -390,7 +391,7 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAHAAQAAAAEAAIAAAAIAAQAAAAEAAIAAAAGAAQAAAAAAAIAAAAJAAQAAAAEAAIAAAAKAAQAAAAEAAIAAAALAAQAAAAEAAIAAAAMAAQAAAAEAAIAAAANAAQAAAABAAIAAQAOAAcAAAAEAAIAAAANAAcAAAAEAAIAAAAMAAcAAAABAAIAAQALAAcAAAAEAAIAAAANAAgAAAABAAkAAAALAAUAAAAHAAQAAAAMAAUAAAAHAAQAAAAPAAYAAAAHAAQAAAASAAMAAAAHAAQAAAAPAAMAAAAHAAQAAAASAAYAAAAHAAQAAAATAAYAAAAHAAQAAAARAAoAAAAIAAQAAAASAAoAAAAIAAQAAAAUAAkAAAAIAAQAAAAUAAMAAAAIAAQAAAAPAAEAAAAIAAQAAAAOAAkAAAAHAAQAAAASAAgAAAAHAAQAAAASAAQAAAAHAAQAAAAOAAUAAAAHAAQAAAARAAMAAAAHAAQAAAAQAAgAAAAJAAQAAAAQAAUAAAAJAAQAAAARAAcAAAAIAAQAAAARAAYAAAAGAAQAAAAOAAMAAAABAAkAAAAWAAUAAAABAAcAAAAMAAgAAAABAAcAAAANAAMAAAABAAcAAAAUAAYAAAAGAAIAAQAUAAUAAAAGAAAAAQAUAAcAAAAGAAMAAQAUAAgAAAAHAAEAAQAOAA0AAAAGAAMAAQARAA0AAAAHAAQAAAAPAA8AAAACAAIAAAARAA8AAAAGAAQAAAA=")
+tile_map_data = PackedByteArray("AAAHAAQAAAAEAAIAAAAIAAQAAAAEAAIAAAAGAAQAAAAAAAIAAAAJAAQAAAAEAAIAAAAMAAQAAAAEAAIAAAANAAQAAAABAAIAAQAOAAcAAAAEAAIAAAANAAcAAAAEAAIAAAAMAAcAAAABAAIAAQALAAcAAAAEAAIAAAANAAgAAAABAAkAAAALAAUAAAAHAAQAAAAMAAUAAAAHAAQAAAAPAAYAAAAHAAQAAAASAAMAAAAHAAQAAAAPAAMAAAAHAAQAAAASAAYAAAAHAAQAAAATAAYAAAAHAAQAAAARAAoAAAAIAAQAAAASAAoAAAAIAAQAAAAUAAkAAAAIAAQAAAAUAAMAAAAIAAQAAAAPAAEAAAAIAAQAAAAOAAkAAAAHAAQAAAASAAgAAAAHAAQAAAASAAQAAAAHAAQAAAAOAAUAAAAHAAQAAAARAAMAAAAHAAQAAAAQAAgAAAAJAAQAAAAQAAUAAAAJAAQAAAARAAcAAAAIAAQAAAARAAYAAAAGAAQAAAAOAAMAAAABAAkAAAAWAAUAAAABAAcAAAAMAAgAAAABAAcAAAANAAMAAAABAAcAAAAUAAYAAAAGAAIAAQAUAAUAAAAGAAAAAQAUAAcAAAAGAAMAAQAUAAgAAAAHAAEAAQAOAA0AAAAGAAMAAQARAA0AAAAHAAQAAAAPAA8AAAACAAIAAAARAA8AAAAGAAQAAAAHAAkAAAACAAEAAAAYAAkAAAACAAEAAAA=")
 tile_set = ExtResource("5_s65hi")
 script = ExtResource("6_blyob")
 station_manager = NodePath("../StationManager")
@@ -398,7 +399,7 @@ station_manager = NodePath("../StationManager")
 [node name="Station" type="Marker2D" parent="Rails"]
 position = Vector2(216, 72)
 script = ExtResource("7_0q8v6")
-contentValue = 1
+contentValue = 3
 take = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
@@ -408,7 +409,7 @@ position = Vector2(0, -16)
 [node name="Station2" type="Marker2D" parent="Rails"]
 position = Vector2(200, 120)
 script = ExtResource("7_0q8v6")
-contentValue = 1
+contentValue = 3
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
@@ -459,6 +460,18 @@ position = Vector2(280, 248)
 script = ExtResource("12_s65hi")
 is_destroyed = true
 metadata/_custom_type_script = "uid://dv6jguk75k3ac"
+
+[node name="TeleportStation" type="Marker2D" parent="Rails" node_paths=PackedStringArray("target_station")]
+position = Vector2(120, 152)
+script = ExtResource("13_blyob")
+target_station = NodePath("../TeleportStation2")
+metadata/_custom_type_script = "uid://712dyedgdx3q"
+
+[node name="TeleportStation2" type="Marker2D" parent="Rails" node_paths=PackedStringArray("target_station")]
+position = Vector2(392, 152)
+script = ExtResource("13_blyob")
+target_station = NodePath("../TeleportStation")
+metadata/_custom_type_script = "uid://712dyedgdx3q"
 
 [node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_2kkyn")]
 modulate = Color(1.5, 1.2, 1.2, 1)
