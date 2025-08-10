@@ -25,5 +25,8 @@ func interact() -> void:
 	interacted.emit()
 	return
 
+func burn() -> void:
+	return
+
 func time_to_wait() -> int:
 	return 0
