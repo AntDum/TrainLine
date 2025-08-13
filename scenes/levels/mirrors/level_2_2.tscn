@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bljgs1pleacrx"]
+[gd_scene load_steps=19 format=4 uid="uid://bljgs1pleacrx"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_wviv0"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_j6njf"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="9_8qpoi"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_fuogh"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_c0ccs"]
+[ext_resource type="Shader" uid="uid://cmno3ym3h5ggn" path="res://resources/shaders/reverse.gdshader" id="11_j6njf"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_aykgt"]
+[ext_resource type="Script" uid="uid://bopku04x4fn0h" path="res://scripts/components/magic_flip.gd" id="12_rsydj"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_ne43a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
@@ -368,6 +370,10 @@ custom_data_layer_1/name = "editable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i4ljo")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsydj"]
+shader = ExtResource("11_j6njf")
+shader_parameter/flip_amount = 0.0
+
 [node name="LevelT1" type="Node2D"]
 script = ExtResource("1_wviv0")
 
@@ -477,6 +483,17 @@ rails = NodePath("../Rails")
 station_manager = NodePath("../StationManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MagicFlip" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_rsydj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_rsydj")
+metadata/_custom_type_script = "uid://bopku04x4fn0h"
 
 [node name="Env" parent="CanvasLayer" instance=ExtResource("11_c0ccs")]
 

@@ -14,8 +14,13 @@ signal step(time: int)
 signal time_changed(time: int, max: int)
 signal delay_changed(delay: float)
 
+signal flip_reality
+signal flip_back
+
 signal started_tuto
 signal finished_tuto
+
+signal change_mode(mode: ModeHelper.Mode)
 
 signal clear
 

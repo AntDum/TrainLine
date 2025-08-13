@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://hi0drd2vhjls"]
+
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="1_0su4g"]
+[ext_resource type="Script" uid="uid://dmcf85mpc7rkq" path="res://scripts/objects/dynamite.gd" id="1_5xtdh"]
+
+[sub_resource type="Curve" id="Curve_0su4g"]
+_data = [Vector2(0, 0.00203812), 0.0, 15.5137, 0, 0, Vector2(0.0869565, 1), 0.457032, 0.457032, 0, 0, Vector2(0.916388, 0.470109), -3.52083, -3.52083, 0, 0, Vector2(1, 0), -4.5816, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_5xtdh"]
+offsets = PackedFloat32Array(0, 0.468864, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.930403, 0.930403, 0.930403, 1, 0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_1bphs"]
+offsets = PackedFloat32Array(0, 0.835165, 0.937729, 1)
+colors = PackedColorArray(2, 0, 0, 1, 2, 1.192, 0, 1, 1.71, 1.71, 1.71, 1, 0, 0, 0, 1)
+
+[node name="Dynamite" type="Node2D"]
+script = ExtResource("1_5xtdh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0su4g")
+region_enabled = true
+region_rect = Rect2(160, 144, 16, 16)
+
+[node name="Explosion" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 48
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.9
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, -1)
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+angle_min = -351.0
+angle_max = 225.0
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_0su4g")
+color_ramp = SubResource("Gradient_5xtdh")
+color_initial_ramp = SubResource("Gradient_1bphs")

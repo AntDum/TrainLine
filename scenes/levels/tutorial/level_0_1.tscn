@@ -485,9 +485,9 @@ metadata/_custom_type_script = "uid://bgu1v264n71y5"
 [node name="NextButton" type="Button" parent="CanvasLayer/Tuto"]
 custom_minimum_size = Vector2(90, 40)
 layout_mode = 0
-offset_left = 218.0
+offset_left = 211.0
 offset_top = 267.0
-offset_right = 308.0
+offset_right = 301.0
 offset_bottom = 307.0
 theme_override_font_sizes/font_size = 16
 text = "Ok"

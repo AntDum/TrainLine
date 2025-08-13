@@ -18,54 +18,38 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_hqnrr")
 
-[node name="BottomRight" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -56.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="TopLeft" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
-custom_minimum_size = Vector2(100, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLeft"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="BottomRight/VBoxContainer"]
+[node name="ModeButton" type="Button" parent="TopLeft/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Mode"
+script = ExtResource("2_hqnrr")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[node name="Spacer" type="Control" parent="TopLeft/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="CurrentMode" type="Label" parent="TopLeft/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "START"
-script = ExtResource("2_hqnrr")
-metadata/_custom_type_script = "uid://8krug0mq1f1f"
-
-[node name="ClearButton" type="Button" parent="BottomRight/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "CLEAR"
-script = ExtResource("2_hqnrr")
-metadata/_custom_type_script = "uid://8krug0mq1f1f"
-
-[node name="FastForwardButton" type="Button" parent="BottomRight/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-text = ">>"
-script = ExtResource("2_hqnrr")
-metadata/_custom_type_script = "uid://8krug0mq1f1f"
+theme_override_font_sizes/font_size = 8
+text = "ADD"
 
 [node name="TopRight" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -20.0
-offset_bottom = 20.0
+offset_left = -140.0
+offset_bottom = 110.0
 grow_horizontal = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TopRight"]
@@ -102,17 +86,75 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -20.0
-offset_right = 20.0
+offset_top = -60.0
+offset_right = 120.0
 grow_vertical = 0
 
-[node name="Explaination" type="Label" parent="BottomLeft"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "Left-click to add
-Right-click to delete"
+size_flags_vertical = 8
 
-[connection signal="pressed" from="BottomRight/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="BottomRight/VBoxContainer/ClearButton" to="." method="_on_clear_clicked"]
+[node name="ClearButton" type="Button" parent="BottomLeft/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "CLEAR"
+script = ExtResource("2_hqnrr")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[node name="BottomCenter" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomCenter"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="BottomCenter/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "START"
+script = ExtResource("2_hqnrr")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[node name="BottomRight" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="FastForwardButton" type="Button" parent="BottomRight/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = ">>"
+script = ExtResource("2_hqnrr")
+metadata/_custom_type_script = "uid://8krug0mq1f1f"
+
+[connection signal="pressed" from="TopLeft/HBoxContainer/ModeButton" to="." method="_on_mode_button_pressed"]
+[connection signal="pressed" from="BottomLeft/VBoxContainer/ClearButton" to="." method="_on_clear_clicked"]
+[connection signal="pressed" from="BottomCenter/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="button_down" from="BottomRight/VBoxContainer/FastForwardButton" to="." method="_on_fast_press"]
 [connection signal="button_up" from="BottomRight/VBoxContainer/FastForwardButton" to="." method="_on_fast_released"]

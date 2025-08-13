@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://brdchx62ms015"]
+[gd_scene load_steps=19 format=4 uid="uid://brdchx62ms015"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_m0tht"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_q22cm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_afihj"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="9_pfsi8"]
 [ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="11_gqdmd"]
+[ext_resource type="PackedScene" uid="uid://hi0drd2vhjls" path="res://scenes/objects/dynamite.tscn" id="11_m0tht"]
 [ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="12_a5ceq"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="13_cihb4"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="14_mpi5u"]
@@ -419,35 +420,40 @@ texture = ExtResource("4_tgij8")
 region_enabled = true
 region_rect = Rect2(160, 64, 16, 16)
 
-[node name="ReplaceStation" type="Marker2D" parent="."]
+[node name="ReplaceStation" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
 position = Vector2(376, 120)
 script = ExtResource("11_gqdmd")
+dynamite = NodePath("Dynamite")
 
-[node name="Sprite2D" type="Sprite2D" parent="ReplaceStation"]
+[node name="Dynamite" parent="ReplaceStation" instance=ExtResource("11_m0tht")]
 
-[node name="ReplaceStation2" type="Marker2D" parent="."]
+[node name="ReplaceStation2" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
 position = Vector2(312, 104)
 script = ExtResource("11_gqdmd")
+dynamite = NodePath("Dynamite2")
 
-[node name="Sprite2D" type="Sprite2D" parent="ReplaceStation2"]
+[node name="Dynamite2" parent="ReplaceStation2" instance=ExtResource("11_m0tht")]
 
-[node name="ReplaceStation3" type="Marker2D" parent="."]
+[node name="ReplaceStation3" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
 position = Vector2(248, 136)
 script = ExtResource("11_gqdmd")
+dynamite = NodePath("Dynamite3")
 
-[node name="Sprite2D" type="Sprite2D" parent="ReplaceStation3"]
+[node name="Dynamite3" parent="ReplaceStation3" instance=ExtResource("11_m0tht")]
 
-[node name="ReplaceStation4" type="Marker2D" parent="."]
+[node name="ReplaceStation4" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
 position = Vector2(328, 168)
 script = ExtResource("11_gqdmd")
+dynamite = NodePath("Dynamite4")
 
-[node name="Sprite2D" type="Sprite2D" parent="ReplaceStation4"]
+[node name="Dynamite4" parent="ReplaceStation4" instance=ExtResource("11_m0tht")]
 
-[node name="ReplaceStation5" type="Marker2D" parent="."]
+[node name="ReplaceStation5" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
 position = Vector2(152, 120)
 script = ExtResource("11_gqdmd")
+dynamite = NodePath("Dynamite5")
 
-[node name="Sprite2D" type="Sprite2D" parent="ReplaceStation5"]
+[node name="Dynamite5" parent="ReplaceStation5" instance=ExtResource("11_m0tht")]
 
 [node name="Fuses" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
 tile_map_data = PackedByteArray("AAAPABAAAAANAAgAAAAPAA8AAAANAAcAAAAPAA4AAAANAAcAAAAPAA0AAAALAAcAAAAPAAwAAAANAAcAAAAPAAsAAAANAAcAAAAPAAoAAAALAAcAAAAOAA0AAAALAAUAAAANAA0AAAALAAUAAAAMAA0AAAALAAUAAAALAA0AAAALAAUAAAAKAA0AAAAKAAUAAAAQAA0AAAALAAUAAAARAA0AAAALAAUAAAASAA0AAAALAAUAAAATAA0AAAALAAUAAAAUAA0AAAAMAAUAAAAPAAkAAAANAAcAAAAPAAgAAAANAAYAAAAQAAoAAAALAAUAAAARAAoAAAALAAUAAAAOAAoAAAALAAUAAAANAAoAAAALAAUAAAAMAAoAAAALAAgAAAASAAoAAAALAAUAAAATAAoAAAALAAgAAAAUAAoAAAAMAAUAAAALAAoAAAALAAUAAAAKAAoAAAAKAAUAAAAMAAkAAAANAAcAAAAMAAgAAAANAAcAAAAMAAcAAAALAAcAAAAMAAYAAAANAAYAAAATAAkAAAANAAcAAAATAAgAAAANAAcAAAATAAcAAAALAAcAAAATAAYAAAANAAYAAAAUAAcAAAALAAUAAAAVAAcAAAALAAUAAAAWAAcAAAALAAUAAAAXAAcAAAAMAAUAAAASAAcAAAALAAUAAAARAAcAAAAKAAUAAAANAAcAAAALAAUAAAAOAAcAAAAMAAUAAAALAAcAAAALAAUAAAAKAAcAAAALAAUAAAAJAAcAAAAKAAUAAAA=")

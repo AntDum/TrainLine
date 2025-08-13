@@ -8,6 +8,7 @@ enum ContentType {BOX, ROCK, EMPTY = -1}
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var crash_particle: CPUParticles2D = $CrashParticle
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var tile_size : int = 16
 
@@ -40,21 +41,24 @@ func _ready() -> void:
 	start_dir = dir
 	start_pos = global_position
 	pos_target = global_position
+	animation_player.play("spawn")
 	
 func _restart() -> void:
 	crash_particle.emitting = false
 	dir = start_dir
 	if tween_pos:
 		tween_pos.kill()
+	animation_player.play("despawn")
+	await animation_player.animation_finished
 	global_position = start_pos
 	pos_target = start_pos
 	status = Status.CAN_INTERACT
 	gem_type = Gem.Type.NO_GEM
 	content_type = ContentType.EMPTY
-	
 	if not EventBus.step.is_connected(_step):
 		EventBus.step.connect(_step)
 	_set_sprite()
+	animation_player.play("spawn")
 
 func _step(time: int) -> void:
 	
@@ -155,6 +159,7 @@ func _crashed() -> void:
 func _clear() -> void:
 	if gem_type == Gem.Type.WHITE:
 		dir = DirHelper.invert_dir(dir)
+		EventBus.flip_back.emit()
 	
 	content_type = ContentType.EMPTY
 	gem_type = -1
@@ -165,6 +170,7 @@ func _take_box(gem: Gem.Type) -> void:
 	
 	if gem == Gem.Type.WHITE:
 		dir = DirHelper.invert_dir(dir)
+		EventBus.flip_reality.emit()
 		
 
 func _is_empty() -> bool:

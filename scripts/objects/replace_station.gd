@@ -1,6 +1,8 @@
 extends BaseStation
 class_name ReplaceStation
 
+@export var dynamite : Dynamite
+
 var rock_atlas_coord : Vector2i = Vector2i(6, 4)
 
 var is_destroyed = true
@@ -16,25 +18,20 @@ func replace() -> void:
 	if is_destroyed: return
 	rails.set_rail_at(coord)
 	is_destroyed = true
-	_hide_child()
+	_explode()
 
 func restore() -> void:
 	if not is_destroyed: return
 	rails.set_cell(coord, 0, rock_atlas_coord)
 	is_destroyed = false
-	_show_child()
 
 func _restart() -> void:
 	if is_destroyed:
 		restore()
 
-func _hide_child() -> void:
-	for child in get_children():
-		child.visible = false
-
-func _show_child() -> void:
-	for child in get_children():
-		child.visible = true
+func _explode() -> void:
+	if dynamite:
+		dynamite.explode()
 
 func _enter_tree() -> void:
 	EventBus.restart.connect(_restart)
