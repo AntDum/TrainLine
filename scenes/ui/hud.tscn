@@ -54,7 +54,8 @@ grow_horizontal = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TopRight"]
 layout_mode = 2
-alignment = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
 
 [node name="counter" type="Label" parent="TopRight/VBoxContainer"]
 unique_name_in_owner = true
@@ -67,10 +68,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "0 / 0"
 
-[node name="Control" type="Control" parent="TopRight/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
 [node name="Lever Button" type="Button" parent="TopRight/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(64, 64)
@@ -81,80 +78,55 @@ expand_icon = true
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
-[node name="BottomLeft" type="MarginContainer" parent="."]
+[node name="Bottom" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -60.0
-offset_right = 120.0
+offset_top = -20.0
+grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomLeft"]
-custom_minimum_size = Vector2(100, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="Bottom"]
 layout_mode = 2
-size_flags_vertical = 8
 
-[node name="ClearButton" type="Button" parent="BottomLeft/VBoxContainer"]
+[node name="ClearButton" type="Button" parent="Bottom/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "CLEAR"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
-[node name="BottomCenter" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -60.0
-offset_top = -60.0
-offset_right = 60.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomCenter"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Spacer" type="Control" parent="Bottom/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="StartButton" type="Button" parent="BottomCenter/VBoxContainer"]
+[node name="StartButton" type="Button" parent="Bottom/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "START"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
-[node name="BottomRight" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -60.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Spacer2" type="Control" parent="Bottom/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="FastForwardButton" type="Button" parent="BottomRight/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+[node name="FastForwardButton" type="Button" parent="Bottom/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = ">>"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
 [connection signal="pressed" from="TopLeft/HBoxContainer/ModeButton" to="." method="_on_mode_button_pressed"]
-[connection signal="pressed" from="BottomLeft/VBoxContainer/ClearButton" to="." method="_on_clear_clicked"]
-[connection signal="pressed" from="BottomCenter/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="button_down" from="BottomRight/VBoxContainer/FastForwardButton" to="." method="_on_fast_press"]
-[connection signal="button_up" from="BottomRight/VBoxContainer/FastForwardButton" to="." method="_on_fast_released"]
+[connection signal="pressed" from="Bottom/HBoxContainer/ClearButton" to="." method="_on_clear_clicked"]
+[connection signal="pressed" from="Bottom/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="button_down" from="Bottom/HBoxContainer/FastForwardButton" to="." method="_on_fast_press"]
+[connection signal="button_up" from="Bottom/HBoxContainer/FastForwardButton" to="." method="_on_fast_released"]

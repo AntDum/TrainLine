@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://k7or1231oyyo"]
+[gd_scene load_steps=18 format=4 uid="uid://k7or1231oyyo"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_0l2s0"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_gtvua"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_3m6pc"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_dktjf"]
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_ecucx"]
+[ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_2yaoe"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_i1bds"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_u1660"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_mhgmi"]
@@ -419,6 +420,7 @@ region_rect = Rect2(64, 64, 16, 16)
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject2"]
 position = Vector2(0, -32)
 texture = SubResource("AtlasTexture_pdslq")
+script = ExtResource("10_2yaoe")
 
 [node name="StationObject3" type="Marker2D" parent="Rails"]
 position = Vector2(136, 200)
@@ -445,6 +447,7 @@ region_rect = Rect2(64, 64, 16, 16)
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject4"]
 position = Vector2(0, -32)
 texture = SubResource("AtlasTexture_pdslq")
+script = ExtResource("10_2yaoe")
 
 [node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_i1bds")]
 position = Vector2(104, 200)

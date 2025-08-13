@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://brdchx62ms015"]
+[gd_scene load_steps=20 format=4 uid="uid://brdchx62ms015"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_m0tht"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_q22cm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_w7gfv"]
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_afihj"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="9_pfsi8"]
+[ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_q22cm"]
 [ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="11_gqdmd"]
 [ext_resource type="PackedScene" uid="uid://hi0drd2vhjls" path="res://scenes/objects/dynamite.tscn" id="11_m0tht"]
 [ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="12_a5ceq"]
@@ -419,6 +420,7 @@ position = Vector2(0, -16)
 texture = ExtResource("4_tgij8")
 region_enabled = true
 region_rect = Rect2(160, 64, 16, 16)
+script = ExtResource("10_q22cm")
 
 [node name="ReplaceStation" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
 position = Vector2(376, 120)

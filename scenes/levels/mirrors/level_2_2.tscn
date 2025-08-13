@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bljgs1pleacrx"]
+[gd_scene load_steps=20 format=4 uid="uid://bljgs1pleacrx"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_wviv0"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_j6njf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_sby55"]
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_mg85s"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="9_8qpoi"]
+[ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_0ilib"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_fuogh"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_c0ccs"]
 [ext_resource type="Shader" uid="uid://cmno3ym3h5ggn" path="res://resources/shaders/reverse.gdshader" id="11_j6njf"]
@@ -444,6 +445,7 @@ position = Vector2(0, -16)
 texture = ExtResource("4_0ilib")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)
+script = ExtResource("10_0ilib")
 
 [node name="StationObject3" type="Marker2D" parent="Rails"]
 position = Vector2(72, 184)
@@ -460,6 +462,7 @@ position = Vector2(0, -16)
 texture = ExtResource("4_0ilib")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)
+script = ExtResource("10_0ilib")
 
 [node name="StationObject4" type="Marker2D" parent="Rails"]
 position = Vector2(72, 120)
@@ -476,6 +479,7 @@ position = Vector2(0, -16)
 texture = ExtResource("4_0ilib")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)
+script = ExtResource("10_0ilib")
 
 [node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_fuogh")]
 position = Vector2(72, 312)
