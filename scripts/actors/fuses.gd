@@ -30,13 +30,18 @@ func _restart() -> void:
 
 func _step(time: int) -> void:
 	var next_step = []
+	var burn_something = false
 	for coord in to_burn:
 		if get_cell_source_id(coord) != -1:
+			burn_something = true
+			
 			_burned(coord)
 			for d in [0, 1, 2, 3]:
 				var cell_coord = get_neighbor_cell(coord, DirHelper.to_neighbor(d))
 				if get_cell_source_id(cell_coord) != -1:
 					next_step.append(cell_coord)
+	if burn_something:
+		AudioManager.play_sound("burning_fuse")
 	to_burn = next_step
 		
 

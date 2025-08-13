@@ -6,6 +6,7 @@ class_name Dynamite
 
 func explode() -> void:
 	sprite_2d.visible = false
+	AudioManager.play_sound("explosion")
 	explosion.emitting = true
 
 func reset() -> void:

@@ -1,5 +1,4 @@
 extends Node
-class_name AudioManagerScript
 
 var current_music_player : AudioStreamPlayer = null
 

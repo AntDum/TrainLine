@@ -160,6 +160,7 @@ func _clear() -> void:
 	if gem_type == Gem.Type.WHITE:
 		dir = DirHelper.invert_dir(dir)
 		EventBus.flip_back.emit()
+		AudioManager.play_sound("mirrored")
 	
 	content_type = ContentType.EMPTY
 	gem_type = -1
@@ -171,6 +172,7 @@ func _take_box(gem: Gem.Type) -> void:
 	if gem == Gem.Type.WHITE:
 		dir = DirHelper.invert_dir(dir)
 		EventBus.flip_reality.emit()
+		AudioManager.play_sound("mirrored")
 		
 
 func _is_empty() -> bool:
