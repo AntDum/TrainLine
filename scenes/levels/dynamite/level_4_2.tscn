@@ -405,6 +405,9 @@ metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 position = Vector2(0, -16)
 region_rect = Rect2(32, 144, 16, 16)
 
+[node name="Box" parent="Rails" instance=ExtResource("9_pfsi8")]
+position = Vector2(216, 40)
+
 [node name="StationObject2" type="Marker2D" parent="Rails"]
 position = Vector2(216, 56)
 script = ExtResource("7_w7gfv")
@@ -412,11 +415,8 @@ contentValue = 4
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/StationObject2" instance=ExtResource("9_pfsi8")]
-position = Vector2(0, -16)
-
-[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject2/Box"]
-position = Vector2(0, -16)
+[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject2"]
+position = Vector2(0, -32)
 texture = ExtResource("4_tgij8")
 region_enabled = true
 region_rect = Rect2(160, 64, 16, 16)

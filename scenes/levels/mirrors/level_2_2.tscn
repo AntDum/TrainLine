@@ -430,6 +430,9 @@ metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 position = Vector2(0, -16)
 region_rect = Rect2(176, 0, 16, 16)
 
+[node name="Box" parent="Rails" instance=ExtResource("9_8qpoi")]
+position = Vector2(72, 232)
+
 [node name="StationObject2" type="Marker2D" parent="Rails"]
 position = Vector2(72, 248)
 script = ExtResource("7_sby55")
@@ -437,15 +440,15 @@ contentValue = 2
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/StationObject2" instance=ExtResource("9_8qpoi")]
-position = Vector2(0, -16)
-
-[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject2/Box"]
-position = Vector2(0, -16)
+[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject2"]
+position = Vector2(0, -32)
 texture = ExtResource("4_0ilib")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)
 script = ExtResource("10_0ilib")
+
+[node name="Box3" parent="Rails" instance=ExtResource("9_8qpoi")]
+position = Vector2(72, 168)
 
 [node name="StationObject3" type="Marker2D" parent="Rails"]
 position = Vector2(72, 184)
@@ -454,15 +457,15 @@ contentValue = 2
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/StationObject3" instance=ExtResource("9_8qpoi")]
-position = Vector2(0, -16)
-
-[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject3/Box"]
-position = Vector2(0, -16)
+[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject3"]
+position = Vector2(0, -32)
 texture = ExtResource("4_0ilib")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)
 script = ExtResource("10_0ilib")
+
+[node name="Box2" parent="Rails" instance=ExtResource("9_8qpoi")]
+position = Vector2(72, 104)
 
 [node name="StationObject4" type="Marker2D" parent="Rails"]
 position = Vector2(72, 120)
@@ -471,11 +474,8 @@ contentValue = 2
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="Box" parent="Rails/StationObject4" instance=ExtResource("9_8qpoi")]
-position = Vector2(0, -16)
-
-[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject4/Box"]
-position = Vector2(0, -16)
+[node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject4"]
+position = Vector2(0, -32)
 texture = ExtResource("4_0ilib")
 region_enabled = true
 region_rect = Rect2(176, 32, 16, 16)

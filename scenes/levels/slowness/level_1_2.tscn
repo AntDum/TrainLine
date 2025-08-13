@@ -406,16 +406,16 @@ metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 position = Vector2(0, -16)
 region_rect = Rect2(16, 144, 16, 16)
 
+[node name="Box" parent="Rails" instance=ExtResource("9_ecucx")]
+position = Vector2(408, 136)
+region_rect = Rect2(64, 64, 16, 16)
+
 [node name="StationObject2" type="Marker2D" parent="Rails"]
 position = Vector2(408, 152)
 script = ExtResource("7_3m6pc")
 contentValue = 1
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
-
-[node name="Box" parent="Rails/StationObject2" instance=ExtResource("9_ecucx")]
-position = Vector2(0, -16)
-region_rect = Rect2(64, 64, 16, 16)
 
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject2"]
 position = Vector2(0, -32)
@@ -433,16 +433,16 @@ metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 position = Vector2(0, -16)
 region_rect = Rect2(16, 144, 16, 16)
 
+[node name="Box2" parent="Rails" instance=ExtResource("9_ecucx")]
+position = Vector2(328, 312)
+region_rect = Rect2(64, 64, 16, 16)
+
 [node name="StationObject4" type="Marker2D" parent="Rails"]
 position = Vector2(328, 328)
 script = ExtResource("7_3m6pc")
 contentValue = 1
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
-
-[node name="Box" parent="Rails/StationObject4" instance=ExtResource("9_ecucx")]
-position = Vector2(0, -16)
-region_rect = Rect2(64, 64, 16, 16)
 
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject4"]
 position = Vector2(0, -32)

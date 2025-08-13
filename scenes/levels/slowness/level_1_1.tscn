@@ -406,16 +406,16 @@ metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 position = Vector2(0, -16)
 region_rect = Rect2(16, 144, 16, 16)
 
+[node name="Box" parent="Rails" instance=ExtResource("9_77org")]
+position = Vector2(424, 120)
+region_rect = Rect2(64, 64, 16, 16)
+
 [node name="StationObject2" type="Marker2D" parent="Rails"]
 position = Vector2(424, 136)
 script = ExtResource("7_1365v")
 contentValue = 1
 put = true
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
-
-[node name="Box" parent="Rails/StationObject2" instance=ExtResource("9_77org")]
-position = Vector2(0, -16)
-region_rect = Rect2(64, 64, 16, 16)
 
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject2"]
 position = Vector2(0, -32)
