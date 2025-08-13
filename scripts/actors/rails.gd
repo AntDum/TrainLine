@@ -15,7 +15,11 @@ var rails_to_burn = []
 var current_mode := ModeHelper.Mode.EDIT
 
 var map_snapshot : PackedByteArray
-	
+
+@export var swap_cooldown : float = 0.2
+var time_since_last_swap = {}
+
+# Game events
 func _started() -> void:
 	can_be_edited = false
 	map_snapshot = tile_map_data
@@ -26,6 +30,7 @@ func _restart() -> void:
 	tile_map_data = map_snapshot
 	rails_to_burn.clear()
 
+# Public utils
 func get_tile_size() -> int:
 	return tile_set.tile_size.x
 
@@ -33,6 +38,17 @@ func get_rail(global_pos : Vector2) -> Rail:
 	var map_coord = local_to_map(global_pos)
 	return _get_rail_at(map_coord)
 
+func set_rail_at(coord: Vector2i) -> void:
+	var prev = can_be_edited
+	set_cell(coord, 0, Vector2i(0, 0))
+	_set_rail_at(coord, _get_rail_at(coord), false, true)
+	can_be_edited = prev
+
+func burn_rail_from_global(pos: Vector2, time: int) -> void:
+	var coord = local_to_map(to_local(pos))
+	rails_to_burn.push_back([coord, time + burning_delay])	
+
+# Private functions
 func _get_rail_at(coord: Vector2i) -> Rail:
 	var data = get_cell_tile_data(coord)
 	if station_manager and station_manager.registered.has(coord):
@@ -75,7 +91,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not can_be_edited: return
 	if event is InputEventMouse:
 		_handle_mouse_event(event)
-		
 
 func _handle_mouse_event(event: InputEventMouse) -> void:
 	var mouse_coord = local_to_map(to_local(event.global_position))
@@ -85,29 +100,29 @@ func _handle_mouse_event(event: InputEventMouse) -> void:
 		MOUSE_BUTTON_MASK_LEFT:
 			match current_mode:
 				ModeHelper.Mode.EDIT:
-					_set_rail_at(mouse_coord, rail, false)
+					_set_rail_at(mouse_coord, rail) # ADD
 				ModeHelper.Mode.REMOVE:
-					_remove_rail_at(mouse_coord, rail)
+					_remove_rail_at(mouse_coord, rail) # REMOVE
 				ModeHelper.Mode.TOGGLE:
-					_set_rail_at(mouse_coord, rail, true)
+					_set_rail_at(mouse_coord, rail, true) # SWAP
 		MOUSE_BUTTON_MASK_RIGHT:
 			match current_mode:
 				ModeHelper.Mode.EDIT:
-					_remove_rail_at(mouse_coord, rail)
+					_remove_rail_at(mouse_coord, rail) # REMOVE
 				ModeHelper.Mode.REMOVE:
-					_set_rail_at(mouse_coord, rail, false)
+					_set_rail_at(mouse_coord, rail) # ADD
 				ModeHelper.Mode.TOGGLE:
-					_set_rail_at(mouse_coord, rail, true)
+					_set_rail_at(mouse_coord, rail, true) # SWAP
 		MOUSE_BUTTON_MASK_MIDDLE:
-			_set_rail_at(mouse_coord, rail, true)
-		
+			if event is InputEventMouseButton:
+				_set_rail_at(mouse_coord, rail, true) # SWAP
 
+# Rails placement
 func _can_edit_rail(coord: Vector2i, rail: Rail, forced: bool = false) -> bool:
 	return forced or (
 		can_be_edited and 
 		rail.is_editable and 
 		not station_manager.registered.has(coord))
-
 
 func _remove_rail_at(coord: Vector2i, rail: Rail) -> void:
 	if not rail.has_rail or not _can_edit_rail(coord, rail):
@@ -123,14 +138,8 @@ func _remove_rail_at(coord: Vector2i, rail: Rail) -> void:
 		var neigh_rail = _get_rail_at(cell)
 		if neigh_rail.has_rail and neigh_rail.is_editable:
 			_update_rail_at(cell)
-
-func set_rail_at(coord: Vector2i) -> void:
-	var prev = can_be_edited
-	set_cell(coord, 0, Vector2i(0, 0))
-	_set_rail_at(coord, _get_rail_at(coord), false, true)
-	can_be_edited = prev
 	
-func _get_connection_data(coord: Vector2i) -> Dictionary:
+func _get_connection_data(coord: Vector2i, can_update: bool = true) -> Dictionary:
 	var connect_to = {0: false, 1: false, 2: false, 3: false}
 	var to_update = []
 	
@@ -139,41 +148,54 @@ func _get_connection_data(coord: Vector2i) -> Dictionary:
 		var neigh_rail = _get_rail_at(neighbor_coord)
 		if not neigh_rail.has_rail:
 			continue
-		if neigh_rail.is_editable:
+		if neigh_rail.is_editable and can_update:
 			connect_to[dir] = true
 			to_update.append(neighbor_coord)
 		elif neigh_rail.has_connection(DirHelper.invert_dir(dir)):
 			connect_to[dir] = true
+
 	
-	return { "connect_to": connect_to, "to_update": to_update, "need_update": true }
+	return { "connect_to": connect_to, "to_update": to_update }
 
 func _resolve_rail_connection(rail: Rail, conn_data: Dictionary, swap_mode: bool) -> int:
-	var rail_connect = RailHelper.get_rail_from_connection(conn_data.connect_to)
+	var desired_rail = RailHelper.get_rail_from_connection(conn_data.connect_to)
 	var current_rail = rail.get_rail_shape()
 	
-	if rail_connect | RailHelper.OPPOSITE == current_rail | RailHelper.OPPOSITE:
-		var maybe = current_rail ^ RailHelper.OPPOSITE
-		if RailHelper.editable_rail_atlas_coord.has(maybe) and swap_mode:
-			conn_data.need_update = false
-			rail_connect = maybe
+	# Fallback if no connections
+	if desired_rail == 0:
+		return -1 if swap_mode else RailHelper.LR
+
+	var can_be_flipped = (desired_rail | RailHelper.OPPOSITE) == (current_rail | RailHelper.OPPOSITE)
 	
-	if conn_data.need_update and swap_mode:
+	if can_be_flipped:
+		if not swap_mode:
+			return -1 # Flips only allowed in swap mode
+
+		var opposite_rail = current_rail ^ RailHelper.OPPOSITE
+		return opposite_rail if RailHelper.editable_rail_atlas_coord.has(opposite_rail) else -1
+	
+	# If swap mode, only flipping is allowed
+	if swap_mode:
 		return -1
 	
-	if rail_connect == 0:
-		rail_connect = RailHelper.LR
-	
-	return rail_connect
+	return desired_rail
 
 func _place_rail(coord: Vector2i, new_rail: Vector2i) -> void:
 	set_cell(coord, 0, new_rail)
 	EventBus.rail_placed.emit(coord)
 	AudioManager.play_sound("place")
 
-func _set_rail_at(coord: Vector2i, rail: Rail, swap_mode: bool, forced: bool = false) -> void:
+func _set_rail_at(coord: Vector2i, rail: Rail, swap_mode: bool = false, forced: bool = false) -> void:
 	# Check that the rail can be edited
 	if not _can_edit_rail(coord, rail, forced):
 		return
+
+	if swap_mode:
+		if time_since_last_swap.has(coord):
+			if time_since_last_swap[coord] <= 0:
+				time_since_last_swap.erase(coord)
+			else:
+				return
 	
 	var connection_data = _get_connection_data(coord)
 
@@ -192,38 +214,35 @@ func _set_rail_at(coord: Vector2i, rail: Rail, swap_mode: bool, forced: bool = f
 	_place_rail(coord, new_rail)
 	
 	# Update except for flip of T rail
-	if connection_data.need_update:
+	if not swap_mode:
 		for cell in connection_data.to_update:
 			_update_rail_at(cell)
-
-func burn_rail_from_global(pos: Vector2, time: int) -> void:
-	var coord = local_to_map(to_local(pos))
-	rails_to_burn.push_back([coord, time + burning_delay])	
-	
-func _add_particle_at(particle_type: PackedScene, coord: Vector2i) -> void:
-	var particule = particle_type.instantiate()
-	particule.position = map_to_local(coord)
-	add_child(particule)
+	else:
+		time_since_last_swap[coord] = swap_cooldown
 
 func _update_rail_at(coord: Vector2i) -> void:
 	var rail = _get_rail_at(coord)
 	if not rail.has_rail or not rail.is_editable: return
 	
 	# Check connection of neighboor cell
-	var connect_to = { 0 : false, 1 : false, 2 : false, 3 : false }
-	for dir in [0, 1, 2, 3]:
-		var cell_coord = get_neighbor_cell(coord, DirHelper.to_neighbor(dir))
-		var neigh_rail = _get_rail_at(cell_coord)
-		if not neigh_rail.has_rail: continue
-		elif neigh_rail.has_connection(DirHelper.invert_dir(dir)):
-			connect_to[dir] = true
+	var connection_data = _get_connection_data(coord, false)
 			
-	var rail_connect = RailHelper.get_rail_from_connection(connect_to)
+	var rail_connect = RailHelper.get_rail_from_connection(connection_data.connect_to)
 	if rail_connect == 0: # Destroy if alone
 		erase_cell(coord)
 	else:
 		set_cell(coord, 0, RailHelper.editable_rail_atlas_coord[rail_connect])
+
+func _process(delta: float) -> void:
+	for coord in time_since_last_swap.keys():
+		time_since_last_swap[coord] -= delta
+		if time_since_last_swap[coord] <= 0:
+			time_since_last_swap.erase(coord)
 	
+func _add_particle_at(particle_type: PackedScene, coord: Vector2i) -> void:
+	var particule = particle_type.instantiate()
+	particule.position = map_to_local(coord)
+	add_child(particule)
 
 func _enter_tree() -> void:
 	EventBus.clear.connect(_clear)
