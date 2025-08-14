@@ -35,3 +35,4 @@ MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
 Panel/styles/panel = SubResource("StyleBoxFlat_0k5xl")
+RichTextLabel/constants/outline_size = 5

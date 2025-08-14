@@ -1,3 +1,4 @@
+@icon("res://assets/icons/control/icon_text_panel.png")
 extends Control
 
 @onready var animated_control: AnimatedControl = $AnimatedControl

@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/icon_bullet.png")
 extends BaseStation
 class_name ReplaceStation
 

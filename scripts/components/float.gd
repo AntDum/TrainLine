@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/icon_dialog.png")
 extends Sprite2D
 class_name FloatingSprite2D
 

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="2_2o76q"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_6bivr"]
 [ext_resource type="Script" uid="uid://8krug0mq1f1f" path="res://scripts/components/ui/hover_button.gd" id="2_fe2o3"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="4_ng0o5"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://scenes/levels/tileset_rail.tres" id="4_ng0o5"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="5_8r73w"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="7_1hnlc"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="8_50h1w"]
@@ -469,20 +469,30 @@ text = "Credits"
 script = ExtResource("2_fe2o3")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="RichTextLabel" parent="CanvasLayer"]
 offset_left = 23.0
-offset_top = 67.0
-offset_right = 659.0
+offset_top = 35.0
+offset_right = 463.0
 offset_bottom = 118.0
-theme_override_font_sizes/font_size = 25
-text = "Balthazar Glimmerail"
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "
+[wave amp=30.0 freq=3.0 connected=1][color=GOLD]Balthazar[/color] [color=DARK_VIOLET]Glimmerail[/color][/wave]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/Label"]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 33.0
-offset_right = 438.0
-offset_bottom = 49.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -16.0
+offset_right = 212.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "magic jewels delivery system"
 
 [node name="CreditsMenu" parent="CanvasLayer" instance=ExtResource("10_euy4r")]

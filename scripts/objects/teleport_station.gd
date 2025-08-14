@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/icon_follow.png")
 extends BaseStation
 class_name TeleportStation
 

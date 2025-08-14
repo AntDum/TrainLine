@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_q22cm"]
 [ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_0bgvu"]
 [ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_tgij8"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/tileset_rail.tres" id="5_oyhmr"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://scenes/levels/tileset_rail.tres" id="5_oyhmr"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_a8xyr"]
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_w7gfv"]
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_afihj"]
@@ -477,6 +477,6 @@ station_manager = NodePath("../StationManager")
 
 [node name="Status" parent="CanvasLayer" instance=ExtResource("16_rysf2")]
 offset_left = 8.0
-offset_top = -8.0
+offset_top = 8.0
 offset_right = 8.0
-offset_bottom = -8.0
+offset_bottom = 8.0

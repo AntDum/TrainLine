@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/canon_2.png")
 extends Node2D
 class_name Dynamite
 

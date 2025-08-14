@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node/icon_ship.png")
 extends Node
 class_name StationManager
 

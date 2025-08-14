@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/rail.png")
 extends TileMapLayer
 class_name Rails
 

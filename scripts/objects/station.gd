@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/icon_flag.png")
 extends BaseStation
 class_name Station
 

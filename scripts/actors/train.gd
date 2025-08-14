@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/cart.png")
 extends Node2D
 class_name Train
 

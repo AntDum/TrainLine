@@ -1,3 +1,4 @@
+@icon("res://assets/icons/node_2D/fuse.png")
 extends TileMapLayer
 class_name Fuses
 

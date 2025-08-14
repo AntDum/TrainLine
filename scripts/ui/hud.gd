@@ -1,3 +1,4 @@
+@icon("res://assets/icons/control/icon_screen_effect.png")
 extends Control
 class_name HUD
 
