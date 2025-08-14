@@ -22,14 +22,20 @@ var time_since_last_swap = {}
 
 # Game events
 func _started() -> void:
-	can_be_edited = false
+	_lock()
 	map_snapshot = tile_map_data
 	rails_to_burn.clear()
 
 func _restart() -> void:
-	can_be_edited = true
+	_unlock()
 	tile_map_data = map_snapshot
 	rails_to_burn.clear()
+
+func _lock() -> void:
+	can_be_edited = false
+
+func _unlock() -> void:
+	can_be_edited = true
 
 # Public utils
 func get_tile_size() -> int:
@@ -246,6 +252,8 @@ func _add_particle_at(particle_type: PackedScene, coord: Vector2i) -> void:
 	add_child(particule)
 
 func _enter_tree() -> void:
+	EventBus.started_tuto.connect(_lock)
+	EventBus.finished_tuto.connect(_unlock)
 	EventBus.clear.connect(_clear)
 	EventBus.start.connect(_started)
 	EventBus.restart.connect(_restart)
@@ -253,6 +261,8 @@ func _enter_tree() -> void:
 	EventBus.change_mode.connect(_mode_changed)
 
 func _exit_tree() -> void:
+	EventBus.started_tuto.disconnect(_lock)
+	EventBus.finished_tuto.disconnect(_unlock)
 	EventBus.clear.disconnect(_clear)
 	EventBus.start.disconnect(_started)
 	EventBus.restart.disconnect(_restart)

@@ -29,6 +29,7 @@ LevelManager="*res://singletons/level_manager.gd"
 window/size/viewport_width=512
 window/size/viewport_height=384
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://bwg6w00yea0le"
 
 [file_customization]
 

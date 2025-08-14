@@ -492,7 +492,7 @@ offset_top = 267.0
 offset_right = 301.0
 offset_bottom = 307.0
 theme_override_font_sizes/font_size = 16
-text = "Ok"
+text = "Ok >"
 script = ExtResource("16_nxdr8")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
 

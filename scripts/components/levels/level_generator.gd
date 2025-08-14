@@ -9,3 +9,5 @@ func _ready() -> void:
 	if tuto:
 		print("Launching tutorial")
 		tuto.launch_tuto()
+		await EventBus.finished_tuto
+	EventBus.change_mode.emit(ModeHelper.Mode.EDIT)

@@ -7,6 +7,9 @@ class_name HUD
 @onready var start_button: HoverButton = %StartButton
 @onready var current_mode_label: Label = %CurrentMode
 
+const ADD_CURSOR = preload("res://assets/sprites/cursors/add_cursor.png")
+const REMOVE_CURSOR = preload("res://assets/sprites/cursors/remove_cursor.png")
+const SWAP_CURSOR = preload("res://assets/sprites/cursors/swap_cursor.png")
 
 var current_station = 0
 var current_max = 0
@@ -75,10 +78,13 @@ func _mode_changed(mode: ModeHelper.Mode) -> void:
 	current_mode = modes.find(mode)
 	match mode:
 		ModeHelper.Mode.EDIT:
+			Input.set_custom_mouse_cursor(ADD_CURSOR)
 			current_mode_label.text = "INSERT"
 		ModeHelper.Mode.REMOVE:
+			Input.set_custom_mouse_cursor(REMOVE_CURSOR)
 			current_mode_label.text = "REMOVE"
 		ModeHelper.Mode.TOGGLE:
+			Input.set_custom_mouse_cursor(SWAP_CURSOR)
 			current_mode_label.text = "SWAP"
 
 func _enter_tree() -> void:
