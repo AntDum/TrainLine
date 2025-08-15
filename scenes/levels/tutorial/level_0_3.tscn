@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_uia2y"]
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_6rfs1"]
 [ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_her4h"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_t3if8"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_t3if8"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_n8rlw"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_vsrkb"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_on0j4"]
@@ -449,6 +449,19 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("14_tksnb")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Tuto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = 56.0
+offset_right = 512.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0313726, 0.0313726, 0.0313726, 0.34902)
 
 [node name="NOnTop" type="Label" parent="CanvasLayer/Tuto"]
 layout_mode = 0

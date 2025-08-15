@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_0wckf"]
 [ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_rq2bk"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="9_jxsmx"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_1htca"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_1htca"]
 [ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_th2rx"]
 [ext_resource type="Shader" uid="uid://cmno3ym3h5ggn" path="res://resources/shaders/reverse.gdshader" id="11_0smpm"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_v878u"]

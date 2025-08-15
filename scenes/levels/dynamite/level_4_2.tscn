@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="11_gqdmd"]
 [ext_resource type="PackedScene" uid="uid://hi0drd2vhjls" path="res://scenes/objects/dynamite.tscn" id="11_m0tht"]
 [ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="12_a5ceq"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="13_cihb4"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="13_cihb4"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="14_mpi5u"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="15_nmsd5"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="16_rysf2"]

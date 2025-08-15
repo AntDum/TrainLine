@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="9_3ivml"]
 [ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="10_fla31"]
 [ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_ij7g5"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="10_p3c3h"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_p3c3h"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_5yuor"]
 [ext_resource type="PackedScene" uid="uid://hi0drd2vhjls" path="res://scenes/objects/dynamite.tscn" id="11_ovcjl"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_kfmln"]

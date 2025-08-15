@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://8krug0mq1f1f" path="res://scripts/components/ui/hover_button.gd" id="2_fe2o3"]
 [ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://scenes/levels/tileset_rail.tres" id="4_ng0o5"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="5_8r73w"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/train.tscn" id="7_1hnlc"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="7_1hnlc"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="8_50h1w"]
 [ext_resource type="PackedScene" uid="uid://b3ouj2nof0m8y" path="res://scenes/menus/credits_menu.tscn" id="10_euy4r"]
 

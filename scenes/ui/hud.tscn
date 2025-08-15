@@ -29,6 +29,9 @@ layout_mode = 2
 [node name="ModeButton" type="Button" parent="TopLeft/HBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+tooltip_text = "Insert : E
+Remove : R
+Swap : Z"
 text = "Mode"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
@@ -40,7 +43,7 @@ layout_mode = 2
 [node name="CurrentMode" type="Label" parent="TopLeft/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "ADD"
+text = "IN TUTO"
 
 [node name="TopRight" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -96,6 +99,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+tooltip_text = "Shortcut : D"
 text = "CLEAR"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
@@ -108,6 +112,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+tooltip_text = "Shortcut : S"
 text = "START"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"
@@ -119,6 +124,7 @@ size_flags_horizontal = 3
 [node name="FastForwardButton" type="Button" parent="Bottom/HBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+tooltip_text = "Shortcut : F"
 text = ">>"
 script = ExtResource("2_hqnrr")
 metadata/_custom_type_script = "uid://8krug0mq1f1f"

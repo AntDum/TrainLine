@@ -93,6 +93,13 @@ func _mode_changed(mode: ModeHelper.Mode) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("clear"):
 		_clear()
+	elif event.is_action_pressed("insert_mode"):
+		EventBus.change_mode.emit(ModeHelper.Mode.EDIT)
+	elif event.is_action_pressed("remove_mode"):
+		EventBus.change_mode.emit(ModeHelper.Mode.REMOVE)
+	elif event.is_action_pressed("swap_mode"):
+		EventBus.change_mode.emit(ModeHelper.Mode.TOGGLE)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not can_be_edited: return
