@@ -1,10 +1,10 @@
-[gd_scene load_steps=21 format=4 uid="uid://dn818e46e3fo4"]
+[gd_scene load_steps=22 format=4 uid="uid://dn818e46e3fo4"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_tksnb"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_her4h"]
 [ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_oooq5"]
 [ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_df13y"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://scenes/levels/tileset_rail.tres" id="5_ie8pg"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/levels/tileset_rail.tres" id="5_ie8pg"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_ofuk5"]
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_plty5"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_uia2y"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_her4h"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_t3if8"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_n8rlw"]
+[ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="11_oooq5"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_vsrkb"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_on0j4"]
 [ext_resource type="Script" uid="uid://cv28u467kmjd1" path="res://scripts/levels/tuto/tuto_0_3.gd" id="14_tksnb"]
@@ -427,10 +428,13 @@ position = Vector2(0, -32)
 texture = SubResource("AtlasTexture_tksnb")
 script = ExtResource("10_her4h")
 
-[node name="Train" parent="Game" node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_t3if8")]
-position = Vector2(104, 200)
+[node name="Train" type="Node2D" parent="Game" node_paths=PackedStringArray("rails")]
+script = ExtResource("11_oooq5")
 rails = NodePath("../Rails")
-station_manager = NodePath("../../StationManager")
+metadata/_custom_type_script = "uid://clb36hc0321tq"
+
+[node name="Wagon" parent="Game/Train" instance=ExtResource("10_t3if8")]
+position = Vector2(104, 200)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

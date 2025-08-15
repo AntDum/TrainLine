@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_1yupa"]
 [ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_dpmjh"]
 [ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_cthql"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://scenes/levels/tileset_rail.tres" id="5_puaqc"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/levels/tileset_rail.tres" id="5_puaqc"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_e7c1i"]
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_yajbf"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_o6u3d"]
@@ -450,15 +450,11 @@ metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 [node name="Sign" parent="Rails/StationObject6" instance=ExtResource("9_c0o8q")]
 position = Vector2(0, 16)
 
-[node name="Train" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_0nc6q")]
+[node name="Train" parent="." instance=ExtResource("10_0nc6q")]
 position = Vector2(120, 72)
-rails = NodePath("../Rails")
-station_manager = NodePath("../StationManager")
 
-[node name="Train2" parent="." node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("10_0nc6q")]
+[node name="Train2" parent="." instance=ExtResource("10_0nc6q")]
 position = Vector2(104, 216)
-rails = NodePath("../Rails")
-station_manager = NodePath("../StationManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

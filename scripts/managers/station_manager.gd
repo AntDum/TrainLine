@@ -17,7 +17,7 @@ func register(coord : Vector2i, station : BaseStation) -> void:
 	if not registered.has(coord):
 		registered[coord] = station
 		if station.need_satisfaction:
-			number_of_station = len(registered)
+			number_of_station += 1
 			EventBus.station_happy.emit(satisfied_station, number_of_station)
 	
 func _restart() -> void:

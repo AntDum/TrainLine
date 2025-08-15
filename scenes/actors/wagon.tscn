@@ -1,0 +1,267 @@
+[gd_scene load_steps=10 format=3 uid="uid://ck6beu6fp771q"]
+
+[ext_resource type="Script" uid="uid://c57bw0e6jgd7e" path="res://scripts/actors/wagon.gd" id="1_8trkk"]
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="1_wnjtu"]
+[ext_resource type="PackedScene" uid="uid://dtwlgr8503ej1" path="res://scenes/objects/particles/particle_crash.tscn" id="3_s171r"]
+
+[sub_resource type="Animation" id="Animation_rhcce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DespawnParticle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpawnParticle:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1bphs"]
+resource_name = "despawn"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.05, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.261799, 0.0, 0.261799, 0.0, -0.261799, 0.261799, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(0.01, 0.01)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DespawnParticle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_s171r"]
+resource_name = "spawn"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.00999999, 0.00999999), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.0, 0.261799, 0.0, -0.261799, 0.261799, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(0, -10), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpawnParticle:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rhcce"]
+_data = {
+&"RESET": SubResource("Animation_rhcce"),
+&"despawn": SubResource("Animation_1bphs"),
+&"spawn": SubResource("Animation_s171r")
+}
+
+[sub_resource type="Curve" id="Curve_o4huv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.73913, 0.682065), -1.59538, -1.59538, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_vjdgm"]
+offsets = PackedFloat32Array(0, 0.347985, 0.626374, 1)
+colors = PackedColorArray(1.71, 0.258, 1.75, 1, 1.71, 0.258, 1.75, 1, 1.92154, 0.562899, 1.95897, 1, 5, 5, 5, 1)
+
+[node name="Wagon" type="Node2D"]
+script = ExtResource("1_8trkk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.2, 1.2, 1.2, 1)
+texture = ExtResource("1_wnjtu")
+hframes = 2
+vframes = 3
+region_enabled = true
+region_rect = Rect2(128, 160, 32, 48)
+
+[node name="CrashParticle" parent="." instance=ExtResource("3_s171r")]
+emitting = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rhcce")
+}
+
+[node name="DespawnParticle" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.7
+emission_shape = 3
+emission_rect_extents = Vector2(6, 4)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.15
+initial_velocity_max = 22.73
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_curve = SubResource("Curve_o4huv")
+color_initial_ramp = SubResource("Gradient_vjdgm")
+
+[node name="SpawnParticle" type="CPUParticles2D" parent="."]
+position = Vector2(0, -5)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(8, 6)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 13.95
+initial_velocity_max = 15.25
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_curve = SubResource("Curve_o4huv")
+color_initial_ramp = SubResource("Gradient_vjdgm")

@@ -8,6 +8,10 @@ var rock_atlas_coord : Vector2i = Vector2i(6, 4)
 
 var is_destroyed = true
 
+func _init() -> void:
+	is_on = true
+	need_satisfaction = false
+
 func _ready() -> void:
 	super()
 	restore()

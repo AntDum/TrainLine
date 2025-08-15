@@ -11,5 +11,5 @@ func _init() -> void:
 func get_destination() -> Vector2i:
 	return target_station.coord
 
-func get_global_destionation() -> Vector2:
+func get_global_destination() -> Vector2:
 	return rails.to_global(rails.map_to_local(target_station.coord))

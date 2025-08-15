@@ -19,7 +19,6 @@ func burn(coord: Vector2i) -> void:
 func _burned(coord: Vector2i) -> void:
 	if station_manager and station_manager.registered.has(coord):
 		var station = station_manager.registered[coord]
-		print(station)
 		if station is BurnStation or station is ReplaceStation:
 			station.burn()
 	erase_cell(coord)

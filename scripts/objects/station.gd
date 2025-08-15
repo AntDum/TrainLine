@@ -20,9 +20,6 @@ func _init() -> void:
 func accept_interaction() -> bool:
 	return not satisfied
 
-func accept_content(content: Gem.Type) -> bool:
-	return content == contentValue
-
 func get_content() -> Gem.Type:
 	return contentValue
 
@@ -48,7 +45,6 @@ func _show_particle() -> void:
 	var particle = PARTICLE_SUCCESS.instantiate()
 	add_child(particle)
 	particle.global_position = global_position
-
 
 	
 func _hide_child() -> void:
