@@ -167,7 +167,7 @@ func _remove(gem : Gem.Type) -> void:
 		head_dir = DirHelper.invert_dir(head_dir)
 		wagons.reverse()
 		head_pos = wagons[0].pos_target
-		EventBus.flip_back.emit()
+		EventBus.flip_reality.emit()
 		AudioManager.play_sound("mirrored")
 	
 	items -= 1

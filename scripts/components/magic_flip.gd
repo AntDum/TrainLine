@@ -3,6 +3,8 @@ class_name MagicFlip
 
 var current_flip := 0.0 : set = _set_flip
 
+var is_flipped := false
+
 var tween : Tween
 
 const REVERSE = preload("res://resources/shaders/reverse.gdshader")
@@ -20,12 +22,22 @@ func _restart() -> void:
 	flip_back()
 
 func flip() -> void:
+	if is_flipped:
+		flip_back()
+	else:
+		flip_in()
+
+func flip_in() -> void:
+	if is_flipped: return
+	is_flipped = true
 	if tween:
 		tween.kill()
 	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(self, "current_flip", 1.0, 0.2)
 
 func flip_back() -> void:
+	if not is_flipped: return
+	is_flipped = false
 	if tween:
 		tween.kill()
 	tween = create_tween().set_ease(Tween.EASE_IN)
