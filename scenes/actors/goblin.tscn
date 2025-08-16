@@ -1,0 +1,230 @@
+[gd_scene load_steps=19 format=3 uid="uid://bsa38y1odpuhk"]
+
+[ext_resource type="Script" uid="uid://dd7q5y0m1r0no" path="res://scripts/actors/goblin.gd" id="1_8ji8l"]
+[ext_resource type="Texture2D" uid="uid://ckhtnm50dyl1e" path="res://assets/sprites/objects/goblin-idle.png" id="2_q6353"]
+[ext_resource type="Texture2D" uid="uid://bwlgkdayhk0jk" path="res://assets/sprites/ui/dialogue-spritesheet.png" id="3_7rti8"]
+[ext_resource type="Script" uid="uid://ddn0srdnl5pp8" path="res://scripts/components/ui/rewrite_label.gd" id="3_fox1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6353"]
+atlas = ExtResource("2_q6353")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fox1i"]
+atlas = ExtResource("2_q6353")
+region = Rect2(20, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rti8"]
+atlas = ExtResource("2_q6353")
+region = Rect2(40, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bulrq"]
+atlas = ExtResource("2_q6353")
+region = Rect2(60, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pywce"]
+atlas = ExtResource("2_q6353")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt6g5"]
+atlas = ExtResource("2_q6353")
+region = Rect2(100, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s343y"]
+atlas = ExtResource("2_q6353")
+region = Rect2(120, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b61m7"]
+atlas = ExtResource("2_q6353")
+region = Rect2(140, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b61m7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6353")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fox1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rti8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bulrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pywce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt6g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s343y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b61m7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bulrq"]
+texture = ExtResource("3_7rti8")
+texture_margin_left = 6.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(1, 2, 15, 14)
+
+[sub_resource type="Animation" id="Animation_7rti8"]
+resource_name = "remove_dialogue"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 1), Vector2(0.2, 0.8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bulrq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pywce"]
+resource_name = "show_dialogue"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.2, 1), Vector2(0.8, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pywce"]
+_data = {
+&"RESET": SubResource("Animation_bulrq"),
+&"remove_dialogue": SubResource("Animation_7rti8"),
+&"show_dialogue": SubResource("Animation_pywce")
+}
+
+[node name="Goblin" type="Node2D"]
+script = ExtResource("1_8ji8l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b61m7")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.136692
+speed_scale = 1.5
+
+[node name="Control" type="Control" parent="."]
+visible = false
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 3
+anchor_bottom = 1.0
+offset_bottom = -16.0
+grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(2, 43)
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 138.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bulrq")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_edit_lock_ = true
+
+[node name="RewriteLabel" type="Label" parent="Control/Panel/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+autowrap_mode = 2
+visible_characters_behavior = 1
+script = ExtResource("3_fox1i")
+animate_on_ready = false
+metadata/_custom_type_script = "uid://ddn0srdnl5pp8"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pywce")
+}

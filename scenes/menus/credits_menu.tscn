@@ -52,7 +52,9 @@ text = "Some Sound Effect by freesound_community from Pixabay
 
 Background Music by NoCopyrightSound633 from Pixabay
 
-PixelArt by heyitswidmo"
+PixelArt by heyitswidmo
+
+Goblin by zneeke "
 
 [node name="HoverButton" type="Button" parent="."]
 custom_minimum_size = Vector2(120, 40)

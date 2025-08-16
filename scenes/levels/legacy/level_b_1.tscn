@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://ca5l5l82w86th"]
+[gd_scene load_steps=27 format=4 uid="uid://ca5l5l82w86th"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_et4pd"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_bnbna"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="14_kloyy"]
 [ext_resource type="Script" uid="uid://bgu1v264n71y5" path="res://scripts/components/ui/notification.gd" id="14_m4qt0"]
 [ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="15_dqngl"]
+[ext_resource type="PackedScene" uid="uid://bsa38y1odpuhk" path="res://scenes/actors/goblin.tscn" id="19_td1s0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
 texture = ExtResource("4_6cynx")
@@ -527,6 +528,9 @@ metadata/_custom_type_script = "uid://clb36hc0321tq"
 
 [node name="Wagon2" parent="Train" instance=ExtResource("10_2kkyn")]
 position = Vector2(-16, 0)
+
+[node name="Goblin" parent="." instance=ExtResource("19_td1s0")]
+position = Vector2(200, 200)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

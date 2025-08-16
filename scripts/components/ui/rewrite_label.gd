@@ -2,6 +2,9 @@
 extends Label
 class_name RewriteLabel
 
+signal text_changed
+signal finished_writing
+
 @export_multiline var start_text : String = "":
 	set(value):
 		start_text = value
@@ -32,10 +35,11 @@ func change_text(new_text : String) -> void:
 		visible_ratio = 0
 	# Change Value
 	tween.tween_callback(func(): text = new_text)
-	
+	tween.tween_callback(text_changed.emit)
 	# Rewrite
 	if new_text.length() > 0:
 		tween.tween_property(self, "visible_ratio", 1, rewrite_duration)
 	else:
 		visible_ratio = 1
 	
+	tween.tween_callback(finished_writing.emit)

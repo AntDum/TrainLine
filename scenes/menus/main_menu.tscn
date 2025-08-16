@@ -409,28 +409,17 @@ script = ExtResource("5_8r73w")
 can_be_edited = false
 metadata/_custom_type_script = "uid://bq84y5bsqye5i"
 
-[node name="Train" parent="Rails" node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("7_1hnlc")]
+[node name="Train" parent="Rails" instance=ExtResource("7_1hnlc")]
 modulate = Color(1.2, 1.2, 1.2, 1)
 position = Vector2(216, 104)
-rails = NodePath("..")
-station_manager = NodePath("../../StationManager")
-delay = 0.15
 
-[node name="Train2" parent="Rails" node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("7_1hnlc")]
+[node name="Train2" parent="Rails" instance=ExtResource("7_1hnlc")]
 modulate = Color(1.2, 1.2, 1.2, 1)
 position = Vector2(232, 216)
-rails = NodePath("..")
-station_manager = NodePath("../../StationManager")
-dir = 3
-delay = 0.15
 
-[node name="Train3" parent="Rails" node_paths=PackedStringArray("rails", "station_manager") instance=ExtResource("7_1hnlc")]
+[node name="Train3" parent="Rails" instance=ExtResource("7_1hnlc")]
 modulate = Color(1.2, 1.2, 1.2, 1)
 position = Vector2(440, 55)
-rails = NodePath("..")
-station_manager = NodePath("../../StationManager")
-dir = 3
-delay = 0.15
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
