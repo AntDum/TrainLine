@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://ca5l5l82w86th"]
+[gd_scene load_steps=26 format=4 uid="uid://ca5l5l82w86th"]
 
 [ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_et4pd"]
 [ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_bnbna"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_blyob"]
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_0q8v6"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_ohwwf"]
+[ext_resource type="Script" uid="uid://uj8ilodqe5oe" path="res://scripts/components/oscillate.gd" id="8_x52gs"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_2kkyn"]
 [ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="11_2d3y0"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_bnbna"]
@@ -411,6 +412,10 @@ position = Vector2(0, -16)
 texture = ExtResource("4_6cynx")
 region_enabled = true
 region_rect = Rect2(160, 0, 16, 16)
+region_filter_clip_enabled = true
+script = ExtResource("8_x52gs")
+oscillate_distance = 0.8
+oscillate_speed = 4.0
 
 [node name="Station2" type="Marker2D" parent="Rails"]
 position = Vector2(200, 120)
@@ -492,6 +497,9 @@ position = Vector2(-16, 0)
 texture = ExtResource("4_6cynx")
 region_enabled = true
 region_rect = Rect2(32, 144, 16, 16)
+region_filter_clip_enabled = true
+script = ExtResource("8_x52gs")
+oscillate_speed = 4.0
 
 [node name="Fuses" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
 tile_map_data = PackedByteArray("AAAIAA4AAAAKAAUAAAAJAA4AAAALAAUAAAAKAA4AAAALAAUAAAALAA4AAAALAAUAAAAMAA4AAAALAAUAAAANAA4AAAALAAUAAAAOAA4AAAALAAUAAAAPAA4AAAAMAAYAAAAPAA8AAAANAAcAAAAPABAAAAANAAcAAAAPABEAAAANAAcAAAAPABIAAAAKAAgAAAAQABIAAAALAAUAAAARABIAAAALAAUAAAASABIAAAALAAUAAAATABIAAAALAAUAAAAUABIAAAALAAUAAAAVABIAAAALAAUAAAAWABIAAAAMAAgAAAAWABEAAAANAAcAAAAWABAAAAANAAcAAAAWAA8AAAAKAAYAAAAXAA8AAAALAAUAAAAaAA8AAAALAAUAAAAZAA8AAAALAAUAAAAYAA8AAAALAAUAAAAbAA8AAAAMAAgAAAAbAA4AAAANAAcAAAAbAA0AAAANAAcAAAAbAAwAAAAMAAYAAAAaAAwAAAALAAUAAAAZAAwAAAAKAAgAAAAZAAsAAAAMAAYAAAAYAAsAAAALAAUAAAAXAAsAAAALAAUAAAAWAAsAAAALAAUAAAAVAAsAAAAKAAYAAAAVAAwAAAANAAcAAAAVAA0AAAAMAAgAAAAUAA0AAAALAAUAAAATAA0AAAALAAUAAAASAA0AAAALAAUAAAARAA0AAAAKAAUAAAA=")

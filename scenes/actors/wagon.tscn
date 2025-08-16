@@ -222,6 +222,7 @@ hframes = 2
 vframes = 3
 region_enabled = true
 region_rect = Rect2(128, 160, 32, 48)
+region_filter_clip_enabled = true
 
 [node name="CrashParticle" parent="." instance=ExtResource("3_s171r")]
 emitting = false
