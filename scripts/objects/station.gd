@@ -2,11 +2,13 @@
 extends BaseStation
 class_name Station
 
-@export var contentValue : Gem.Type = Gem.Type.NO_GEM
-## Need to put an item in it (For sign)
-@export var put : bool = false
-## Need to take an item from it (For box)
-@export var take : bool = false
+enum StationType {
+	PICKUP,
+	DEPOSIT
+}
+
+@export var content_type : Gem.Type = Gem.Type.NO_GEM
+@export var station_type : StationType = StationType.PICKUP
 @export var waiting_time : int = 1
 
 const PARTICLE_SUCCESS = preload("res://scenes/objects/particles/particle_success.tscn")
@@ -21,13 +23,13 @@ func accept_interaction() -> bool:
 	return not satisfied
 
 func get_content() -> Gem.Type:
-	return contentValue
+	return content_type
 
 func can_put() -> bool:
-	return put
+	return station_type == StationType.DEPOSIT
 
 func can_take() -> bool:
-	return take
+	return station_type == StationType.PICKUP
 
 func interact() -> void:
 	if satisfied: return
