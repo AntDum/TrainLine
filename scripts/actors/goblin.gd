@@ -3,10 +3,14 @@ extends Node2D
 class_name Goblin
 
 signal finished_writing
+signal said_text(text_line: int)
 
 var dialogue_open := false
 
-var scripts : Array[String] = []
+@export var scripts : Array[String] = []
+@export var wait_time : float = 3
+
+@export var auto_start : bool = false
 
 @onready var root_control: Control = $Control
 @onready var rewrite_label: RewriteLabel = %RewriteLabel
@@ -15,13 +19,18 @@ var scripts : Array[String] = []
 
 func _ready() -> void:
 	root_control.visible = false
+	if auto_start:
+		say_script(scripts, wait_time)
 
 func say_script(texts: Array[String], time: float = -1) -> void:
+	var line = 0
 	for text in texts:
 		say(text)
 		await finished_writing
+		said_text.emit(line)
 		if time > 0:
 			await get_tree().create_timer(time).timeout
+		line += 1
 	shush()
 
 func say(text: String, time: float = -1) -> void:
