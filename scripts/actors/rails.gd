@@ -41,7 +41,7 @@ func _lock(_a = null) -> void:
 func _unlock(_a = null) -> void:
 	can_be_edited = true
 
-func _failed(_reason: String) -> void:
+func _failed(_reason: String = "") -> void:
 	failed = true
 
 # Public utils
