@@ -1,27 +1,29 @@
-[gd_scene load_steps=22 format=4 uid="uid://b8evqmc1g42kf"]
+[gd_scene load_steps=24 format=4 uid="uid://dsvbef764ip8l"]
 
-[ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_ddx7a"]
-[ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_gtbvu"]
-[ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_e7va2"]
-[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_n7dd5"]
-[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/levels/tileset_rail.tres" id="5_yljgu"]
-[ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_x4hti"]
-[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_7i3j3"]
-[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_ydb32"]
-[ext_resource type="Script" uid="uid://o40rkpkwwmr0" path="res://scripts/objects/burn_station.gd" id="10_7ke1l"]
-[ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="10_fla31"]
-[ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_ij7g5"]
-[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_p3c3h"]
-[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_5yuor"]
-[ext_resource type="PackedScene" uid="uid://hi0drd2vhjls" path="res://scenes/objects/dynamite.tscn" id="11_ovcjl"]
-[ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_kfmln"]
-[ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_dyrox"]
-[ext_resource type="PackedScene" uid="uid://bsa38y1odpuhk" path="res://scenes/actors/goblin.tscn" id="13_jkloi"]
-[ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="14_jkloi"]
-[ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="15_fla31"]
+[ext_resource type="Script" uid="uid://chepvt8gg7d7g" path="res://scripts/components/levels/level_generator.gd" id="1_eyuu8"]
+[ext_resource type="Script" uid="uid://8jmouha1nh8w" path="res://scripts/managers/time_manager.gd" id="2_04gt1"]
+[ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="3_kho54"]
+[ext_resource type="Texture2D" uid="uid://dgcjhve3m6a2d" path="res://assets/sprites/tilesheets/tileset.png" id="4_w42y8"]
+[ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/levels/tileset_rail.tres" id="5_pf0hy"]
+[ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_k31gq"]
+[ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_s400w"]
+[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="8_fqs4y"]
+[ext_resource type="Script" uid="uid://uj8ilodqe5oe" path="res://scripts/components/oscillate.gd" id="9_i2y3v"]
+[ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_8fraw"]
+[ext_resource type="Script" uid="uid://ckqbh00snikp8" path="res://scripts/objects/replace_station.gd" id="11_eoxg3"]
+[ext_resource type="PackedScene" uid="uid://hi0drd2vhjls" path="res://scenes/objects/dynamite.tscn" id="12_8obt3"]
+[ext_resource type="Script" uid="uid://6dwks6qy63ek" path="res://scripts/actors/fuses.gd" id="13_wmmsv"]
+[ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="14_tv5fo"]
+[ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="15_8wbfe"]
+[ext_resource type="PackedScene" uid="uid://bsa38y1odpuhk" path="res://scenes/actors/goblin.tscn" id="16_0q354"]
+[ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="16_1g0yw"]
+[ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="17_fy0in"]
+[ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="18_di0eg"]
+[ext_resource type="Script" uid="uid://bp14ekr5hyd5y" path="res://scripts/levels/tuto/base_tuto.gd" id="19_yxldf"]
+[ext_resource type="Script" uid="uid://coul3boqy17k0" path="res://scripts/components/ui/tuto_information.gd" id="20_i2y3v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
-texture = ExtResource("4_n7dd5")
+texture = ExtResource("4_w42y8")
 1:7/0 = 0
 1:7/0/terrain_set = 0
 1:7/0/terrain = 2
@@ -374,16 +376,15 @@ custom_data_layer_1/name = "editable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_i4ljo")
 
-[node name="LevelT1" type="Node2D"]
-script = ExtResource("1_ddx7a")
+[node name="LevelT5" type="Node2D"]
+script = ExtResource("1_eyuu8")
 
 [node name="TimeManager" type="Node" parent="."]
-script = ExtResource("2_gtbvu")
-max_time = 100
+script = ExtResource("2_04gt1")
 metadata/_custom_type_script = "uid://8jmouha1nh8w"
 
 [node name="StationManager" type="Node" parent="." node_paths=PackedStringArray("rails")]
-script = ExtResource("3_e7va2")
+script = ExtResource("3_kho54")
 rails = NodePath("../Rails")
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -391,92 +392,88 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager", "fuses")]
-tile_map_data = PackedByteArray("AAAHAAYAAAAAAAIAAQAIAAYAAAAEAAIAAAAJAAYAAAAEAAIAAAAKAAYAAAAEAAIAAAALAAYAAAAEAAIAAAAMAAYAAAAEAAIAAAANAAYAAAAEAAIAAAAOAAYAAAAEAAIAAAAPAAYAAAAEAAIAAAAQAAYAAAAEAAIAAAARAAYAAAAEAAIAAAASAAYAAAAEAAIAAAALAAsAAAAEAAIAAAAKAAsAAAAEAAIAAAAJAAsAAAAEAAIAAAAIAAsAAAAEAAIAAAAHAAsAAAAEAAIAAAAGAAsAAAAEAAIAAAAFAAsAAAAAAAIAAQAQABAAAAAEAAIAAAARABAAAAAEAAIAAAASABAAAAAEAAIAAAANAAUAAAAEAAQAAAAIAA8AAAAIAAQAAAANABAAAAAIAAQAAAAVAAwAAAAGAAQAAAAVAAUAAAAIAAQAAAAbAAcAAAAHAAQAAAAbABAAAAAGAAQAAAAWAAkAAAAGAAQAAAAcAAwAAAAIAAQAAAARAAIAAAAGAAQAAAAJAAgAAAAIAAQAAAADAAsAAAAGAAQAAAAJABIAAAAHAAQAAAAEAA8AAAAHAAQAAAAIAA0AAAAHAAQAAAAJAA0AAAAIAAQAAAAUABMAAAAJAAQAAAA=")
-tile_set = ExtResource("5_yljgu")
-script = ExtResource("6_x4hti")
+tile_map_data = PackedByteArray("AAAFAA8AAAAAAAAAAQAFABAAAAACAAEAAAAFABEAAAAIAAEAAQAGABEAAAAEAAIAAAAHABEAAAAEAAIAAAAIABEAAAAEAAIAAAAJABEAAAAEAAIAAAAKABEAAAAEAAIAAAALABEAAAAEAAIAAAAMABEAAAAEAAIAAAANABEAAAAEAAIAAAAOABEAAAAEAAIAAAAPABEAAAAEAAIAAAAQABEAAAAEAAIAAAARABEAAAAEAAIAAAATAAoAAAACAAEAAAATAAkAAAACAAEAAAATAAgAAAAJAAAAAQASAAgAAAAEAAIAAAARAAgAAAAEAAIAAAAQAAgAAAAEAAIAAAAPAAgAAAAEAAIAAAAOAAgAAAAEAAIAAAANAAgAAAAEAAIAAAAMAAgAAAAEAAIAAAALAAgAAAAEAAIAAAAKAAgAAAAEAAIAAAAJAAgAAAAAAAIAAQAMAAcAAAAEAAQAAAARABMAAAAHAAQAAAAZABEAAAAJAAQAAAAUAA0AAAAIAAQAAAAcAAcAAAAJAAQAAAAUAAMAAAAGAAQAAAANAAUAAAAIAAQAAAAPAAYAAAAJAAQAAAAXAAUAAAAJAAQAAAAHAAUAAAAIAAQAAAAFAAoAAAAHAAQAAAAIAAwAAAAIAAQAAAANAAsAAAAIAAQAAAANAA4AAAAHAAQAAAAeAA4AAAAIAAQAAAAbAAsAAAAIAAQAAAAXABQAAAAHAAQAAAAFAA4AAAAHAAQAAAAEABIAAAAIAAQAAAAKABMAAAAGAAQAAAA=")
+tile_set = ExtResource("5_pf0hy")
+script = ExtResource("6_k31gq")
 station_manager = NodePath("../StationManager")
 fuses = NodePath("../Fuses")
 
 [node name="StationObject" type="Marker2D" parent="Rails"]
-position = Vector2(280, 264)
-script = ExtResource("7_7i3j3")
+position = Vector2(248, 280)
+script = ExtResource("7_s400w")
 content_type = 4
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
-[node name="gem" parent="Rails/StationObject" instance=ExtResource("8_ydb32")]
+[node name="gem" parent="Rails/StationObject" instance=ExtResource("8_fqs4y")]
 position = Vector2(0, -16)
 region_rect = Rect2(32, 144, 16, 16)
+script = ExtResource("9_i2y3v")
 
 [node name="StationObject2" type="Marker2D" parent="Rails"]
-position = Vector2(216, 104)
-script = ExtResource("7_7i3j3")
+position = Vector2(200, 136)
+script = ExtResource("7_s400w")
 content_type = 4
 station_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="Sprite2D" type="Sprite2D" parent="Rails/StationObject2"]
 position = Vector2(0, -32)
-texture = ExtResource("4_n7dd5")
+texture = ExtResource("4_w42y8")
 region_enabled = true
 region_rect = Rect2(160, 64, 16, 16)
-script = ExtResource("10_ij7g5")
-
-[node name="BurnStation" type="Marker2D" parent="Rails" node_paths=PackedStringArray("dynamite")]
-position = Vector2(168, 72)
-script = ExtResource("10_7ke1l")
-dynamite = NodePath("Dynamite")
-metadata/_custom_type_script = "uid://o40rkpkwwmr0"
-
-[node name="Dynamite" parent="Rails/BurnStation" instance=ExtResource("11_ovcjl")]
-
-[node name="BurnStation2" type="Marker2D" parent="Rails" node_paths=PackedStringArray("dynamite")]
-position = Vector2(72, 72)
-script = ExtResource("10_7ke1l")
-dynamite = NodePath("Dynamite")
-metadata/_custom_type_script = "uid://o40rkpkwwmr0"
-
-[node name="Dynamite" parent="Rails/BurnStation2" instance=ExtResource("11_ovcjl")]
-
-[node name="BurnStation3" type="Marker2D" parent="Rails" node_paths=PackedStringArray("dynamite")]
-position = Vector2(232, 56)
-script = ExtResource("10_7ke1l")
-dynamite = NodePath("Dynamite")
-metadata/_custom_type_script = "uid://o40rkpkwwmr0"
-
-[node name="Dynamite" parent="Rails/BurnStation3" instance=ExtResource("11_ovcjl")]
+script = ExtResource("10_8fraw")
 
 [node name="ReplaceStation" type="Marker2D" parent="." node_paths=PackedStringArray("dynamite")]
-position = Vector2(280, 104)
-script = ExtResource("15_fla31")
+position = Vector2(312, 136)
+script = ExtResource("11_eoxg3")
 dynamite = NodePath("Dynamite")
 
-[node name="Dynamite" parent="ReplaceStation" instance=ExtResource("11_ovcjl")]
+[node name="Dynamite" parent="ReplaceStation" instance=ExtResource("12_8obt3")]
 
 [node name="Fuses" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAARAAcAAAANAAgAAAARAAYAAAANAAcAAAAQAA0AAAALAAUAAAAPAA0AAAALAAUAAAAOAA0AAAALAAUAAAANAA0AAAALAAUAAAAMAA0AAAAKAAUAAAARAA0AAAAMAAgAAAARAAwAAAANAAcAAAARAAsAAAAMAAYAAAAQAAsAAAALAAUAAAAPAAsAAAAKAAgAAAAPAAoAAAANAAcAAAAPAAkAAAAMAAYAAAAOAAkAAAALAAUAAAANAAkAAAALAAUAAAAMAAkAAAALAAUAAAALAAkAAAALAAUAAAAKAAkAAAALAAUAAAAJAAkAAAALAAUAAAAIAAkAAAALAAUAAAAHAAkAAAALAAUAAAAGAAkAAAALAAUAAAAFAAkAAAAKAAgAAAAFAAgAAAAMAAYAAAAEAAcAAAANAAcAAAAEAAYAAAANAAcAAAAEAAUAAAANAAcAAAAEAAgAAAAKAAgAAAAEAAQAAAAKAAYAAAAFAAQAAAALAAUAAAAGAAQAAAALAAUAAAAHAAQAAAALAAUAAAAIAAQAAAALAAUAAAAJAAQAAAALAAUAAAAKAAQAAAAMAAgAAAAKAAMAAAAKAAYAAAALAAMAAAALAAUAAAAMAAMAAAALAAUAAAANAAMAAAALAAUAAAAOAAMAAAALAAUAAAAPAAMAAAALAAUAAAAQAAMAAAALAAUAAAARAAMAAAAMAAYAAAARAAQAAAANAAcAAAARAAUAAAANAAcAAAA=")
-tile_set = ExtResource("5_yljgu")
-script = ExtResource("10_fla31")
+tile_map_data = PackedByteArray("AAAUABIAAAANAAgAAAAUABEAAAANAAcAAAAUABAAAAAKAAYAAAAVABAAAAALAAUAAAAWABAAAAAMAAgAAAAWAA8AAAANAAcAAAAWAA4AAAANAAcAAAAWAA0AAAAKAAYAAAAXAA0AAAALAAUAAAAYAA0AAAALAAUAAAAZAAwAAAANAAcAAAAZAAsAAAAMAAYAAAAZAA0AAAAMAAgAAAAYAAsAAAALAAUAAAAXAAsAAAALAAUAAAAWAAsAAAALAAUAAAAVAAsAAAAKAAgAAAAVAAoAAAANAAcAAAAVAAkAAAANAAcAAAAVAAgAAAANAAcAAAAVAAcAAAANAAcAAAAVAAYAAAAMAAYAAAAUAAYAAAALAAUAAAATAAYAAAAKAAYAAAATAAcAAAANAAcAAAATAAgAAAANAAgAAAA=")
+tile_set = ExtResource("5_pf0hy")
+script = ExtResource("13_wmmsv")
 station_manager = NodePath("../StationManager")
 metadata/_custom_type_script = "uid://6dwks6qy63ek"
 
-[node name="Goblin" parent="." instance=ExtResource("13_jkloi")]
-position = Vector2(72, 280)
-scripts = Array[String](["Ooh Boom"])
-auto_start = true
-start_with_tuto = false
-
 [node name="Train" type="Node2D" parent="." node_paths=PackedStringArray("rails")]
-position = Vector2(152, 184)
-script = ExtResource("14_jkloi")
+position = Vector2(152, 280)
+script = ExtResource("14_tv5fo")
 rails = NodePath("../Rails")
 metadata/_custom_type_script = "uid://clb36hc0321tq"
 
-[node name="Wagon" parent="Train" instance=ExtResource("10_p3c3h")]
+[node name="Wagon" parent="Train" instance=ExtResource("15_8wbfe")]
+
+[node name="Goblin" parent="." instance=ExtResource("16_0q354")]
+position = Vector2(104, 264)
+scripts = Array[String](["Ooh ! The fire gems. It's quite dangerous to handle", "It will put everything on fire !", "Even the boooom stick !"])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Env" parent="CanvasLayer" instance=ExtResource("11_5yuor")]
+[node name="Env" parent="CanvasLayer" instance=ExtResource("16_1g0yw")]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("12_kfmln")]
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("17_fy0in")]
 
-[node name="Status" parent="CanvasLayer" instance=ExtResource("13_dyrox")]
+[node name="Status" parent="CanvasLayer" instance=ExtResource("18_di0eg")]
+
+[node name="Tuto" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("goblin")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("19_yxldf")
+goblin = NodePath("../../Goblin")
+metadata/_custom_type_script = "uid://bp14ekr5hyd5y"
+
+[node name="NOnBoom" type="Label" parent="CanvasLayer/Tuto"]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 136.0
+offset_right = 466.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 12
+script = ExtResource("20_i2y3v")
+step = 2
+line = "< Boom stick"
+metadata/_custom_type_script = "uid://coul3boqy17k0"

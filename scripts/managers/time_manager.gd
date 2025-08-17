@@ -68,7 +68,7 @@ func _fast_forward_off() -> void:
 	delay = base_delay
 	EventBus.delay_changed.emit(delay)
 
-func _stop() -> void:
+func _stop(_reason: String = "") -> void:
 	if timer:
 		timer.stop()
 

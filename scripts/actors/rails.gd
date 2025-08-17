@@ -15,6 +15,8 @@ var rails_to_burn = []
 
 var current_mode := ModeHelper.Mode.EDIT
 
+var failed := false
+
 var map_snapshot : PackedByteArray
 
 @export var swap_cooldown : float = 0.2
@@ -25,17 +27,22 @@ func _started() -> void:
 	_lock()
 	map_snapshot = tile_map_data
 	rails_to_burn.clear()
+	failed = false
 
 func _restart() -> void:
 	_unlock()
 	tile_map_data = map_snapshot
 	rails_to_burn.clear()
+	failed = false
 
-func _lock() -> void:
+func _lock(_a = null) -> void:
 	can_be_edited = false
 
-func _unlock() -> void:
+func _unlock(_a = null) -> void:
 	can_be_edited = true
+
+func _failed(_reason: String) -> void:
+	failed = true
 
 # Public utils
 func get_tile_size() -> int:
@@ -102,7 +109,11 @@ func _input(event: InputEvent) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not can_be_edited: return
+	if not can_be_edited: 
+		if failed:
+			if event is InputEventMouseButton:
+				EventBus.need_restart.emit()
+		return
 	if event is InputEventMouse:
 		_handle_mouse_event(event)
 
@@ -133,12 +144,14 @@ func _handle_mouse_event(event: InputEventMouse) -> void:
 
 # Rails placement
 func _can_edit_rail(coord: Vector2i, rail: Rail, forced: bool = false) -> bool:
-	return forced or (
-		can_be_edited and 
-		rail.is_editable and 
-		not station_manager.registered.has(coord))
+	if forced: return true
+	return (can_be_edited and 
+			rail.is_editable and 
+			not station_manager.registered.has(coord))
 
 func _remove_rail_at(coord: Vector2i, rail: Rail) -> void:
+	if failed and not can_be_edited:
+		EventBus.need_restart.emit()
 	if not rail.has_rail or not _can_edit_rail(coord, rail):
 		return
 
@@ -201,6 +214,8 @@ func _place_rail(coord: Vector2i, new_rail: Vector2i) -> void:
 
 func _set_rail_at(coord: Vector2i, rail: Rail, swap_mode: bool = false, forced: bool = false) -> void:
 	# Check that the rail can be edited
+	if failed and not can_be_edited and not forced:
+		EventBus.need_restart.emit()
 	if not _can_edit_rail(coord, rail, forced):
 		return
 
@@ -261,6 +276,8 @@ func _add_particle_at(particle_type: PackedScene, coord: Vector2i) -> void:
 func _enter_tree() -> void:
 	EventBus.started_tuto.connect(_lock)
 	EventBus.finished_tuto.connect(_unlock)
+	EventBus.train_crashed.connect(_failed)
+	EventBus.out_of_time.connect(_failed)
 	EventBus.clear.connect(_clear)
 	EventBus.start.connect(_started)
 	EventBus.restart.connect(_restart)
@@ -270,6 +287,8 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	EventBus.started_tuto.disconnect(_lock)
 	EventBus.finished_tuto.disconnect(_unlock)
+	EventBus.train_crashed.disconnect(_failed)
+	EventBus.out_of_time.disconnect(_failed)
 	EventBus.clear.disconnect(_clear)
 	EventBus.start.disconnect(_started)
 	EventBus.restart.disconnect(_restart)

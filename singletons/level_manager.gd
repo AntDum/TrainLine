@@ -1,16 +1,30 @@
 extends Node
 
 const LEVELS = [
-	^"res://scenes/levels/tutorial/level_0_1.tscn",
-	^"res://scenes/levels/tutorial/level_0_2.tscn",
-	^"res://scenes/levels/tutorial/level_0_3.tscn",
+	# TUTO
+	^"res://scenes/levels/tutorial/level_tuto_1.tscn",
+	^"res://scenes/levels/tutorial/level_tuto_2.tscn",
+	^"res://scenes/levels/tutorial/level_tuto_3.tscn",
+	^"res://scenes/levels/tutorial/level_tuto_blue.tscn",
+	^"res://scenes/levels/tutorial/level_tuto_red.tscn",
+	^"res://scenes/levels/tutorial/level_tuto_purple.tscn",
+	^"res://scenes/levels/tutorial/level_tuto_white.tscn",
+	
+	# Blue
 	^"res://scenes/levels/slowness/level_1_1.tscn",
 	^"res://scenes/levels/slowness/level_1_2.tscn",
-	^"res://scenes/levels/mirrors/level_2_1.tscn",
-	^"res://scenes/levels/mirrors/level_2_2.tscn",
+	^"res://scenes/levels/slowness/level_1_3.tscn",
+	^"res://scenes/levels/slowness/level_1_4.tscn",
+	
+	# Red
 	^"res://scenes/levels/dynamite/level_4_1.tscn",
 	^"res://scenes/levels/dynamite/level_4_2.tscn",
 	
+	# White
+	^"res://scenes/levels/mirrors/level_2_1.tscn",
+	
+	# Purple
+	^"res://scenes/levels/portal/level_3_1.tscn",
 ]
 
 var current_level_id = -1

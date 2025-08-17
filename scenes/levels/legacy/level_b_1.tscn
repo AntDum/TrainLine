@@ -404,8 +404,7 @@ fuses = NodePath("../Fuses")
 [node name="Station" type="Marker2D" parent="Rails"]
 position = Vector2(216, 72)
 script = ExtResource("7_0q8v6")
-contentValue = 3
-take = true
+content_type = 3
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="gem" type="Sprite2D" parent="Rails/Station"]
@@ -421,8 +420,8 @@ oscillate_speed = 4.0
 [node name="Station2" type="Marker2D" parent="Rails"]
 position = Vector2(200, 120)
 script = ExtResource("7_0q8v6")
-contentValue = 3
-put = true
+content_type = 3
+station_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="FloatingSprite2D" type="Sprite2D" parent="Rails/Station2"]
@@ -468,8 +467,8 @@ metadata/_custom_type_script = "uid://ckqbh00snikp8"
 [node name="Station3" type="Marker2D" parent="Rails"]
 position = Vector2(232, 120)
 script = ExtResource("7_0q8v6")
-contentValue = 4
-put = true
+content_type = 4
+station_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="FloatingSprite2D" type="Sprite2D" parent="Rails/Station3"]
@@ -489,8 +488,7 @@ position = Vector2(200, 104)
 [node name="Station4" type="Marker2D" parent="Rails"]
 position = Vector2(88, 232)
 script = ExtResource("7_0q8v6")
-contentValue = 4
-take = true
+content_type = 4
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="gem" type="Sprite2D" parent="Rails/Station4"]

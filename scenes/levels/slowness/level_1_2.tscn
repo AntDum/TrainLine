@@ -8,13 +8,13 @@
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="6_io03e"]
 [ext_resource type="Script" uid="uid://ci3l0lu2y25vw" path="res://scripts/objects/station.gd" id="7_3m6pc"]
 [ext_resource type="PackedScene" uid="uid://3qqbeaocmtsk" path="res://scenes/objects/box.tscn" id="8_dktjf"]
-[ext_resource type="PackedScene" uid="uid://djj22l516dux2" path="res://scenes/objects/sign.tscn" id="9_ecucx"]
 [ext_resource type="Script" uid="uid://b6tn1mmk1yx57" path="res://scripts/components/float.gd" id="10_2yaoe"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="10_i1bds"]
 [ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="11_qhwr6"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_u1660"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_mhgmi"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_mmhmi"]
+[ext_resource type="PackedScene" uid="uid://bsa38y1odpuhk" path="res://scenes/actors/goblin.tscn" id="16_rkek2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4ljo"]
 texture = ExtResource("4_etsc5")
@@ -391,7 +391,7 @@ tile_map_data = PackedByteArray("AAACAA4AAAADAAwAAAADAA4AAAAAAAcAAAAEAA4AAAABAAc
 tile_set = SubResource("TileSet_cyw67")
 
 [node name="Rails" type="TileMapLayer" parent="." node_paths=PackedStringArray("station_manager")]
-tile_map_data = PackedByteArray("AAAFAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAHAAwAAAACAAMAAAAIAAwAAAAEAAIAAAAUABQAAAAEAAIAAAAPAAUAAAAEAAIAAAAZAAkAAAAEAAIAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAAMAAwAAAACAAMAAAANAAwAAAACAAMAAAAOAAwAAAAFAAIAAAATAAwAAAAAAAIAAAAUAAwAAAACAAMAAAAVAAwAAAACAAMAAAAWAAwAAAACAAMAAAAXAAwAAAACAAMAAAAYAAwAAAACAAMAAAAZAAwAAAACAAMAAAAaAAwAAAACAAMAAAAbAAsAAAACAAAAAAAbAAwAAAAJAAEAAAAbAAoAAAACAAAAAAAbAAkAAAAJAAAAAAAaAAkAAAACAAMAAAAYAAkAAAAAAAIAAAALAAwAAAACAAMAAAAQAAUAAAACAAMAAAARAAUAAAAJAAAAAAARAAYAAAACAAAAAAARAAcAAAAAAAEAAAAOAAUAAAACAAMAAAANAAUAAAAIAAAAAAANAAYAAAACAAAAAAANAAcAAAACAAAAAAANAAgAAAAAAAEAAAAVABQAAAAFAAIAAAAEAAwAAAAEAAIAAAADAAwAAAAAAAIAAQA=")
+tile_map_data = PackedByteArray("AAAFAAwAAAAEAAIAAAAGAAwAAAAEAAIAAAAHAAwAAAACAAMAAAAIAAwAAAAEAAIAAAAUABQAAAAEAAIAAAAPAAUAAAAEAAIAAAAZAAkAAAAEAAIAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAAMAAwAAAACAAMAAAANAAwAAAACAAMAAAAOAAwAAAAFAAIAAAATAAwAAAAAAAIAAAAUAAwAAAACAAMAAAAVAAwAAAACAAMAAAAWAAwAAAACAAMAAAAXAAwAAAACAAMAAAAYAAwAAAACAAMAAAAZAAwAAAACAAMAAAAaAAwAAAACAAMAAAAbAAsAAAACAAAAAAAbAAwAAAAJAAEAAAAbAAoAAAACAAAAAAAbAAkAAAAJAAAAAAAaAAkAAAACAAMAAAAYAAkAAAAAAAIAAAALAAwAAAACAAMAAAAQAAUAAAACAAMAAAARAAUAAAAJAAAAAAARAAYAAAACAAAAAAARAAcAAAAAAAEAAAAOAAUAAAACAAMAAAANAAUAAAAIAAAAAAANAAYAAAACAAAAAAANAAcAAAACAAAAAAANAAgAAAAAAAEAAAAVABQAAAAFAAIAAAAEAAwAAAAEAAIAAAADAAwAAAAAAAIAAQAUABMAAAAEAAQAAAAZAAgAAAAEAAQAAAALABEAAAAJAAQAAAAPAA4AAAAJAAQAAAAbABEAAAAJAAQAAAATAAkAAAAJAAQAAAAYAAUAAAAGAAQAAAALAAMAAAAIAAQAAAANAAkAAAAIAAQAAAAFAAcAAAAHAAQAAAAKAAgAAAAIAAQAAAAFABAAAAAIAAQAAAABABEAAAAGAAQAAAAIABUAAAAHAAQAAAAcABQAAAAIAAQAAAAUAA4AAAAHAAQAAAAeAAsAAAAIAAQAAAAeAAoAAAAJAAQAAAAUAAQAAAAJAAQAAAATAAIAAAAIAAQAAAAFAAMAAAAIAAQAAAA=")
 tile_set = ExtResource("5_1s5ef")
 script = ExtResource("6_io03e")
 station_manager = NodePath("../StationManager")
@@ -399,23 +399,18 @@ station_manager = NodePath("../StationManager")
 [node name="StationObject1" type="Marker2D" parent="Rails"]
 position = Vector2(248, 88)
 script = ExtResource("7_3m6pc")
-contentValue = 1
-take = true
+content_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="Gem" parent="Rails/StationObject1" instance=ExtResource("8_dktjf")]
 position = Vector2(0, -16)
 region_rect = Rect2(16, 144, 16, 16)
 
-[node name="Box" parent="Rails" instance=ExtResource("9_ecucx")]
-position = Vector2(408, 136)
-region_rect = Rect2(64, 64, 16, 16)
-
 [node name="StationObject2" type="Marker2D" parent="Rails"]
 position = Vector2(408, 152)
 script = ExtResource("7_3m6pc")
-contentValue = 1
-put = true
+content_type = 1
+station_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject2"]
@@ -426,23 +421,18 @@ script = ExtResource("10_2yaoe")
 [node name="StationObject3" type="Marker2D" parent="Rails"]
 position = Vector2(136, 200)
 script = ExtResource("7_3m6pc")
-contentValue = 1
-take = true
+content_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="Gem" parent="Rails/StationObject3" instance=ExtResource("8_dktjf")]
 position = Vector2(0, -16)
 region_rect = Rect2(16, 144, 16, 16)
 
-[node name="Box2" parent="Rails" instance=ExtResource("9_ecucx")]
-position = Vector2(328, 312)
-region_rect = Rect2(64, 64, 16, 16)
-
 [node name="StationObject4" type="Marker2D" parent="Rails"]
 position = Vector2(328, 328)
 script = ExtResource("7_3m6pc")
-contentValue = 1
-put = true
+content_type = 1
+station_type = 1
 metadata/_custom_type_script = "uid://ci3l0lu2y25vw"
 
 [node name="GemPopup" type="Sprite2D" parent="Rails/StationObject4"]
@@ -460,6 +450,12 @@ metadata/_custom_type_script = "uid://clb36hc0321tq"
 
 [node name="Wagon2" parent="Train" instance=ExtResource("10_i1bds")]
 position = Vector2(-16, 0)
+
+[node name="Goblin" parent="." instance=ExtResource("16_rkek2")]
+position = Vector2(40, 184)
+scripts = Array[String](["Wait, two ?", "Yes two ! You can take two gems !"])
+auto_start = true
+start_with_tuto = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

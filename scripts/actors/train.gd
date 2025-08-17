@@ -36,7 +36,6 @@ func _ready() -> void:
 	for child in get_children():
 		if child is Wagon:
 			wagons.append(child)
-			print("Hey")
 	items = 0
 	size = len(wagons)
 	assert(size != 0, "Train need to have wagon as child")
@@ -55,7 +54,8 @@ func _restart() -> void:
 	head_pos = start_head_pos
 	head_dir = start_head_dir
 	items = 0
-	
+	if not EventBus.step.is_connected(_step):
+		EventBus.step.connect(_step)
 	var tween_reset = create_tween()
 	for wagon in wagons:
 		tween_reset.tween_callback(wagon.reset)
@@ -89,7 +89,7 @@ func _step(time: int) -> void:
 			var station : BaseStation = rail.station
 			if station.is_on:
 				if not station.accept_interaction():
-					_crashed("The station didn't want me to be there")
+					_crashed("Nyaa ! You cannot go at this place twice")
 					return
 					
 				if station is Station:
@@ -97,14 +97,14 @@ func _step(time: int) -> void:
 						if not _is_empty() and _contains(station.get_content()):
 							_remove(station.get_content())
 						else:
-							_crashed("I didn't have the required gem")
+							_crashed("Arg ! You didn't have the required gem")
 							return
 					
 					if station.can_take():
 						if not _is_full():
 							_take_box(station.get_content())
 						else:
-							_crashed("I don't have space to take the box")
+							_crashed("Noo! Your cart is full")
 							return
 						
 				
@@ -112,7 +112,7 @@ func _step(time: int) -> void:
 					if _contains(Gem.Type.PURPLE):
 						_teleport(station.get_global_destination())
 					else:
-						_crashed("I tried to teleport without purple gem")
+						_crashed("Did you forget ? You need the purple gem to teleport")
 						return
 					
 				station.interact()
@@ -140,7 +140,7 @@ func _move(rail: Rail) -> void:
 	var out_dir = rail.will_go_to(comming_from)
 	
 	if out_dir == -1:
-		_crashed("The rail didn't like me go through")
+		_crashed("Aaahh ! There are no rail for your cart")
 		return
 	
 	head_dir = out_dir
@@ -211,9 +211,11 @@ func _contains(gem : Gem.Type) -> bool:
 	return false
 
 func _crashed(reason: String) -> void:
+	if EventBus.step.is_connected(_step):
+		EventBus.step.disconnect(_step)
 	AudioManager.play_sound("crashed")
 	print("Crashed because : ", reason)
-	EventBus.train_crashed.emit()
+	EventBus.train_crashed.emit(reason)
 	
 	for wagon in wagons:
 		wagon.crashed()

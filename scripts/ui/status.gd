@@ -8,7 +8,7 @@ extends Control
 @onready var retry_button: HoverButton = %RetryButton
 
 
-func _train_crashed() -> void:
+func _train_crashed(_reason: String = "") -> void:
 	_failed_level()
 	rewrite_label.change_text("Oh no !\nYou cannot do that")
 
@@ -47,13 +47,13 @@ func _on_retry_button_pressed() -> void:
 
 
 func _enter_tree() -> void:
-	EventBus.train_crashed.connect(_train_crashed)
+	#EventBus.train_crashed.connect(_train_crashed)
+	#EventBus.out_of_time.connect(_out_of_time)
 	EventBus.all_station_satisfied.connect(_all_station_happy)
-	EventBus.out_of_time.connect(_out_of_time)
 	EventBus.restart.connect(_restart)
 
 func _exit_tree() -> void:
-	EventBus.train_crashed.disconnect(_train_crashed)
+	#EventBus.train_crashed.disconnect(_train_crashed)
+	#EventBus.out_of_time.disconnect(_out_of_time)
 	EventBus.all_station_satisfied.disconnect(_all_station_happy)
-	EventBus.out_of_time.disconnect(_out_of_time)
 	EventBus.restart.disconnect(_restart)

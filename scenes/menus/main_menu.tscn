@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bdd0740mt5jqa"]
+[gd_scene load_steps=15 format=4 uid="uid://bdd0740mt5jqa"]
 
 [ext_resource type="Script" uid="uid://dtmgftwypifeq" path="res://scripts/ui/main_menu.gd" id="1_sl1te"]
 [ext_resource type="Script" uid="uid://baa8dkc01vxqw" path="res://scripts/managers/station_manager.gd" id="2_1hnlc"]
@@ -8,7 +8,9 @@
 [ext_resource type="TileSet" uid="uid://bmaglbxi3dtli" path="res://resources/levels/tileset_rail.tres" id="4_ng0o5"]
 [ext_resource type="Script" uid="uid://bq84y5bsqye5i" path="res://scripts/actors/rails.gd" id="5_8r73w"]
 [ext_resource type="PackedScene" uid="uid://ck6beu6fp771q" path="res://scenes/actors/wagon.tscn" id="7_1hnlc"]
+[ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="7_bre17"]
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="8_50h1w"]
+[ext_resource type="PackedScene" uid="uid://bsa38y1odpuhk" path="res://scenes/actors/goblin.tscn" id="9_88kup"]
 [ext_resource type="PackedScene" uid="uid://b3ouj2nof0m8y" path="res://scenes/menus/credits_menu.tscn" id="10_euy4r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bivr"]
@@ -409,17 +411,44 @@ script = ExtResource("5_8r73w")
 can_be_edited = false
 metadata/_custom_type_script = "uid://bq84y5bsqye5i"
 
-[node name="Train" parent="Rails" instance=ExtResource("7_1hnlc")]
-modulate = Color(1.2, 1.2, 1.2, 1)
-position = Vector2(216, 104)
+[node name="Train" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+position = Vector2(232, 104)
+script = ExtResource("7_bre17")
+rails = NodePath("..")
+metadata/_custom_type_script = "uid://clb36hc0321tq"
 
-[node name="Train2" parent="Rails" instance=ExtResource("7_1hnlc")]
-modulate = Color(1.2, 1.2, 1.2, 1)
-position = Vector2(232, 216)
+[node name="Wagon" parent="Rails/Train" instance=ExtResource("7_1hnlc")]
 
-[node name="Train3" parent="Rails" instance=ExtResource("7_1hnlc")]
-modulate = Color(1.2, 1.2, 1.2, 1)
-position = Vector2(440, 55)
+[node name="Wagon2" parent="Rails/Train" instance=ExtResource("7_1hnlc")]
+position = Vector2(-16, 0)
+
+[node name="Train2" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+position = Vector2(440, 216)
+script = ExtResource("7_bre17")
+rails = NodePath("..")
+head_dir = 3
+metadata/_custom_type_script = "uid://clb36hc0321tq"
+
+[node name="Wagon" parent="Rails/Train2" instance=ExtResource("7_1hnlc")]
+
+[node name="Train3" type="Node2D" parent="Rails" node_paths=PackedStringArray("rails")]
+position = Vector2(152, 424)
+script = ExtResource("7_bre17")
+rails = NodePath("..")
+metadata/_custom_type_script = "uid://clb36hc0321tq"
+
+[node name="Wagon" parent="Rails/Train3" instance=ExtResource("7_1hnlc")]
+
+[node name="Wagon2" parent="Rails/Train3" instance=ExtResource("7_1hnlc")]
+position = Vector2(-16, 0)
+
+[node name="Wagon3" parent="Rails/Train3" instance=ExtResource("7_1hnlc")]
+position = Vector2(-32, 0)
+
+[node name="Goblin" parent="Rails" instance=ExtResource("9_88kup")]
+position = Vector2(280, 280)
+start_with_tuto = false
+make_comment = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

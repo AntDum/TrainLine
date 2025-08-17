@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cb2pc5san55ak" path="res://scenes/ui/env.tscn" id="11_bs77s"]
 [ext_resource type="PackedScene" uid="uid://bjv1vlrs704cj" path="res://scenes/ui/hud.tscn" id="12_wgf2d"]
 [ext_resource type="PackedScene" uid="uid://uqqik5fjy3sh" path="res://scenes/ui/status.tscn" id="13_hv3lp"]
-[ext_resource type="Script" uid="uid://cxxlt7vehh56y" path="res://scripts/levels/tuto/tuto_lvl_t_1.gd" id="14_n177e"]
+[ext_resource type="Script" uid="uid://cxxlt7vehh56y" path="res://scripts/levels/tuto/tuto_0_1.gd" id="14_n177e"]
 [ext_resource type="Script" uid="uid://bgu1v264n71y5" path="res://scripts/components/ui/notification.gd" id="15_0uhqh"]
 [ext_resource type="Script" uid="uid://clb36hc0321tq" path="res://scripts/actors/train.gd" id="15_7hgy8"]
 

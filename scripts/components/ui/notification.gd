@@ -1,7 +1,7 @@
 extends Label
 class_name Notification
 
-@export var display_duration: float = 42.0
+@export var display_duration: float = 6.0
 @export var appear_duration: float = 0.3
 @export var hide_duration: float = 0.3
 

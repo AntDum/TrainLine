@@ -27,8 +27,7 @@ signal clear
 signal fast_forward_on
 signal fast_forward_off
 
-signal train_crashed
+signal train_crashed(reason: String)
 signal out_of_time
 
-signal level_success
-signal level_failed
+signal need_restart
