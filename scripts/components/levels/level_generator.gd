@@ -15,14 +15,10 @@ func _ready() -> void:
 		await EventBus.finished_tuto
 	EventBus.change_mode.emit(ModeHelper.Mode.EDIT)
 
-func say_line(text: String, wait_time: float = 3.0) -> void:
-	goblin.goblin_say(text)
-	await goblin.finished_writing
-	await get_tree().create_timer(wait_time).timeout
-
 func goblin_theorie() -> void:
-	await say_line("Hello ! I'm friendly !")
-	await say_line("How could you say that I'm not ?")
-	await say_line("Look I will guide you here ! This is a very very long text to try and test my little goblin capabilities")
-	await say_line("Just trust me !")
-	goblin.goblin_shush()
+	goblin.say_script([
+		"Hello ! I'm friendly !",
+		"How could you say that I'm not ?",
+		"Look I will guide you here ! This is a very very long text to try and test my little goblin capabilities",
+		"Just trust me !"
+	], 3)

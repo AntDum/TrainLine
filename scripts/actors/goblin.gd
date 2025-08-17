@@ -6,6 +6,8 @@ signal finished_writing
 
 var dialogue_open := false
 
+var scripts : Array[String] = []
+
 @onready var root_control: Control = $Control
 @onready var rewrite_label: RewriteLabel = %RewriteLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -14,7 +16,15 @@ var dialogue_open := false
 func _ready() -> void:
 	root_control.visible = false
 
-func goblin_say(text: String, time: float = -1) -> void:
+func say_script(texts: Array[String], time: float = -1) -> void:
+	for text in texts:
+		say(text)
+		await finished_writing
+		if time > 0:
+			await get_tree().create_timer(time).timeout
+	shush()
+
+func say(text: String, time: float = -1) -> void:
 	if not dialogue_open:
 		animation_player.play("show_dialogue")
 		dialogue_open = true
@@ -28,9 +38,9 @@ func goblin_say(text: String, time: float = -1) -> void:
 	finished_writing.emit()
 	if time > 0:
 		await get_tree().create_timer(time).timeout
-		goblin_shush()
+		shush()
 
-func goblin_shush() -> void:
+func shush() -> void:
 	rewrite_label.change_text("")
 	await rewrite_label.finished_writing
 	if dialogue_open:
