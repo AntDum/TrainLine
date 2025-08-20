@@ -17,15 +17,20 @@ signal finished_writing
 @export var rewrite_duration : float = 1
 
 var tween : Tween
+var target_text : String
 
 func _ready() -> void:
 	if animate_on_ready:
 		text = ""
 	change_text(start_text)
 
+func is_writing() -> bool:
+	return tween and tween.is_running()
+
 func change_text(new_text : String) -> void:
 	if tween:
 		tween.kill()
+	target_text = new_text
 	tween = create_tween()
 	# Erase
 	if text.length() > 0:
@@ -43,3 +48,13 @@ func change_text(new_text : String) -> void:
 		visible_ratio = 1
 	
 	tween.tween_callback(finished_writing.emit)
+
+func skip() -> void:
+	if not tween:
+		return
+	
+	tween.kill()
+	text = target_text
+	visible_ratio = 1
+	text_changed.emit()
+	finished_writing.emit()

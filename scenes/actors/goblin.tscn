@@ -304,14 +304,12 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 138.0
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bulrq")
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
 layout_mode = 2
 size_flags_horizontal = 0
-mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -324,6 +322,7 @@ custom_minimum_size = Vector2(120, 16)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 8
@@ -340,3 +339,4 @@ libraries = {
 
 [connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="timeout" from="PlayAgain/Timer" to="." method="_on_timer_timeout"]
+[connection signal="gui_input" from="Control/Panel" to="." method="_on_control_gui_input"]

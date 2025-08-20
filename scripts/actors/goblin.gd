@@ -7,6 +7,8 @@ signal said_text(text_line: int)
 signal finished_script(number_said: int)
 signal shushed
 
+signal skip_dialogue
+
 
 @export_multiline var scripts : Array[String] = []
 @export var wait_time : float = 3
@@ -39,7 +41,6 @@ func _ready() -> void:
 func _start() -> void:
 	say_script(scripts, wait_time)
 	
-	
 func _on_play_again_pressed() -> void:
 	say_script(scripts, wait_time)
 	
@@ -52,14 +53,15 @@ func say_script(texts: Array[String], time: float = -1) -> void:
 		await finished_writing
 		said_text.emit(line)
 		if time > 0:
-			await get_tree().create_timer(time).timeout
+			await Signals.any([get_tree().create_timer(time).timeout, skip_dialogue])
 		line += 1
 	shush()
 	await shushed
 	finished_script.emit(said_script)
 	said_script += 1
 	in_script = false
-	timer.start()
+	if len(texts) > 1:
+		timer.start()
 
 func say(text: String, time: float = -1, sound: String = "Talk") -> void:
 	if not dialogue_open:
@@ -76,7 +78,7 @@ func say(text: String, time: float = -1, sound: String = "Talk") -> void:
 	await rewrite_label.finished_writing
 	finished_writing.emit()
 	if time > 0:
-		await get_tree().create_timer(time).timeout
+		await Signals.any([get_tree().create_timer(time).timeout, skip_dialogue])
 		shush()
 
 func shush() -> void:
@@ -96,9 +98,19 @@ func _out_of_fuel() -> void:
 	if not make_comment: return
 	say("Horwl ! Not enough fuel", 2, "Angry")
 
-
 func _on_timer_timeout() -> void:
-	say("Press me to talk again !", 3, "Growl")
+	say("Press me to talk again !", 0.7, "Growl")
+	
+func _on_control_gui_input(event: InputEvent) -> void:
+	print("Event")
+	if event is InputEventMouseButton and event.pressed:
+		print("Pressed")
+		if rewrite_label.is_writing():
+			print("Write skip")
+			rewrite_label.skip()
+		else:
+			print("Wait skip")
+			skip_dialogue.emit()
 
 
 func _enter_tree() -> void:
